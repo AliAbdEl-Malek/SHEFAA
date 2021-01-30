@@ -1,0 +1,50 @@
+body {
+    clear: both;
+    box-sizing: border-box;
+}
+
+.container {
+    position: relative;
+    margin-top: 10%;
+}
+
+.card {
+    position: relative;
+    width: 500px;
+    margin: auto;
+    height: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card .greeting {
+    margin-top: 5%;
+}
+
+form {
+    width: auto;
+    margin: 20px;
+}
+
+label {
+    color: rgb(99, 97, 97);
+}
+
+button[type=submit]:hover {
+    background-color: rgb(154, 243, 21);
+}
+
+.form-check span {
+    float: right;
+}
+
+
+/* responsive Media */
+
+
+/* Extra small devices (phones, 600px and down) */
+
+@media only screen and (max-width: 600px) {
+    .container {
+        margin-right: auto;
+    }
+}
