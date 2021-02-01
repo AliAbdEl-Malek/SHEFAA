@@ -1,0 +1,50 @@
+footer div.grid-fluid {
+    display: flex;
+    justify-content: center;
+    text-align: left;
+    padding: 10px 0;
+}
+
+footer .footer-block {
+    margin: 0 30px;
+    vertical-align: top;
+}
+
+h3 {
+    color: #838383;
+    font-family: PT Sans,sans-serif;
+}
+
+footer div.grid-fluid ul {
+    list-style-position: inside;
+    padding: 0;
+    margin: 0;
+}
+
+footer div.grid-fluid ul li {
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+}
+
+footer .link {
+    color: #838383;
+    font-weight: 300;
+    z-index: 20;
+    position: relative;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+footer .link:hover {
+    background-color: #32c69a;
+    color: white;
+    text-decoration: none;
+    border-radius: 15px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}

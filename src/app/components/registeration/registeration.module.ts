@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module';
 import { SignupComponent } from './signup/signup.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -19,7 +20,7 @@ const routes :Routes = [
 @NgModule({
   declarations: [SignupComponent, LoginComponent, ForgetPasswordComponent, ResetPasswordComponent],
   imports: [
-    CommonModule,RouterModule.forChild(routes),FormsModule,ReactiveFormsModule
+    CommonModule,RouterModule.forChild(routes),FormsModule,ReactiveFormsModule,SharedModule
   ]
 })
 export class RegisterationModule { }

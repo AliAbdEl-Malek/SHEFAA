@@ -1,0 +1,53 @@
+ul li .nav-hover{
+    color: white;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+ul li .nav-hover:hover{
+    background-color: #f4f8fb;
+    color: #32c69a;
+    font-size: 16px;
+    border-radius: 15px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-top: 12px;
+}
+
+ul li .toggle-hover:hover{
+    background-color: #f4f8fb;
+    color: #32c69a;
+    border-radius: 15px;
+}
+
+/* .search{
+    width: 300px; 
+}
+
+.search-foc:focus{
+    outline-color: #838383;
+    width: 400px; 
+    border:1px solid #838383;
+    box-shadow: 0 0 10px #719ECE;
+} */
+
+.nav-icon{
+    font-size: 25px;
+    color:#f4f8fb; 
+}
+
+.nav-icon-hov:hover{
+    color: #838383;
+}
+
+.dropdown:hover .dropdown-menu { 
+    display: block; 
+} 
+
+form button i:hover{
+    color: #32c69a;
+}

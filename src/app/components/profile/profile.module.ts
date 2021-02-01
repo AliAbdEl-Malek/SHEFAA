@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -14,7 +15,7 @@ const routes: Routes =[
 @NgModule({
   declarations: [UpdateProfileComponent, IndexComponent, UserProfileAndPreviousOrdersComponent],
   imports: [
-    CommonModule,RouterModule.forChild(routes)
+    CommonModule,RouterModule.forChild(routes),SharedModule
   ]
 })
 export class ProfileModule { }
