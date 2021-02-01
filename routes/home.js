@@ -19,7 +19,7 @@ router.get('/', authCheck, (req, res) => {
     console.log(req.headers)
         //render the main profile
         // res.status(200).send(`Now you are loggedin, this is your profile id:  ${req.user.id} <img src=" ${req.user.photoURL}" >`)
-    res.redirect("http://localhost:4200/home")
+    res.redirect("http://localhost:4200")
 
 })
 

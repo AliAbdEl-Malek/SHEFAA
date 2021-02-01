@@ -38,13 +38,19 @@ router.post('/signup', (req, res) => {
                             res.send({ "Data": err, "message": "Failed in requesting...!", "status": false })
                         } else {
 
-                            //update the user's id
-                            User.findOneAndUpdate({ email: req.body.email }, { id: user._id.toString() }, { new: true }, (err, newUser) => {
+                             //create an access token for new user
+                             const accesstoken = jwt.sign({ email: req.body.email },
+                                'secretKey', { expiresIn: '10h' });
+                            console.log("Token : ", accesstoken);
+
+                            //update the user's id and access token
+                            User.findOneAndUpdate({ email: req.body.email }, { id: user._id.toString() , accessToken:accesstoken }, { new: true }, (err, newUser) => {
                                     if (err)
                                         console.log(err)
                                     else
                                         console.log(newUser)
-                                    res.status(200).send({ "Data": newUser, "message": "Posted Successfully", "status": true })
+
+                                    res.status(200).send({ "Data": newUser, "message": "New user signed up Successfully", "status": true , "token": accesstoken})
                                 })
                                 // mailService.sendEmail(user.email).catch(console.error);
                         }
@@ -61,7 +67,7 @@ router.post('/login', (req, res) => {
     console.log(req.headers)
     User.findOne({ email: req.body.email }, (err, data) => {
         if (err) {
-            res.status(500).send(err)
+            res.status(500).send("Failed to find email: "+err)
         } else {
             console.log("data:", data)
             if (!data) {
@@ -80,11 +86,19 @@ router.post('/login', (req, res) => {
                                 'secretKey', { expiresIn: '10h' });
                             console.log("Token : ", accesstoken);
 
+                            //update use's access token
+                            User.findOneAndUpdate({ email: req.body.email }, { accessToken:accesstoken }, { new: true }, (err, newUser) => {
+                                if (err)
+                                    console.log(err)
+                                else
+                                    console.log(newUser)
+                            })
+
                             // const refreshToken = jwt.sign({ email: data.email }, 'RefreshTokenSercterSentence', { expiresIn: '100h' });
                             // data.refreshToken = refreshToken;
                             //res.cookie("jwt", accesstoken, {secure: true, httpOnly: true})
 
-                            res.status(200).send({ "Data": data, "message": "Logged in successfully", "status": true, "token": accesstoken })
+                            res.status(200).send({ "Data": data, "message": "Logged in successfully", "status": true , "token": accesstoken })
 
                         } else {
                             console.log("Entered password is " + req.body.password + " and the hashed paswword is " + data.password)
