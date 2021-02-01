@@ -1,5 +1,5 @@
 
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark w-100" style="background-color: #32c69a; padding: 0;">
+<nav class="navbar fixed-top navbar-expand-sm navbar-dark w-100" style="background-color: #32c69a; padding: 0;">
     <!-- <div class="container-fluid"> -->
         <a class="navbar-brand p-2 m-0" [routerLink]="['/']" routerLinkActive="router-link-active">
             <img src="/assets/images/logo.jpeg" alt="" width="30" class="rounded-circle d-inline-block align-top">
@@ -11,7 +11,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-2 mr-5">
                 <li class="nav-item">
-                    <a class="nav-link outhover nav-hover" [routerLink]="['']" routerLinkActive="router-link-active">Home</a>
+                    <a class="nav-link nav-hover" [routerLink]="['']" routerLinkActive="router-link-active">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link nav-hover" href="#">Products</a>
@@ -39,7 +39,7 @@
                     <div class="dropdown-menu p-2" style="margin-top: auto; float: right;" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item px-2 toggle-hover" [routerLink]="['/profile/info']" routerLinkActive="router-link-active"><i class="fa fa-user pr-2" style="color: #32c69a;"></i>Profile</a>
                         <a class="dropdown-item px-2 toggle-hover" href="#"><i class="fa fa-star pr-2" style="color: #32c69a;"></i>Favourite Products</a>
-                        <a class="dropdown-item px-2 toggle-hover" [routerLink]="['/registeration/login']" routerLinkActive="router-link-active"><i class="fa fa-door-open pr-2" style="color: #32c69a;"></i>Log Out</a>
+                        <a class="dropdown-item px-2 toggle-hover" [routerLink]="['/registeration/logout']" routerLinkActive="router-link-active"><i class="fa fa-door-open pr-2" style="color: #32c69a;"></i>Log Out</a>
                     </div>
                 </li>   
             </ul>

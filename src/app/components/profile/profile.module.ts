@@ -1,8 +1,5 @@
-// <<<<<<< HEAD
 import { SharedModule } from './../shared/shared.module';
-// =======
 import { AuthGuard } from './../../auth.guard';
-// >>>>>>> 884b2cf6bf0fa4dfb9e7a73a86a99c5770dd5865
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
