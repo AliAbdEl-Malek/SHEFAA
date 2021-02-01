@@ -1,157 +1,143 @@
-<p>user-profile-and-previous-orders works!</p>
-<body>
-
 <div class="container-fluid">
-<div class="row">
- <!-- Profile/ User Information  -->
-<div class="col-sm-3">
-    <div class="card " style="width:100%;height: 100%; margin-bottom:55px">
-               
-                  <a href="#" ><i class="fa fa-pencil fa-2x" style="float:right; margin:15px" ></i></a>
-                  <div class="text-center">
-           <img class="card-img-top" src="pp-male-3.jpg" alt="Card image" style="width: 75%; border-radius: 50%">
-                  </div>    
-                <div class="card-body">
-                  <h4 class="card-title">John Doe</h4>
-                  <p class="card-text">
-                  <i class="fa fa-map-marker fa-2x" style="margin-right: 20px"></i>Address</p>
-                    
-                  <p class="card-text">
-                      <i class="fa fa-mobile fa-2x" aria-hidden="true" style="margin-right: 20px"></i>Mobile Number</p>
-                      
-                    
-                  <p class="card-text">
-                      <i class="fa fa-envelope fa-1x" aria-hidden="true" style="margin-right: 38px"></i>email</p>
-                  
-                  <p class="card-text">
-                      <i class="fa fa-venus-mars fa-2x" style="margin-right: 20px"></i>Gender</p>
-                     
+    <div class="row">
+        <!-- Profile/ User Information  -->
+        <div class="col-sm-3" style="margin-top: 80px;">
+            <div class="sticky-top">
+                <div class="flex-column">
+                    <div class="card  " style="width:100%;height: 100%; margin-bottom:55px">
+
+                        <a [routerLink]="['/profile/edit']"><i class="fa fa-pencil fa-2x" style="float:right; margin:15px" ></i></a>
+                        <div class="text-center">
+                            <img class="card-img-top" src="assets/images/pp-male-3.jpg" alt="Card image" style="width: 75%; border-radius: 50%">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">John Doe</h4>
+                            <p class="card-text">
+                                <i class="fa fa-map-marker fa-2x" style="margin-right: 20px"></i>Address</p>
+
+                            <p class="card-text">
+                                <i class="fa fa-mobile fa-2x" aria-hidden="true" style="margin-right: 20px"></i>Mobile Number</p>
+
+
+                            <p class="card-text">
+                                <i class="fa fa-envelope fa-1x" aria-hidden="true" style="margin-right: 38px"></i>email</p>
+
+                            <p class="card-text">
+                                <i class="fa fa-venus-mars fa-2x" style="margin-right: 20px"></i>Gender</p>
+
+                        </div>
+                    </div>
                 </div>
-              </div>
-  </div>
-    
-<!--  Previous Orders  -->
-  <div class="col-sm-8">
-    <h2 style="margin-bottom: 40px;margin-top: 20px">Previous Orders</h2>    
-    <div class="card" style="margin-bottom: 35px">
-              
-              <div class="card-body" >
-              <p ><i class="fa fa-calendar" aria-hidden="true"></i> Date</p>
-              <div class="row">
-                  <p style="border:solid 2px black;width:40% ; margin-top: 20px;margin-left: 50px;padding-top: 25px">
-                     <img src="medicineimage.jpg" style="width:50%;height:75%;float: left;margin-right: 10px;"> 
-                      
-                      Product Name
-                      <br>
-                      <br>
-                      <b>$ 149.00</b>
-                      <br>
-                      <br>
-                      <a href="">Details</a>
-                       
-                  
-                  </p>
+            </div>
+        </div>
+
+        <!--  Previous Orders  -->
+        <div class="col-sm-8 ">
+            <h2 style="margin-bottom: 40px;margin-top: 80px;">Previous Orders</h2>
+            <div class="card shadow-sm" style="margin-bottom: 35px">
+
+                <div class="card-body">
+                    <p><i class="fa fa-calendar" aria-hidden="true"></i> Date</p>
+                    <div class="row">
+                        <p style="border:solid 2px black;width:40% ; margin-top: 20px;margin-left: 50px;padding-top: 25px">
+                            <img src="assets/images/medicineimage.jpg" style="width:50%;height:75%;float: left;margin-right: 10px;"> Product Name
+                            <br>
+                            <br>
+                            <b>$ 149.00</b>
+                            <br>
+                            <br>
+                            <a href="">Details</a>
+
+
+                        </p>
+                        <p style="border:solid 2px black ;width:40% ;height: 200px; margin-top:20px;margin-left: 50px;padding-top: 25px">
+                            <img src="assets/images/medicineimage.jpg" style="width:50%;height:75%;float: left;margin-right: 10px;"> Product Name
+                            <br>
+                            <br>
+                            <b>$ 149.00</b>
+                            <br>
+                            <br>
+                            <a href="">Details</a>
+
+
+                        </p>
+                        <p style="border:solid 2px black ;width:40% ;height: 200px; margin-top:20px;margin-left: 50px;padding-top: 25px">
+                            <img src="assets/images/medicineimage.jpg" style="width:50%;height:75%;float: left;margin-right: 10px;"> Product Name
+                            <br>
+                            <br>
+                            <b>$ 149.00</b>
+                            <br>
+                            <br>
+                            <a href="">Details</a>
+
+
+                        </p>
+                        <p style="border:solid 2px black ;width:40% ;height: 200px; margin-top:20px;margin-left: 50px;padding-top: 25px">
+                            <img src="assets/images/medicineimage.jpg" style="width:50%;height:75%;float: left;margin-right: 10px;"> Product Name
+                            <br>
+                            <br>
+                            <b>$ 149.00</b>
+                            <br>
+                            <br>
+                            <a href="">Details</a>
+
+
+                        </p>
+
+
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <p class="text-center">
+                        <b>Total: $ 500</b>
+                        <br> Cash/Credit Card
+                        <br>
+                        <button class="btn btn-success" style="float: right">Order Again</button>
+                    </p>
+
+                </div>
+            </div>
+            <div class="card" style="margin-bottom: 15px">
+
+                <div class="card-body">
+                    <p><i class="fa fa-calendar" aria-hidden="true"></i> Date</p>
+                    <div class="row">
+                        <p style="border:solid 2px black;width:40% ; margin-top: 20px;margin-left: 50px;padding-top: 25px">
+                            <img src="assets/images/medicineimage.jpg" style="width:50%;height:75%;float: left;margin-right: 10px;"> Product Name
+                            <br>
+                            <br>
+                            <b>$ 149.00</b>
+                            <br>
+                            <br>
+                            <a href="">Details</a>
+
+
+                        </p>
+                        <p style="border:solid 2px black ;width:40% ;height: 200px; margin-top:20px;margin-left: 50px;padding-top: 25px">
+                            <img src="assets/images/medicineimage.jpg" style="width:50%;height:75%;float: left;margin-right: 10px;"> Product Name
+                            <br>
+                            <br>
+                            <b>$ 149.00</b>
+                            <br>
+                            <br>
+                            <a href="">Details</a>
+
+
+                        </p>
+                        <p style="border:solid 2px black ;width:40% ;height: 200px; margin-top:20px;margin-left: 50px;padding-top: 25px">
+                            <img src="assets/images/medicineimage.jpg" style="width:50%;height:75%;float: left;margin-right: 10px;"> Product Name
+                            <br>
+                            <br>
+                            <b>$ 149.00</b>
+                            <br>
+                            <br>
+                            <a href="">Details</a>
+
+
+                        </p>
+                        <!--
                   <p style="border:solid 2px black ;width:40% ;height: 200px; margin-top:20px;margin-left: 50px;padding-top: 25px">
-                     <img src="medicineimage.jpg" style="width:50%;height:75%;float: left;margin-right: 10px;"> 
-                      
-                      Product Name
-                      <br>
-                      <br>
-                      <b>$ 149.00</b>
-                      <br>
-                      <br>
-                      <a href="">Details</a>
-                       
-                  
-                  </p>
-                  <p style="border:solid 2px black ;width:40% ;height: 200px; margin-top:20px;margin-left: 50px;padding-top: 25px">
-                     <img src="medicineimage.jpg" style="width:50%;height:75%;float: left;margin-right: 10px;"> 
-                      
-                      Product Name
-                      <br>
-                      <br>
-                      <b>$ 149.00</b>
-                      <br>
-                      <br>
-                      <a href="">Details</a>
-                       
-                  
-                  </p>
-                  <p style="border:solid 2px black ;width:40% ;height: 200px; margin-top:20px;margin-left: 50px;padding-top: 25px">
-                     <img src="medicineimage.jpg" style="width:50%;height:75%;float: left;margin-right: 10px;"> 
-                      
-                      Product Name
-                      <br>
-                      <br>
-                      <b>$ 149.00</b>
-                      <br>
-                      <br>
-                      <a href="">Details</a>
-                       
-                  
-                  </p>
-                  
-                  
-              </div>
-              </div> 
-              <div class="card-footer">
-                  <p class="text-center">
-                  <b>Total: $ 500</b>
-                  <br>
-                  Cash/Credit Card
-                  <br>
-                  <button class="btn btn-success" style="float: right">Order Again</button>    
-                  </p>
-        
-              </div>
-          </div>
-<div class="card" style="margin-bottom: 15px">
-              
-              <div class="card-body">
-              <p ><i class="fa fa-calendar" aria-hidden="true"></i> Date</p>
-              <div class="row">
-                  <p style="border:solid 2px black;width:40% ; margin-top: 20px;margin-left: 50px;padding-top: 25px">
-                     <img src="medicineimage.jpg" style="width:50%;height:75%;float: left;margin-right: 10px;"> 
-                      
-                      Product Name
-                      <br>
-                      <br>
-                      <b>$ 149.00</b>
-                      <br>
-                      <br>
-                      <a href="">Details</a>
-                       
-                  
-                  </p>
-                  <p style="border:solid 2px black ;width:40% ;height: 200px; margin-top:20px;margin-left: 50px;padding-top: 25px">
-                     <img src="medicineimage.jpg" style="width:50%;height:75%;float: left;margin-right: 10px;"> 
-                      
-                      Product Name
-                      <br>
-                      <br>
-                      <b>$ 149.00</b>
-                      <br>
-                      <br>
-                      <a href="">Details</a>
-                       
-                  
-                  </p>
-                  <p style="border:solid 2px black ;width:40% ;height: 200px; margin-top:20px;margin-left: 50px;padding-top: 25px">
-                     <img src="medicineimage.jpg" style="width:50%;height:75%;float: left;margin-right: 10px;"> 
-                      
-                      Product Name
-                      <br>
-                      <br>
-                      <b>$ 149.00</b>
-                      <br>
-                      <br>
-                      <a href="">Details</a>
-                       
-                  
-                  </p>
-<!--
-                  <p style="border:solid 2px black ;width:40% ;height: 200px; margin-top:20px;margin-left: 50px;padding-top: 25px">
-                     <img src="medicineimage.jpg" style="width:50%;height:75%;float: left;margin-right: 10px;"> 
+                     <img src="assets/images/medicineimage.jpg" style="width:50%;height:75%;float: left;margin-right: 10px;"> 
                       
                       Product Name
                       <br>
@@ -164,30 +150,21 @@
                   
                   </p>
 -->
-                  
-                  
-              </div>
-              </div> 
-              <div class="card-footer">
-                  <p class="text-center">
-                  <b>Total: $ 500</b>
-                  <br>
-                  Cash/Credit Card
-                  <br>
-                  <button class="btn btn-success" style="float: right">Order Again</button>    
-                  </p>
-        
-              </div>
-          </div>
-  </div>
-  
+
+
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <p class="text-center">
+                        <b>Total: $ 500</b>
+                        <br> Cash/Credit Card
+                        <br>
+                        <button class="btn btn-success" style="float: right">Order Again</button>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
-</div>
-
-  
-  
-  
-  
-</body>
-
-

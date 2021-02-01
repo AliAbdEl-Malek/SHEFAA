@@ -15,7 +15,7 @@ export class ApiService {
    token:any = this._userService.getToken()
 
   get(url:string){
-    return this.httpClient.get(`${environment.APIURL}/${url}`);
+    return this.httpClient.get(`${environment.APIURL}/${url}`,{headers:{'authorization':this.token}});
   }
 
   post(url:string,user:any){
