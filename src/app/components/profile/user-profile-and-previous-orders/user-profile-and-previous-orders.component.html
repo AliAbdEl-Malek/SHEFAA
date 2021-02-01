@@ -2,7 +2,7 @@
 
 <body>
 
-    <div class="container-fluid">
+    <div class="container-fluid" *ngIf="user">
         <div class="row">
             <!-- Profile/ User Information  -->
             <div class="col-sm-3" style="margin-top: 80px;">
@@ -14,20 +14,20 @@
                             <div class="text-center">
                                 <img class="card-img-top" src="assets/images/pp-male-3.jpg" alt="Card image" style="width: 75%; border-radius: 50%">
                             </div>
-                            <div class="card-body">
-                                <h4 class="card-title">John Doe</h4>
+                            <div class="card-body d-sm-block ">
+                                <h4 class="card-title"> {{user.name}}</h4>
                                 <p class="card-text">
-                                    <i class="fa fa-map-marker fa-2x" style="margin-right: 20px"></i>Address</p>
+                                    <i class="fa fa-map-marker fa-x"></i> &nbsp; Address</p>
 
                                 <p class="card-text">
-                                    <i class="fa fa-mobile fa-2x" aria-hidden="true" style="margin-right: 20px"></i>Mobile Number</p>
+                                    <i class="fa fa-mobile fa-2x" aria-hidden="true"></i>Mobile Number</p>
 
 
                                 <p class="card-text">
-                                    <i class="fa fa-envelope fa-1x" aria-hidden="true" style="margin-right: 38px"></i>email</p>
+                                    <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>{{user.email}}</p>
 
                                 <p class="card-text">
-                                    <i class="fa fa-venus-mars fa-2x" style="margin-right: 20px"></i>Gender</p>
+                                    <i class="fa fa-venus-mars fa-2x"></i>Gender</p>
 
                             </div>
                         </div>

@@ -13,20 +13,7 @@ export class IndexComponent implements OnInit {
   constructor(private _apiService:ApiService, private _router: Router, ) { }
   
   ngOnInit(): void {
-    this._apiService.get('home/').subscribe((response)=>{
-      console.log("Back from server")
-    })
-    
-    // this._apiService.get('user/get').subscribe((response)=>{
-    //   let obj = response as APIResponse
-    //   if(obj.status){
-    //     console.log(obj)
-    //     this.students = obj.Data;
-    //     this.isLoaded=true;
-
-    //   }
-    // })
-
+   
 
   }
 

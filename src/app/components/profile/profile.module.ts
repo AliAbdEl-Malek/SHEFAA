@@ -8,7 +8,7 @@ import { IndexComponent } from './index/index.component';
 import { UserProfileAndPreviousOrdersComponent } from './user-profile-and-previous-orders/user-profile-and-previous-orders.component';
 
 const routes: Routes =[
-  {path:"info",component:IndexComponent, canActivate:[AuthGuard]},
+  {path:"",component:IndexComponent, canActivate:[AuthGuard]},
   {path:"edit",component:UpdateProfileComponent, canActivate:[AuthGuard]}
 
 ]

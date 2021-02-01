@@ -8,17 +8,8 @@ export class UserService {
 
   logged=new Subject<boolean>();
 
-  constructor() { 
-    //alert(this.isLogged());
-    // this.logged.next(this.isLogged());
-  }
-  // login(email:string){
-
-    
-  //   localStorage.setItem("Email",email);
-  //   //this.logged.next(true);
-  //   this.setLoggedStatus(true);
-  // }
+  constructor() {}
+ 
   addToken(token:string)
   {
     localStorage.setItem("token",token);
