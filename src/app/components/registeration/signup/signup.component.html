@@ -4,17 +4,17 @@
         <div class="text-center">
             <h2 class="large-text">Great to see you! </h2>
             <p class="small-text">Let’s set up your account in just a couple of steps.</p>
-            <a type="button" href="http://localhost:3000/auth/google" class="btn btn-success ">
-                <i class="fab fa-google"></i> &nbsp; Sign up with Google </a>
+            <a type="button" href="http://localhost:3000/auth/google" class="btn text-white" style="background-color: #32c69a;">
+                <i class="fa fa-google"></i> &nbsp; Sign up with Google </a>
         </div> <br>
-        <div class="text-center color col-sm">
+        <!-- <div class="text-center color col-sm">
             ___________________ or _____________________
-        </div> <br>
+        </div> <br> -->
 
         <form [formGroup]="formGroup" action="/" class="col-sm">
 
             <div class="form-group has-user ">
-                <span class="fas fa-user form-control-feedback"></span>
+                <span class="fa fa-user form-control-feedback"></span>
                 <input formControlName="name" type="text" class="form-control" id="text" placeholder="Enter your Name" name="name">
 
                 <div *ngIf="formGroup.controls['name'].invalid && formGroup.controls['name'].dirty">
@@ -25,7 +25,7 @@
             </div>
 
             <div class="form-group has-mail">
-                <span class="fas fa-envelope form-control-feedback"></span>
+                <span class="fa fa-envelope form-control-feedback"></span>
                 <input formControlName="email" type="email" class="form-control" id="email" placeholder="Enter your email" name="email">
 
                 <div *ngIf="formGroup.controls['email'].invalid && formGroup.controls['email'].dirty">
@@ -37,7 +37,7 @@
             </div>
 
             <div class="form-group has-key">
-                <span class="fas fa-key form-control-feedback"></span>
+                <span class="fa fa-key form-control-feedback"></span>
                 <input formControlName="password" type="password" class="form-control" id="pwd" placeholder="Enter password" Name="pswd">
 
                 <div *ngIf="formGroup.controls['password'].invalid && formGroup.controls['password'].dirty">
@@ -55,4 +55,6 @@
         </form>
     </div>
 </div>
+<br>
 <!-- sign up card -->
+<app-registeration-footer></app-registeration-footer>

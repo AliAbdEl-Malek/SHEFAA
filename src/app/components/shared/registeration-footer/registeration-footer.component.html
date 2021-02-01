@@ -1,18 +1,26 @@
-<!-- <div class="d-flex justify-content-center w-100"> -->
-    <footer class="text-white" style="background-color: #32c69a;">
-        <div class="container-fluid">
-            <div class="row p-3">
-                © 2020 - 2021 @<a class="text-light" href="#">Chefaa</a>
-            </div>
-            <div class="row p-3">
-                <a class="text-light text-decoration-none" href="#">Terms of Service</a>
-            </div>
-            <div class="row p-3">
-                <a class="text-light text-decoration-none" href="#">Privacy Policy</a>
-            </div>
-            <div class="row p-3">
-                <a class="text-light text-decoration-none" href="#">Accessibility</a>
-            </div>
-        </div>
-    </footer>
-<!-- </div> -->
+<footer class="fixed-bottom" style="margin-top: 10px;">
+  <div class="grid-fluid">
+    <div class="footer-block">
+        <ul>
+            <li><a [routerLink]="['']" routerLinkActive="router-link-active" class="link" style="font-size: 18px;">Term of services</a></li>
+        </ul>
+    </div>
+    <div class="footer-block">
+        <ul>
+          <li><a [routerLink]="['']" routerLinkActive="router-link-active" class="link" style="font-size: 18px;">Privacy Policy</a></li>
+        </ul>
+    </div>
+     <div class="footer-block">
+        <ul>
+          <li><a [routerLink]="['']" routerLinkActive="router-link-active" class="link" style="font-size: 18px;">Accessibility</a></li>
+        </ul>
+    </div>
+  </div>
+  
+
+  <div class="text-center p-2 text-white" style="background-color: #32c69a;">
+    © 2020 - 2021 @<a class="text-white" style="text-decoration: none;" href="#">Shefaa</a>
+  </div>
+</footer>
+
+
