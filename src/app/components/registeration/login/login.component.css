@@ -37,6 +37,16 @@ button[type=submit]:hover {
     float: right;
 }
 
+button[type=submit]:hover {
+    background-color: #32c69a;
+    color: white;
+}
+
+.link {
+    text-decoration: none;
+    color: #32c69a;
+}
+
 
 /* responsive Media */
 
