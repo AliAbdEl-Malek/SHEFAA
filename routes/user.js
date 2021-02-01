@@ -118,9 +118,11 @@ router.post('/login', (req, res) => {
 
 
 //Get Profile By ID
-router.get('/get/:id', verifyToken, (req, res) => {
-    console.log(req.token)
-    jwt.verify(req.token, "secretKey", (err, authData) => {
+router.get('/get/:accessToken', verifyToken, (req, res) => {
+    console.log(req.headers)
+    console.log("request params:", req.params)
+    console.log("Token is: ",req.params.accessToken)
+    jwt.verify(req.params.accessToken, "secretKey", (err, authData) => {
 
         if (err) {
 
@@ -128,9 +130,10 @@ router.get('/get/:id', verifyToken, (req, res) => {
 
         } else {
 
-            User.findOne({ _id: req.params.id }, (err, User) => {
+            User.findOne({ accessToken: req.params.accessToken }, (err, User) => {
                 if (err) {
-                    res.status(500).send({ "Data": err, "message": "Data in getting data...!", "status": false })
+                    // console.log("Error from find:", err)
+                    res.status(500).send({ "Data": err, "message": "Error in getting data...!", "status": false })
                 } else {
                     res.status(200).send({ "Data": User, "message": "Data loaded Successfully", "status": true })
                 }
@@ -138,6 +141,7 @@ router.get('/get/:id', verifyToken, (req, res) => {
         }
     });
 })
+
 
 //Update User Profile
 router.put('/update/:id', (req, res) => {
