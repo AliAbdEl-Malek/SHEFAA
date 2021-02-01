@@ -34,13 +34,25 @@ button[type=button] {
     /* background-color: rgb(36, 127, 202); */
 }
 
+button[type=button]:hover {
+    /* color: white; */
+    background-color: #32c69a;
+    /* background-color: rgb(36, 127, 202); */
+}
+
+.link {
+    text-decoration: none;
+    color: #32c69a;
+}
+
 
 /* button[type=submit] {
     float: right;
 } */
 
 button[type=submit]:hover {
-    background-color: rgb(154, 243, 21);
+    background-color: #32c69a;
+    color: white;
 }
 
 .color {

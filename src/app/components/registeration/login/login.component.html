@@ -4,7 +4,7 @@
 
         <form [formGroup]="formGroup">
             <div class="form-group">
-                <label for="email">Email address:</label>
+                <!-- <label for="email">Email address</label> -->
                 <input formControlName="email" type="email" [value]="emailValue" class="form-control" placeholder="Enter your email" id="email">
 
                 <div *ngIf="formGroup.controls['email'].invalid && formGroup.controls['email'].dirty">
@@ -13,10 +13,10 @@
                     <small class="form-text text-danger" *ngIf="formGroup.controls['email'].hasError('minLength')">min length is 10</small>
                     <small class="form-text text-danger" *ngIf="formGroup.controls['email'].hasError('maxlength')">max length is 50</small>
                 </div>
-            </div>
+            </div> <br>
 
             <div class="form-group">
-                <label for="pwd">Password:</label>
+                <!-- <label for="pwd">Password</label> -->
                 <input formControlName="password" type="password" class="form-control" placeholder="Enter password" id="pwd">
 
                 <div *ngIf="formGroup.controls['password'].invalid && formGroup.controls['password'].dirty">
@@ -24,14 +24,14 @@
                 </div>
             </div>
             <div class="form-group form-check">
-                <label class="form-check-label">
+                <!-- <label class="form-check-label">
                 <input class="form-check-input" #checkbox (change)="isChecked(checkbox.checked)" type="checkbox"> Remember me
-              </label>
-                <span> <a [routerLink]="['/registeration/forgetPassword']" routerLinkActive="router-link-active">Forget Password?</a> </span>
-            </div> <br>
+              </label> -->
+                <span> <a  class="link" [routerLink]="['/registeration/forgetPassword']" routerLinkActive="router-link-active">Forget Password?</a> </span>
+            </div> <br> <br>
 
             <button [disabled]="formGroup.invalid" type="submit" (click)=login() class="btn btn-outline-primary btn-block">Login</button><br>
-            <p>New here? <a [routerLink]="['/registeration/signup']" routerLinkActive="router-link-active">Create new account</a></p>
+            <p>New here? <a class="link" [routerLink]="['/registeration/signup']" routerLinkActive="router-link-active">Create new account</a></p>
         </form>
     </div>
 </div>
