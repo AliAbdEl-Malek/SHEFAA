@@ -126,6 +126,7 @@
   },
   "defaultProject": "chefaa-user",
   "cli": {
-    "analytics": false
+    "analytics": false,
+    "defaultCollection": "@ngrx/schematics"
   }
 }

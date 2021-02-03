@@ -28,7 +28,10 @@ export class UserProfileAndPreviousOrdersComponent implements OnInit {
         console.log("User retreived is: ",this.user)
       }
       else{
-        alert(obj.message)
+        if(obj.message == "Session expired!"){
+          alert(obj.message + "Login again!")
+          this._router.navigateByUrl('registeration/logout')
+        }
       }
     })
   }
