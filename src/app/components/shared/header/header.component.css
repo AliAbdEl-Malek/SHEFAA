@@ -1,9 +1,13 @@
+.container-fluid {
+    justify-content: start;
+}
+
 ul li .nav-hover{
     color: white;
     padding-left: 8px;
     padding-right: 8px;
-    padding-top: 16px;
-    padding-bottom: 16px;
+    padding-top: 4px;
+    padding-bottom: 4px;
 }
 
 ul li .nav-hover:hover{
@@ -15,26 +19,45 @@ ul li .nav-hover:hover{
     padding-right: 8px;
     padding-top: 4px;
     padding-bottom: 4px;
-    margin-top: 12px;
 }
 
-ul li .toggle-hover:hover{
+.toggle-hover:hover{
     background-color: #f4f8fb;
     color: #32c69a;
     border-radius: 15px;
 }
 
-/* .search{
-    width: 300px; 
+.searchsmall {
+    width: 120px;
 }
 
-.search-foc:focus{
-    outline-color: #838383;
-    border-color: #838383;
-    width: 400px; 
-    border:1px solid #838383;
-    box-shadow: 0 0 10px #719ECE;
+.searchsmall:focus{
+    width: 170px; 
+}
+
+.searchmedium {
+    width: 170px;
+}
+
+.searchmedium:focus {
+    width: 250px;
+}
+
+.searchlarge{
+    width: 150px; 
+}
+
+/* .searchlarge:focus{
+    width: 220px; 
 } */
+
+.searchxlarge {
+    width: 320px;
+}
+
+.searchxlarge:focus {
+    width: 365px;
+}
 
 .nav-icon{
     font-size: 25px;
@@ -51,4 +74,18 @@ ul li .toggle-hover:hover{
 
 form button i:hover{
     color: #32c69a;
+}
+
+.badge-notification {
+    position: absolute;
+    font-size: .7rem;
+    margin-top: -.1rem;
+    margin-left: -.5rem;
+    padding: .2em .45em;
+}
+.badge-notification-small {
+    position: relative;
+    font-size: .7rem;
+    top: -18px;
+    left: -7px;
 }

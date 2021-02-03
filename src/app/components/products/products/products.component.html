@@ -1,0 +1,20 @@
+<div class="container-fliud " *ngIf="products" style="margin-top: 80px;">
+    <div *ngFor="let product of products;">
+    <div class="col-sm-3 m-4 ">
+        <div class="card shadow">
+            <img src= {{product.photoURL}}
+                alt="" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">{{product.name}}</h5>
+                <h5 class="card-text">{{product.price}}</h5>
+                <a href="" style="color:#404040;text-decoration: underline;">Details</a>
+                <br>
+                <a href="" class="btn btn-outline-light btn-sm" id="add-btn">Add to Cart</a>
+                <a href="" class="btn btn-outline-danger btn-sm" id="heart"><i class="fa fa-heart"
+                        aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

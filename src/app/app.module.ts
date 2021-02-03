@@ -7,9 +7,11 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { userReducer } from './store/reducer/user.reducer';
 
+
 @NgModule({
   declarations: [
     AppComponent,
+    
   
   ],
   imports: [

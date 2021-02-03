@@ -1,8 +1,9 @@
-<div class="container ">
-    <div class=" card row ">
+<div class="container-fliud  ">
+    <div class=" card  justify-content-center align-self-center shadow mt-5 " >
+        
         <h4 class="text-center greeting">Great to have you back!</h4>
 
-        <form [formGroup]="formGroup">
+        <form [formGroup]="formGroup" class="m-3">
             <div class="form-group">
                 <!-- <label for="email">Email address</label> -->
                 <input formControlName="email" type="email" [value]="emailValue" class="form-control" placeholder="Enter your email" id="email">
