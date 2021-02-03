@@ -21,6 +21,7 @@
         "@angular/router": "~11.0.5",
         "@fortawesome/fontawesome-free": "^5.15.2",
         "angular-font-awesome": "^3.1.2",
+        "angular-material": "^1.2.2",
         "bootstrap": "^4.5.3",
         "font-awesome": "^4.7.0",
         "rxjs": "~6.6.0",
