@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer')
 
 const htmlPage = require('../htmlPages/sendEmail')
 
-exports.sendEmail = async function(userEmail) {
+exports.sendEmail = async function(userEmail , resetCode) {
     // Generate test SMTP service account from ethereal.email
     // Only needed if you don't have a real mail account for testing
 
@@ -31,7 +31,9 @@ exports.sendEmail = async function(userEmail) {
         to: userEmail, // list of receivers
         subject: "Hello from node js - Ali", // Subject line
         // text: "Hello world?", // plain text body
-        html: htmlPage.htmlContent, // html body
+        // html: htmlPage.htmlContent, // html body
+        html: htmlPage.SendCode(resetCode), // html body
+
     });
 
     console.log("Message sent: %s", info.messageId);

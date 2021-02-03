@@ -10,7 +10,8 @@ const mailService = require('../config/mailService')
 
 const jwt = require('jsonwebtoken');
 
-const { verifyToken } = require('../config/accessAuth')
+const { verifyToken } = require('../config/accessAuth');
+const { generateCode } = require('../config/codeGenerator');
 
 
 
@@ -64,12 +65,12 @@ router.post('/signup', (req, res) => {
 // login -------------------------------------------------
 
 router.post('/login', (req, res) => {
-    console.log(req.headers)
+    // console.log(req.headers)
     User.findOne({ email: req.body.email }, (err, data) => {
         if (err) {
             res.status(500).send("Failed to find email: "+err)
         } else {
-            console.log("data:", data)
+            // console.log("data:", data)
             if (!data) {
                 res.send({ "message": "Error in logging in ...!", "Status": false })
             } else {
@@ -119,14 +120,14 @@ router.post('/login', (req, res) => {
 
 //Get Profile By ID
 router.get('/get/:accessToken', verifyToken, (req, res) => {
-    console.log(req.headers)
-    console.log("request params:", req.params)
-    console.log("Token is: ",req.params.accessToken)
+    // console.log(req.headers)
+    // console.log("request params:", req.params)
+    // console.log("Token is: ",req.params.accessToken)
     jwt.verify(req.params.accessToken, "secretKey", (err, authData) => {
 
         if (err) {
 
-            res.sendStatus(403);
+            res.send({ "Data": err, "message": "Session expired!", "status": false });
 
         } else {
 
@@ -138,6 +139,36 @@ router.get('/get/:accessToken', verifyToken, (req, res) => {
                     res.status(200).send({ "Data": User, "message": "Data loaded Successfully", "status": true })
                 }
             })
+        }
+    });
+})
+
+
+router.post('/resetCode', verifyToken ,(req,res)=>{
+    // console.log(req.headers)
+    // console.log("Token: ", req.headers.authorization)
+    // console.log(req.body)
+    // console.log("Email from front: ",req.body.email)
+    jwt.verify(req.headers.authorization, "secretKey", (err, authData) => {
+
+        if (err) {
+
+            res.send({ "Data": err, "message": "Session expired!", "status": false });
+
+        } else {
+
+            User.findOne({email:req.body.email},(err,data)=>{
+                if (err) {
+                    res.status(500).send("Error in find: "+err)
+                }
+                else if(data == null){
+                    res.status(500).send("Something is wrong !: ")                   
+                }else{
+                     let code = generateCode()
+                    mailService.sendEmail(req.body.email,code).catch(console.error);
+                    res.send({"Data": code,"message": "Email sent successfully", "status": true})
+                }
+            }) 
         }
     });
 })
@@ -161,8 +192,34 @@ router.delete('/logout', (req, res) => {
 })
 
 
+// reset user's password
 
+router.put('/update', (req, res) => {
+    jwt.verify(req.headers.authorization, "secretKey", (err, authData) => {
 
+        if (err) {
+
+            res.send({ "Data": err, "message": "Session expired!", "status": false });
+
+        } else {
+            console.log("req.body.pass: ", req.body.password)
+            // hash the password and save it in database
+            bcrypt.hash(req.body.password, 10).then(function(hash){
+                console.log("hash: ", hash)
+                User.updateOne({ accessToken: req.headers.authorization }, {password:hash}, (err, data) => {
+                    if (err) {
+                        res.status(500).send({ "Data": err, "message": "Error in resetting password...!", "status": false })
+                    } else {
+                        res.status(200).send({ "Data": data, "message": "Password reset Successfully", "status": true })
+                    }
+                })
+
+            })
+           
+        }
+    });
+
+});
 
 
 

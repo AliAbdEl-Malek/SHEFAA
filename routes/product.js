@@ -47,7 +47,7 @@ router.get('/', (req, res) => {
 // get a specific product by id
 router.get('/:id', (req, res) => {
 
-    product.findById(req.params.id, (err, product) => {
+    Product.findById(req.params.id, (err, product) => {
         if (err) {
             res.status(500).send({ "Data": err, "message": "Failed in getting product's data ...!", "status": false })
         } else {
