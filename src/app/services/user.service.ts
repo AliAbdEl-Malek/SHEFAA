@@ -41,6 +41,7 @@ export class UserService {
   {
     let token=localStorage.getItem("token");
     if(token==null)
+      console.log("hello");
       return false;
 
       return true;
