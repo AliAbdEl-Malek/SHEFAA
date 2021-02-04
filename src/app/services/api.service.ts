@@ -23,6 +23,7 @@ export class ApiService {
   }
 
   put(url:string,user:any){
+    console.log("");
     return this.httpClient.put(`${environment.APIURL}/${url}`,user,{headers:{'authorization':this.token}})
   }
 
