@@ -10,9 +10,10 @@ import { ApiService } from './../../../services/api.service';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
- 
+
   constructor( private _apiService:ApiService  ) { }
   products:Product[]=[];
+
   ngOnInit(): void {
 
     this._apiService.get("product").subscribe((response)=>{
@@ -21,7 +22,7 @@ export class ProductsComponent implements OnInit {
       if(obj.status){
         let productData = obj.Data
          this.products = productData
- 
+
          console.log("Product retreived is: ",this.products)
        }
        else{
@@ -30,5 +31,4 @@ export class ProductsComponent implements OnInit {
     })
 
   }
-
 }

@@ -10,9 +10,9 @@ import { IndexComponent } from './index/index.component';
 
 const routes :Routes = [
   {path:'', component:IndexComponent},
-  {path:'details', component:ProductDetailsComponent},
+  {path:'details/:id', component:ProductDetailsComponent},
 
-  
+
 ]
 
 
