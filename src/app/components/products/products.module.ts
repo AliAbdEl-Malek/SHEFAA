@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { IndexComponent } from './index/index.component';
+import { FavouriteProductsComponent } from './favourite-products/favourite-products.component';
 
 
 const routes :Routes = [
@@ -17,7 +18,7 @@ const routes :Routes = [
 
 
 @NgModule({
-  declarations: [ProductsComponent, ProductDetailsComponent, IndexComponent],
+  declarations: [ProductsComponent, ProductDetailsComponent, IndexComponent, FavouriteProductsComponent],
   imports: [
     CommonModule, RouterModule.forChild(routes), FormsModule, SharedModule
   ]
