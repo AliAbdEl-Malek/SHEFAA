@@ -66,6 +66,7 @@ router.get('/:id', verifyToken, (req, res) => {
 
         } else {
 
+            
             Product.findById(req.params.id, (err, product) => {
                 if (err) {
                     res.status(500).send({ "Data": err, "message": "Failed in getting product's data ...!", "status": false })
