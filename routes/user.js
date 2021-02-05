@@ -175,14 +175,25 @@ router.post('/resetCode', verifyToken ,(req,res)=>{
 
 
 //Update User Profile
-router.put('/update/:id', (req, res) => {
-    User.updateOne({ _id: req.params.id }, req.body, (err, data) => {
+router.put('/update/:id' , verifyToken ,  (req, res) => {
+    jwt.verify(req.headers.authorization, "secretKey", (err, authData) => {
+        console.log("req.params.accessToken:" ,req.headers.authorization)
         if (err) {
-            res.status(500).send({ "Data": err, "message": "Data in updating data...!", "status": false })
+
+            res.send({ "Data": err, "message": "Session expired!", "status": false });
+
         } else {
-            res.status(200).send({ "Data": data, "message": "Data Updated Successfully", "status": true })
+
+            User.updateOne({ _id: req.params.id }, req.body, (err, data) => {
+                if (err) {
+                    res.status(500).send({ "Data": err, "message": "Error in updating data...!", "status": false })
+                } else {
+                    res.status(200).send({ "Data": data, "message": "Data Updated Successfully", "status": true })
+                }
+            })
         }
-    })
+    });
+   
 });
 
 
