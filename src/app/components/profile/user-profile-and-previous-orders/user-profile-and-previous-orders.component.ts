@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { APIResponse } from './../../../models/Api-response';
 import { UserService } from './../../../services/user.service';
 import { ApiService } from './../../../services/api.service';
@@ -12,28 +12,31 @@ import { Router } from '@angular/router';
 })
 export class UserProfileAndPreviousOrdersComponent implements OnInit {
 
-  constructor(private _apiService:ApiService , private _router: Router,private _userService:UserService) { }
-  user:User;
+  constructor(private _apiService: ApiService, private _router: Router, private _userService: UserService) { }
+ @Input() userData: User;
   ngOnInit(): void {
 
-    let token = this._userService.getToken()
-    console.log("Token is:", token)
-    this._apiService.get('user/get/'+token).subscribe((response)=>{
-      let obj = response as APIResponse
-      console.log("Data from server",obj)
-      if(obj.status){
-       let userData = obj.Data
-        this.user = userData
+    // // get user data from uerService 
+    // this.user = this._userService.getUserLoggedin()
 
-        console.log("User retreived is: ",this.user)
-      }
-      else{
-        if(obj.message == "Session expired!"){
-          alert(obj.message + "Login again!")
-          this._router.navigateByUrl('registeration/logout')
-        }
-      }
-    })
+    // let token = this._userService.getToken()
+    // console.log("Token is:", token)
+    // this._apiService.get('user/get/'+token).subscribe((response)=>{
+    //   let obj = response as APIResponse
+    //   console.log("Data from server",obj)
+    //   if(obj.status){
+    //    let userData = obj.Data
+    //     this.user = userData
+
+    //     console.log("User retreived is: ",this.user)
+    //   }
+    //   else{
+    //     if(obj.message == "Session expired!"){
+    //       alert(obj.message + "Login again!")
+    //       this._router.navigateByUrl('registeration/logout')
+    //     }
+    //   }
+    // })
   }
 
 }

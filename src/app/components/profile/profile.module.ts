@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './../shared/shared.module';
 import { AuthGuard } from './../../auth.guard';
 import { RouterModule, Routes } from '@angular/router';
@@ -16,7 +17,7 @@ const routes: Routes =[
 @NgModule({
   declarations: [UpdateProfileComponent, IndexComponent, UserProfileAndPreviousOrdersComponent],
   imports: [
-    CommonModule,RouterModule.forChild(routes),SharedModule
+    CommonModule,RouterModule.forChild(routes),SharedModule,FormsModule,ReactiveFormsModule
   ]
   
 })
