@@ -1,3 +1,4 @@
+import { Product } from './../../../models/Product';
 import { ProductsComponent } from './../products/products.component';
 import { APIResponse } from './../../../models/Api-response';
 import { Component, OnInit } from '@angular/core';
@@ -10,21 +11,30 @@ import { ApiService } from './../../../services/api.service';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit {
-  productId : number = 0;
-  product : ProductsComponent ;
-
+  product:Product
+  productId:any
   constructor(private _activatedRoute:ActivatedRoute ,  private _apiService:ApiService ) { }
 
   ngOnInit(): void {
-    // this._activatedRoute.paramMap.subscribe(params=>{​​​​​
-    //   //alert("subscribe");
-    //   this.productId = +params.get('id');
-    //   this._apiService.getDetails(this.productId).subscribe((response:APIResponse)=>{​​​​​
 
-    //     this.product = response.Data;
+    this._activatedRoute.queryParams.subscribe(params=>{​​​​​
+
+      this.productId = params['ID']
+      console.log("product ID: ",  this.productId )
+      this._apiService.get('product/' + this.productId).subscribe((response)=>{​​​​​
+        let obj = response as APIResponse;
+        console.log("Data from server",obj);
+
+        if(obj.status){
+          this.product = obj.Data
+           console.log("Product retreived is: ",this.product)
+         }
+         else{
+           alert(obj.message)
+         }
       
-    //   }​​​​​);
-    //  }​​​​​);
+      }​​​​​);
+     }​​​​​);
   }
 
 }

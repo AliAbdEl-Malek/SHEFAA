@@ -1,19 +1,19 @@
 export class Product {
     constructor() { }
 
-    ID: String;
-    pharmacyID: String;
-    name: String;
-    description: String;
+    ID: string ;
+    pharmacyID: string;
+    name: string;
+    description: string;
     details: {
-        title: String,
-        body: String,
-        sideEffects: String,
+        title: string,
+        body: string,
+        sideEffects: string,
     };
-    photoURL: String;
-    price: Number;
-    quantity: Number;
-    category: String;
-    language: String;
+    photoURL: string;
+    price: number;
+    quantity: number;
+    category: string;
+    language: string;
 
 }

@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
         // set token in lacal storage
         console.log(obj.token)
         this._userService.addToken(obj.token)
-
+        
         this._router.navigateByUrl('')
         console.log("User stored in array",this.loggedUser)
 
