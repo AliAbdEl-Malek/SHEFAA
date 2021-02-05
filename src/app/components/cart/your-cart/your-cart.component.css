@@ -1,0 +1,23 @@
+body{
+    font-family: 'David Libre', serif;
+}
+
+.details{
+    color:#404040 ;
+}
+
+.details:hover{
+    color:#32c69a ;
+
+}
+
+.subtotal-div{
+    background-color:#d9dfe4 ;
+   
+}
+
+.proceed-btn{
+    background-color:#32c69a;
+    color: white;
+}
+
