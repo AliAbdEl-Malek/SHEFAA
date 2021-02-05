@@ -66,15 +66,30 @@
                 <a type="file" href="">Change Profile Photo</a>
             </div>
             <br>
-            <form action="/action_page.php" style="padding-bottom:  35px">
+            <form [formGroup]="formGroup" style="padding-bottom:  35px">
                 <div class="form-group">
                     <label for="name">Name:</label>
-                    <input type="text" class="form-control" placeholder="Enter Name" id="name" style="width:40% ">
+                    <input formControlName="name" type="text" class="form-control" placeholder="Enter Name" id="name" style="width:40% ">
+
+                    <div *ngIf="formGroup.controls['name'].invalid && formGroup.controls['name'].dirty">
+                        <small class="form-text text-danger" *ngIf="formGroup.controls['name'].hasError('required')">Name is required!</small>
+                        <small class="form-text text-danger" *ngIf="formGroup.controls['name'].hasError('minlength')">min length is 8</small>
+                        <small class="form-text text-danger" *ngIf="formGroup.controls['name'].hasError('maxlength')">max length is 25</small>
+                    </div>
+
                 </div>
 
                 <div class="form-group">
                     <label for="email">Email address:</label>
-                    <input type="email" class="form-control" placeholder="Enter email" id="email" style="width:40% ">
+                    <input formControlName="email" type="email" class="form-control" placeholder="Enter email" id="email" style="width:40% ">
+
+                    <div *ngIf="formGroup.controls['email'].invalid && formGroup.controls['email'].dirty">
+                        <small class="form-text text-danger" *ngIf="formGroup.controls['email'].hasError('required')">Email is required!</small>
+                        <small class="form-text text-danger" *ngIf="formGroup.controls['email'].hasError('email')">invalid1</small>
+                        <small class="form-text text-danger" *ngIf="formGroup.controls['email'].hasError('minLength')">min length is 10</small>
+                        <small class="form-text text-danger" *ngIf="formGroup.controls['email'].hasError('maxlength')">max length is 50</small>
+                    </div>
+
                 </div>
 
                 <div class="form-group">
@@ -87,7 +102,7 @@
                     <input type="text" class="form-control" placeholder="Adderss " id="address" style="width:40% ">
                 </div>
 
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button [disabled]="formGroup.invalid" type="submit" (click)="updateUser()" class="btn btn-primary">Save</button>
             </form>
         </div>
     </div>

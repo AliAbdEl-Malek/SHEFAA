@@ -25,6 +25,7 @@ export class ProductsComponent implements OnInit {
          this.products = productData
  
          console.log("Product retreived is: ",this.products)
+        
        }
        else{
          alert(obj.message)

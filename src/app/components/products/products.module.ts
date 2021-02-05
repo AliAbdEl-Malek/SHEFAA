@@ -11,7 +11,7 @@ import { FavouriteProductsComponent } from './favourite-products/favourite-produ
 
 const routes :Routes = [
   {path:'', component:IndexComponent},
-  {path:'details/:id', component:ProductDetailsComponent},
+  {path:'details', component:ProductDetailsComponent},
 
 
 ]

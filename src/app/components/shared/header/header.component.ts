@@ -15,6 +15,8 @@ export class HeaderComponent implements OnInit {
   constructor(private _apiService:ApiService , private _router: Router,private _userService:UserService) { }
   user:User;
   ngOnInit(): void {
+
+
     let token = this._userService.getToken()
     console.log("Token is:", token)
     this._apiService.get('user/get/'+token).subscribe((response)=>{

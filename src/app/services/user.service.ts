@@ -1,3 +1,4 @@
+import { User } from './../models/user';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
@@ -7,6 +8,7 @@ import { Observable, Subject } from 'rxjs';
 export class UserService {
 
   logged=new Subject<boolean>();
+
 
   constructor() {}
  
@@ -45,5 +47,7 @@ export class UserService {
 
       return true;
   }
+
+  
 
 }
