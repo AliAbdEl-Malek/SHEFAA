@@ -1,1 +1,48 @@
-<p>favourite-products works!</p>
+<app-header></app-header>
+
+<div class="container-fliud " style="margin-top: 80px;">
+    <div class="d-flex justify-content-center mb-4">
+        <h1>My Favourite List</h1>
+    </div>
+    <div class="d-flex justify-content-center mb-5">
+        <span class="mx-4">You have {{length}} Product in the list</span>
+        <a *ngIf="favourites" (click)="clearFavourite()" class="btn btn-danger">Clear List</a>
+    </div>
+    <div class="my-3" *ngIf="favourites">
+        <div class="row mx-5 align-items-center" style="border: 2px solid #32c69a;"  *ngFor="let favourite of favourites;let currentIndex=index" >
+            <div class="col-sm-3">
+                <img src={{favourite.photoURL}}  style="width: 70%; height: 70%;">
+            </div>
+            <div class="col-sm-3 " style="font-size: 20px;">
+                {{favourite.name}}
+            </div>
+            <div class="col-sm-1 " style="font-size: 20px;">
+                {{favourite.price}}
+            </div>
+            <div class="col-sm-1 " style="font-size: 20px;">
+                {{favourite.quantity}}
+            </div>
+            <div class="col-sm-2 ">
+                <a [routerLink]="['/products/details/{{product.ID}}']" routerLinkActive="router-link-active" style="color:#404040;text-decoration: underline;">Details</a>
+            </div>
+            <div class="col-sm-2 ">
+                <a (click)="deleteFavourite(currentIndex)" class="btn btn-danger">Unfavourite</a>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!favourites" class="d-flex justify-content-center mt-5">
+        You haven't any favourite products
+    </div>
+</div>
+
+
+<!-- <div *ngIf="favourites">
+    <div *ngFor="let favourite of favourites;">
+        <div><img src={{favourite.photoURL}}></div>
+        <div>{{favourite.name}}</div>
+        <div>{{favourite.price}}</div>
+        <div>{{favourite.quantity}}</div>
+    </div>
+</div> -->
+
+<app-footer></app-footer>

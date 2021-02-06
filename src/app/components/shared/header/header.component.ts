@@ -4,6 +4,7 @@ import { UserService } from './../../../services/user.service';
 import { ApiService } from './../../../services/api.service';
 import { User } from './../../../models/user';
 import { Router } from '@angular/router';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -12,8 +13,9 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private _apiService:ApiService , private _router: Router,private _userService:UserService) { }
+  constructor(private _apiService:ApiService , private _router: Router,private _userService:UserService ,private _cartService:CartService ) { }
   user:User;
+  items = this._cartService.getItemsLength();
   ngOnInit(): void {
 
 

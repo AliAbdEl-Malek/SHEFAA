@@ -3,7 +3,7 @@ import { Product }from "./../../../models/Product";
 import { APIResponse } from './../../../models/Api-response';
 import { UserService } from './../../../services/user.service';
 import { ApiService } from './../../../services/api.service';
-
+import { FavouriteService } from 'src/app/services/favourite.service';
 import { CartService } from 'src/app/services/cart.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class ProductsComponent implements OnInit {
  
-  constructor( private _apiService:ApiService,private _cartService:CartService  ) { }
+  constructor( private _apiService:ApiService,private _cartService:CartService ,private _favouriteService:FavouriteService ) { }
   products:Product[]=[];
   ngOnInit(): void {
 
@@ -37,6 +37,14 @@ export class ProductsComponent implements OnInit {
   addToCart(product:any) {
     this._cartService.addToCart(product);
     console.log("Add to Cart Function "+product.name)
+    console.log("Prodact "+product.price)
+
+    // window.alert('Your product has been added to the cart!');
+  }
+
+  addToFavourite(product:any) {
+    this._favouriteService.addToFavourite(product);
+    console.log("Add to Favourite Function "+product.name)
     console.log("Prodact "+product.price)
 
     // window.alert('Your product has been added to the cart!');

@@ -35,7 +35,7 @@
             <li class="nav-item">
                 <a class="nav-link text-white" style="font-size: 30px;" [routerLink]="['/cart']" routerLinkActive="router-link-active">
                     <i class=" fa fa-cart-plus"></i>
-                    <span class="badge rounded-pill badge-notification-small bg-danger text-white ">1</span>
+                    <span class="badge rounded-pill badge-notification-small bg-danger text-white ">{{items}}</span>
                 </a>
             </li>
         </ul>
@@ -126,7 +126,7 @@
         <!-- Cart icon in md & lg screens -->
         <div  class="d-none d-md-flex ml-auto">
             <a class="nav-link text-white fa fa-cart-plus" style="font-size: 30px;" [routerLink]="['/cart']" routerLinkActive="router-link-active">
-                <span class="badge rounded-pill badge-notification bg-danger">1</span>
+                <span class="badge rounded-pill badge-notification bg-danger">{{items}}</span>
             </a>
         </div>
         <!-- Cart icon in md & lg screens -->
@@ -139,7 +139,7 @@
             <div class="dropdown-menu p-2 dropdown-menu-right">
                 <a class="dropdown-item px-2 toggle-hover" [routerLink]="['/profile']" routerLinkActive="router-link-active"><i class="fa fa-user pr-2" style="color: #32c69a;"></i>Profile</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item px-2 toggle-hover" [routerLink]="['']" routerLinkActive="router-link-active"><i class="fa fa-star pr-2" style="color: #32c69a;"></i>Favourite Products</a>
+                <a class="dropdown-item px-2 toggle-hover" [routerLink]="['/products/favourite']" routerLinkActive="router-link-active"><i class="fa fa-star pr-2" style="color: #32c69a;"></i>Favourite Products</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item px-2 toggle-hover" [routerLink]="['/registeration/logout']" routerLinkActive="router-link-active"><i class="fa fa-times-circle pr-2" style="color: #32c69a;"></i>Log Out</a>
             </div>

@@ -4,6 +4,7 @@ import { APIResponse } from './../../../models/Api-response';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from './../../../services/api.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-product-details',
@@ -13,7 +14,7 @@ import { ApiService } from './../../../services/api.service';
 export class ProductDetailsComponent implements OnInit {
   product:Product
   productId:any
-  constructor(private _activatedRoute:ActivatedRoute ,  private _apiService:ApiService ) { }
+  constructor(private _activatedRoute:ActivatedRoute ,  private _apiService:ApiService , private _location: Location) { }
 
   ngOnInit(): void {
 
@@ -35,6 +36,11 @@ export class ProductDetailsComponent implements OnInit {
       
       }​​​​​);
      }​​​​​);
+  }
+
+  backClicked() {
+    this._location.back();
+    console.log( 'goBack()...' );
   }
 
 }
