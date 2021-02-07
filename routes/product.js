@@ -6,6 +6,7 @@ const router = express.Router()
 const Product = require('../models/product')
 
 const jwt = require('jsonwebtoken');
+const product = require('../models/product');
 
 //create a new product
 router.post('/add', (req, res) => {
@@ -81,6 +82,31 @@ router.get('/:id', verifyToken, (req, res) => {
 })
 
 
+// get a specific product by name
+router.get('/get/:name', verifyToken, (req, res) => {
+    jwt.verify(req.headers.authorization, "secretKey", (err, authData) => {
+        console.log("req.headers.authorization:" ,req.headers.authorization)
+        if (err) {
+            
+            res.send({ "Data": err, "message": "Session expired!", "status": false });
+            
+        } else {
+            
+            console.log("req.params.name", req.params.name)
+            
+            Product.findOne({name: req.params.name}, (err, product) => {
+                if (err) {
+                    res.status(500).send({ "Data": err, "message": "Failed in getting product's data ...!", "status": false })
+                } else {
+                    
+                    res.status(200).send({ "Data": product, "message": " product retrieved Successfully..!", "status": true })
+                }
+            })
+        }
+    });
+   
+})
+
 
 // update a product 
 router.put('/update/:id', (req, res) => {
@@ -104,6 +130,14 @@ router.put('/update/:id', (req, res) => {
         }
     })
 })
+
+
+// //search for a product with its name 
+// router.post('/search',(req,res)=>{
+//     let firstChar = req.body.name[0]
+//     Product.findOne({name:req.body.})
+// } )
+
 
 
 module.exports = router
