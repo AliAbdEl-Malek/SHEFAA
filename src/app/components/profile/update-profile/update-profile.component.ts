@@ -20,6 +20,9 @@ export class UpdateProfileComponent implements OnInit {
   formGroup: FormGroup;
   selectedFile: any;
   url: any
+  isUploadedPhoto:boolean=false
+
+
 
   ngOnInit(): void {
 
@@ -38,7 +41,7 @@ export class UpdateProfileComponent implements OnInit {
 
 
     this.formGroup = this._formBuilder.group({
-      name: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(25)]],
+      name: [ ,[Validators.required, Validators.minLength(8), Validators.maxLength(25)]],
       email: ['', [Validators.required, Validators.email, Validators.minLength(6), Validators.maxLength(50)]],
       mobile: [''],
       address: [''],
@@ -52,7 +55,7 @@ export class UpdateProfileComponent implements OnInit {
 
     this._apiService.put('user/update/' + this.user.id, user).subscribe((response) => {
       let obj = response as APIResponse
-      console.log("Data from server", obj)
+      console.log("User updated:", obj)
       if (obj.status) {
         alert(obj.message)
         this._router.navigateByUrl('profile')
@@ -78,14 +81,14 @@ export class UpdateProfileComponent implements OnInit {
     console.log("uploadData", uploadData)
     this.httpClient.post(`${environment.APIURL}/user/photo/` + this.user.id, uploadData).subscribe((response) => {
       let obj = response as APIResponse
-      console.log("Data from server", obj)
-      if (obj.status) {
-        alert(obj.message)
-
-      }
-      else {
-        alert(obj.message)
-      }
+      console.log("Data after update photo:", obj)
+      // if (obj.status) {
+      //   alert(obj.message)
+      //   // this.isUploadedPhoto = true
+      // }
+      // else {
+      //   alert(obj.message)
+      // }
     })
 
   }
@@ -118,7 +121,9 @@ export class UpdateProfileComponent implements OnInit {
 
 
 
-
+  setIsUploaded(){
+    this.isUploadedPhoto = true
+  }
 
 
 

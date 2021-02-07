@@ -11,22 +11,22 @@
                         <div class="text-center" *ngIf="user">
                             <img class="card-img-top" src="http://localhost:3000/{{user.photoURL}}" alt="Card image" style="width: 50%; border-radius: 50%" />
                         </div>
-                        <div class="card-body d-sm-block">
-                            <h4 class="card-title">User Name</h4>
+                        <div class="card-body d-sm-block" *ngIf="user">
+                            <h4 class="card-title text-center">{{user.name}}</h4>
                             <p class="card-text col-12-sm">
-                                <i class="fa fa-map-marker fa-1x" style="color: #32c69a"></i> Address sdfsdfasdf wefsdfasdfsdf sadfsadfsdf sdfsdfsrtry ryutuyuiui xsacsdcsdc gth
+                                <i class="fa fa-map-marker fa-1x" style="color: #32c69a"></i> {{user.address}}
                             </p>
 
                             <p class="card-text">
-                                <i class="fa fa-mobile fa-2x" aria-hidden="true" style="color: #32c69a"></i> &nbsp; Mobile Number
+                                <i class="fa fa-mobile fa-2x" aria-hidden="true" style="color: #32c69a"></i> &nbsp; {{user.phone}}
                             </p>
 
                             <p class="card-text col-12-sm">
-                                <i class="fa fa-envelope fa-1x" aria-hidden="true" style="color: #32c69a"></i> &nbsp;abcd33efghisdl@12345678.com
+                                <i class="fa fa-envelope fa-1x" aria-hidden="true" style="color: #32c69a"></i> &nbsp; {{user.email}}
                             </p>
 
                             <p class="card-text">
-                                <i class="fa fa-venus-mars fa-1x" style="color: #32c69a"></i> &nbsp; Gender
+                                <i class="fa fa-venus-mars fa-1x" style="color: #32c69a"></i> &nbsp; {{user.gender}}
                             </p>
                         </div>
                     </div>
