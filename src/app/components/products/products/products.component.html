@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm-2 ">
             <!-- //////////--Filter Form ---///////// -->
-                <!-- <form class="mt-5 ml-2 ">
+            <!-- <form class="mt-5 ml-2 ">
                 <div class="d-flex align-items-center mt-4 pb-1">
                   <div class="md-form md-outline my-0">
                     <label for="form" class="ml-3">Filter</label>
@@ -17,22 +17,20 @@
             <div class="text-center mb-3">
                 <h2>Available Products</h2>
             </div>
-            <div class=" " >
+            <div class=" ">
 
                 <div class="row d-flex justify-content-center">
 
                     <div class="col-sm-3 m-2 " *ngFor="let product of products;">
                         <div>
                             <div class="card shadow ">
-                                <img src={{product.photoURL}} alt="" class="card-img-top"
-                                    style="width:100%;height: 20vw;">
+                                <img src={{product.photoURL}} alt="" class="card-img-top" style="width:100%;height: 20vw;">
                                 <div class="card-body">
                                     <span class="card-title">{{product.name}}</span>
                                     <h5 class="card-text">{{product.price}} L.E</h5>
-                                    <a [routerLink]="['/products/details/{{product.ID}}']" routerLinkActive="router-link-active" style="color:#404040;text-decoration: underline;">Details</a>
+                                    <a [routerLink]="['/products/details']" [queryParams]="{ID: product.ID}" routerLinkActive="router-link-active" style="color:#404040;text-decoration: underline;">Details</a>
                                     <br>
-                                    <button (click)="addToCart(product)" class="btn btn-outline-light btn-sm"
-                                        id="add-btn">Add to
+                                    <button (click)="addToCart(product)" class="btn btn-outline-light btn-sm" id="add-btn">Add to
                                         Cart</button>
                                     <a href="" class="btn btn-outline-danger btn-sm" id="heart"><i class="fa fa-heart"
                                             aria-hidden="true"></i>

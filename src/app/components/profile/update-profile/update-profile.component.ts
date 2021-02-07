@@ -1,3 +1,5 @@
+import { environment } from './../../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { APIResponse } from './../../../models/Api-response';
 import { UserService } from './../../../services/user.service';
@@ -13,9 +15,11 @@ import { Router } from '@angular/router';
 })
 export class UpdateProfileComponent implements OnInit {
 
-  constructor(private _apiService: ApiService, private _router: Router, private _userService: UserService, private _formBuilder:FormBuilder) { }
+  constructor(private _apiService: ApiService, private _router: Router, private _userService: UserService, private _formBuilder: FormBuilder, private httpClient: HttpClient) { }
   user: User;
-  formGroup:FormGroup;
+  formGroup: FormGroup;
+  selectedFile: any;
+  url: any
 
   ngOnInit(): void {
 
@@ -34,29 +38,89 @@ export class UpdateProfileComponent implements OnInit {
 
 
     this.formGroup = this._formBuilder.group({
-      name:[,[Validators.required,Validators.minLength(8),Validators.maxLength(25)]],
-      email:['',[Validators.required, Validators.email,Validators.minLength(6), Validators.maxLength(50)]],
-      mobile:[''],
-      address:['']
+      name: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(25)]],
+      email: ['', [Validators.required, Validators.email, Validators.minLength(6), Validators.maxLength(50)]],
+      mobile: [''],
+      address: [''],
+      photoURL: ['']
     })
   }
 
-  updateUser(){
+  updateUser() {
     let user = new User();
     user = this.formGroup.value
 
-    this._apiService.put('user/update/'+ this.user.id,user).subscribe((response)=>{
+    this._apiService.put('user/update/' + this.user.id, user).subscribe((response) => {
       let obj = response as APIResponse
-      console.log("Data from server",obj)
-      if(obj.status){
+      console.log("Data from server", obj)
+      if (obj.status) {
         alert(obj.message)
         this._router.navigateByUrl('profile')
       }
-      else{
+      else {
         alert(obj.message)
       }
     })
   }
+
+  onFileChanged(event: any) {
+    this.selectedFile = event.target.files[0]
+    console.log("selectedFile", this.selectedFile)
+
+    this.processFile(this.selectedFile)
+
+  }
+
+  onUpload() {
+
+    const uploadData = new FormData();
+    uploadData.append('photoURL', this.selectedFile, this.selectedFile.name);
+    console.log("uploadData", uploadData)
+    this.httpClient.post(`${environment.APIURL}/user/photo/` + this.user.id, uploadData).subscribe((response) => {
+      let obj = response as APIResponse
+      console.log("Data from server", obj)
+      if (obj.status) {
+        alert(obj.message)
+
+      }
+      else {
+        alert(obj.message)
+      }
+    })
+
+  }
+
+
+
+  readFileAsync(file: any) {
+    return new Promise((resolve, reject) => {
+      let reader = new FileReader();
+
+      reader.onload = () => {
+        resolve(reader.result);
+      };
+
+      reader.onerror = reject;
+
+      reader.readAsDataURL(file);
+    })
+  }
+
+  async processFile(file: any) {
+    try {
+      let contentBuffer = await this.readFileAsync(file);
+      this.url = contentBuffer
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+
+
+
+
+
+
 
 
 

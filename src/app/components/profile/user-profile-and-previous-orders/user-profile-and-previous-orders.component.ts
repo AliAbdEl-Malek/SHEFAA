@@ -13,30 +13,28 @@ import { Router } from '@angular/router';
 export class UserProfileAndPreviousOrdersComponent implements OnInit {
 
   constructor(private _apiService: ApiService, private _router: Router, private _userService: UserService) { }
- @Input() userData: User;
+  user: User;
   ngOnInit(): void {
 
-    // // get user data from uerService 
-    // this.user = this._userService.getUserLoggedin()
 
-    // let token = this._userService.getToken()
-    // console.log("Token is:", token)
-    // this._apiService.get('user/get/'+token).subscribe((response)=>{
-    //   let obj = response as APIResponse
-    //   console.log("Data from server",obj)
-    //   if(obj.status){
-    //    let userData = obj.Data
-    //     this.user = userData
+    let token = this._userService.getToken()
+    console.log("Token is:", token)
+    this._apiService.get('user/get/'+token).subscribe((response)=>{
+      let obj = response as APIResponse
+      console.log("Data from server",obj)
+      if(obj.status){
+       let userData = obj.Data
+        this.user = userData
 
-    //     console.log("User retreived is: ",this.user)
-    //   }
-    //   else{
-    //     if(obj.message == "Session expired!"){
-    //       alert(obj.message + "Login again!")
-    //       this._router.navigateByUrl('registeration/logout')
-    //     }
-    //   }
-    // })
+        console.log("User retreived is: ",this.user)
+      }
+      else{
+        if(obj.message == "Session expired!"){
+          alert(obj.message + "Login again!")
+          this._router.navigateByUrl('registeration/logout')
+        }
+      }
+    })
   }
 
 }

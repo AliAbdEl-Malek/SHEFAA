@@ -10,7 +10,7 @@ export class UserService {
   logged=new Subject<boolean>();
 
 
-  constructor() {}
+  constructor( ) {}
  
   addToken(token:string)
   {
@@ -49,5 +49,6 @@ export class UserService {
   }
 
   
+
 
 }

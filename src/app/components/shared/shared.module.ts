@@ -1,3 +1,4 @@
+import { FilterPipe } from './../../pipes/filter.pipe';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -15,7 +16,7 @@ const routes: Routes =[
 ]
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, RegisterationHeaderComponent, RegisterationFooterComponent],
+  declarations: [HeaderComponent, FooterComponent, RegisterationHeaderComponent, RegisterationFooterComponent,FilterPipe, ],
   imports: [
     CommonModule,RouterModule.forChild(routes)
   ],

@@ -8,5 +8,6 @@ export class User{
     phone:number;
     address:string;
     gender:string;
+    photoURL:string
 
 }
