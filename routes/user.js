@@ -220,7 +220,7 @@ router.post('/photo/:id', upload.single('photoURL') ,  (req,res)=>{
             console.log("req.File: " , req.file)
             
             let photo_URL = req.file.path
-            // console.log("req.files.path:", req.file.path)
+            console.log("req.files.path:", req.file.path)
         
             User.findOneAndUpdate({_id:req.params.id},{photoURL:photo_URL},(err,userData)=>{
                      if(err){
