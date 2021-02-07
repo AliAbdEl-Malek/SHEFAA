@@ -20,7 +20,7 @@ export class UpdateProfileComponent implements OnInit {
   formGroup: FormGroup;
   selectedFile: any;
   url: any
-  isUploadedPhoto:boolean=false
+  isUploadedPhoto: boolean = false;
 
 
 
@@ -41,18 +41,17 @@ export class UpdateProfileComponent implements OnInit {
 
 
     this.formGroup = this._formBuilder.group({
-      name: [ ,[Validators.required, Validators.minLength(8), Validators.maxLength(25)]],
-      email: ['', [Validators.required, Validators.email, Validators.minLength(6), Validators.maxLength(50)]],
-      mobile: [''],
-      address: [''],
-      photoURL: ['']
+      name: [, [Validators.required, Validators.minLength(8), Validators.maxLength(25)]],
+      email: [, [Validators.required, Validators.email, Validators.minLength(6), Validators.maxLength(50)]],
+      phone: [],
+      address: [],
     })
   }
 
   updateUser() {
     let user = new User();
     user = this.formGroup.value
-
+    // console.log("Form value:", user)
     this._apiService.put('user/update/' + this.user.id, user).subscribe((response) => {
       let obj = response as APIResponse
       console.log("User updated:", obj)
@@ -64,15 +63,26 @@ export class UpdateProfileComponent implements OnInit {
         alert(obj.message)
       }
     })
+
+    if (this.isUploadedPhoto) {
+      this.onUpload()
+    }
+    this.isUploadedPhoto=false
+
   }
+
+
 
   onFileChanged(event: any) {
     this.selectedFile = event.target.files[0]
     console.log("selectedFile", this.selectedFile)
 
     this.processFile(this.selectedFile)
+    this.isUploadedPhoto = true
 
   }
+
+
 
   onUpload() {
 
@@ -82,14 +92,8 @@ export class UpdateProfileComponent implements OnInit {
     this.httpClient.post(`${environment.APIURL}/user/photo/` + this.user.id, uploadData).subscribe((response) => {
       let obj = response as APIResponse
       console.log("Data after update photo:", obj)
-      // if (obj.status) {
-      //   alert(obj.message)
-      //   // this.isUploadedPhoto = true
-      // }
-      // else {
-      //   alert(obj.message)
-      // }
     })
+
 
   }
 
@@ -109,6 +113,7 @@ export class UpdateProfileComponent implements OnInit {
     })
   }
 
+
   async processFile(file: any) {
     try {
       let contentBuffer = await this.readFileAsync(file);
@@ -120,10 +125,6 @@ export class UpdateProfileComponent implements OnInit {
 
 
 
-
-  setIsUploaded(){
-    this.isUploadedPhoto = true
-  }
 
 
 

@@ -5,9 +5,9 @@
 
         <div class="d-flex justify-content-center w-100 ">
 
-            <form [formGroup]="formGroup" style="padding-bottom: 35px;width: 60%;">
+            <form [formGroup]="formGroup" *ngIf="user" style="padding-bottom: 35px;width: 60%;">
 
-                <div class="text-center" *ngIf="user">
+                <div class="text-center">
 
                     <div *ngIf="!isUploadedPhoto">
                         <img src="http://localhost:3000/{{user.photoURL}}" style="width: 30%; border-radius: 100%" alt="image">
@@ -18,9 +18,9 @@
                     </div>
 
                     <div class="custom-file">
-                        <input formControlName="photoURL" type="file" (change)="onFileChanged($event)" class=" custom-file-input " id="customFile ">
+                        <input type="file" (change)="onFileChanged($event)" class=" custom-file-input " id="customFile ">
                         <label class="custom-label" for="customFile ">Choose file</label> <br>
-                        <button (click)="setIsUploaded()" class="btn " style="background-color: #838383; color: white; margin-top: 5px ">Preview photo</button>
+                        <!-- <button (click)="setIsUploaded()" class="btn " style="background-color: #838383; color: white; margin-top: 5px ">Preview photo</button> -->
 
                         <!-- class="custom-file-label " -->
                     </div>
@@ -52,7 +52,7 @@
 
                 <div class="form-group ">
                     <label for="mobilenumber ">Mobile Number:</label>
-                    <input type="text" formControlName="mobile" [(ngModel)]="user.phone" class="form-control " placeholder="Mobile Number " id="mobilenumber " />
+                    <input type="text" formControlName="phone" [(ngModel)]="user.phone" class="form-control " placeholder="Mobile Number " id="phone" />
                 </div>
 
                 <div class="form-group ">
@@ -72,7 +72,7 @@
                     <label class="form-check-label " for="flexRadioDefault2 ">Male</label>
                 </div> -->
 
-                <button [disabled]="formGroup.invalid" (click)="updateUser();onUpload();" class="btn " style="background-color: #32c69a; color: white; margin-top: 5px ">update</button>
+                <button [disabled]="formGroup.invalid" (click)="updateUser();" class="btn " style="background-color: #32c69a; color: white; margin-top: 5px ">update</button>
 
             </form>
         </div>
