@@ -7,6 +7,7 @@ import { ApiService } from './../../../services/api.service';
 import {Location} from '@angular/common';
 import { CartService } from 'src/app/services/cart.service';
 import { FavouriteService } from 'src/app/services/favourite.service';
+import { UserService } from './../../../services/user.service';
 
 @Component({
   selector: 'app-product-details',
@@ -16,9 +17,18 @@ import { FavouriteService } from 'src/app/services/favourite.service';
 export class ProductDetailsComponent implements OnInit {
   product:Product
   productId:any
-  constructor(private _activatedRoute:ActivatedRoute ,  private _apiService:ApiService , private _location: Location,private _cartService:CartService ,private _favouriteService:FavouriteService ) { }
+  userId: any;
+  constructor(private _activatedRoute:ActivatedRoute ,  private _apiService:ApiService , private _location: Location,private _cartService:CartService ,private _favouriteService:FavouriteService, private _userService: UserService ) { }
 
   ngOnInit(): void {
+    let token = this._userService.getToken()
+    console.log("Token is:", token)
+    this._apiService.get('user/get/' + token).subscribe((response) => {
+      let obj = response as APIResponse
+      console.log("Data from server", obj)
+      this.userId = obj.Data["id"]
+    })
+
 
     this._activatedRoute.queryParams.subscribe(params=>{​​​​​
 
@@ -47,7 +57,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addToCart(product:any) {
-    this._cartService.addToCart(product);
+    this._cartService.addToCart(product,this.userId);
     console.log("Add to Cart Function "+product.name)
     console.log("Prodact "+product.price)
 
