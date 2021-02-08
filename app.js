@@ -34,6 +34,8 @@ const productRouter = require('./routes/product')
 
 const previousorderRouter = require('./routes/previousOrder')
 
+const cartRouter = require('./routes/cart')
+
 // ----------------------------------------------------
 
 // an instance from express object
@@ -81,6 +83,9 @@ app.use('/home', homeRouter)
 app.use('/product', productRouter)
 // Previos orders router
 app.use('/porder', previousorderRouter);
+
+// cart router
+app.use('/cart', cartRouter);
 
 
 // ----------------------------------------------------

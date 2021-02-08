@@ -3,14 +3,9 @@ const mongoose= require ('mongoose')
 var previousorder= new mongoose.Schema({
 
     'orderId':String,
-    'userId': String,
+    'userId': [{type:mongoose.Schema.Types.ObjectId,ref:"siteuser"}],
     
-    'products':[{
-        'img':String,
-        'productName':String,
-        'price':Number,
-        'quantity':Number
-    }],
+    'products': [String],
     'total':Number,
     'paymentMethod':String,
 

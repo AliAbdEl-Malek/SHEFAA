@@ -3,6 +3,12 @@ const mongoose = require('mongoose')
 
 var user = new mongoose.Schema({
 
+    cartProducts:
+   [{
+       type:mongoose.Schema.Types.ObjectId,
+       ref:"product"
+    }],
+
     'id': String,
     'name': String,
     'email': {
