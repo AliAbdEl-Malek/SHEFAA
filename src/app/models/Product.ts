@@ -1,7 +1,7 @@
 export class Product {
     constructor() { }
 
-    ID: string ;
+    _id: string ;
     pharmacyID: string;
     name: string;
     description: string;
@@ -15,5 +15,6 @@ export class Product {
     quantity: number;
     category: string;
     language: string;
+    isAddToCart: boolean = false;
 
 }
