@@ -12,12 +12,12 @@
             <div class="col-sm-4">
                 <div class="card-body text-center">
                     <h2 class="card-title d-block d-sm-none" style="color: #404040;"> {{product.name}}</h2>
-                    <h5 class="card-title d-none d-sm-block d-md-none" style="color: #404040;">Panadol Extra</h5>
+                    <h5 class="card-title d-none d-sm-block d-md-none" style="color: #404040;">{{product.name}}</h5>
                     <h2 class="card-title d-none d-md-block" style="color: #404040;">{{product.name}}</h2>
                     <img class="card-img my-3" src="{{product.photoURL}}" alt="">
                     <h5 class="card-title">Price : {{product.price}}</h5>
-                    <a [routerLink]="['']" routerLinkActive="router-link-active" class="btn btn-outline-light m-1" id="add-btn">Add to Cart</a>
-                    <a [routerLink]="['']" routerLinkActive="router-link-active" class="btn btn-outline-danger m-1">
+                    <a (click)="addToCart(product)" [routerLink]="['']" routerLinkActive="router-link-active" class="btn btn-outline-light m-1" id="add-btn">Add to Cart</a>
+                    <a (click)="addToFavourite(product)" [routerLink]="['']" routerLinkActive="router-link-active" class="btn btn-outline-danger m-1">
                         <i class="fa fa-heart" aria-hidden="true"></i>
                     </a>
                 </div>
@@ -26,7 +26,7 @@
                 <div class="dropdown-divider"></div>
                 <div class="card-title" style="color: #32c69a; font-size: 20px;">Description </div>
                 <div class="card-body" style="background-color: #f4f8fb; color: #838383;">
-                    A combination of aspirin, acetaminophen, and caffeine. It is used for the temporary relief of pain from conditions such as muscle aches, toothaches, menstrual cramps, or headaches (including migraine)
+                    {{product.description}}
                 </div>
                 <div class="dropdown-divider"></div>
                 <div class="card-title" style="color: #32c69a; font-size: 20px;">Indications </div>
