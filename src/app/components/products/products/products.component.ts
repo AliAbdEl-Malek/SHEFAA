@@ -13,18 +13,14 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-<<<<<<< HEAD
- 
-  constructor( private _apiService:ApiService,private _cartService:CartService ,private _favouriteService:FavouriteService ) { }
-  products:Product[]=[];
-=======
+
   cartfake: any;
 
-  constructor(private _apiService: ApiService, private _cartService: CartService, private _userService: UserService) { }
+  constructor(private _apiService: ApiService, private _cartService: CartService, private _userService: UserService,private _favouriteService:FavouriteService ) { }
   products: Product[] = [];
   userId: any;
   clicked = false;
->>>>>>> cart-and-products
+
   ngOnInit(): void {
 
     let token = this._userService.getToken()
@@ -110,7 +106,7 @@ export class ProductsComponent implements OnInit {
     // window.alert('Your product has been added to the cart!');
   }
 
-<<<<<<< HEAD
+
   addToFavourite(product:any) {
     this._favouriteService.addToFavourite(product);
     console.log("Add to Favourite Function "+product.name)
@@ -118,8 +114,8 @@ export class ProductsComponent implements OnInit {
 
     // window.alert('Your product has been added to the cart!');
   }
-=======
 
->>>>>>> cart-and-products
+
+
 
 }

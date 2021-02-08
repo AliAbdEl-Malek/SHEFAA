@@ -44,7 +44,6 @@ export class CartService {
   
   }
 
-<<<<<<< HEAD
   getItemsLength() {
     return this.items.length;
   }
@@ -58,7 +57,6 @@ export class CartService {
   {
     this.items.splice(index,1)
   }
-=======
 
   deleteFromCart(userId:any,productId:any,index:number){
     this._apiService.put(`cart/delete/${productId}`,{userId}).subscribe();
@@ -76,6 +74,5 @@ export class CartService {
   //   this.items = [];
   //   return this.items;
   // }
->>>>>>> cart-and-products
 }
 
