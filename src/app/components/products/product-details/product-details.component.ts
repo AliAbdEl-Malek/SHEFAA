@@ -5,6 +5,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from './../../../services/api.service';
 import {Location} from '@angular/common';
+import { CartService } from 'src/app/services/cart.service';
+import { FavouriteService } from 'src/app/services/favourite.service';
 
 @Component({
   selector: 'app-product-details',
@@ -14,7 +16,7 @@ import {Location} from '@angular/common';
 export class ProductDetailsComponent implements OnInit {
   product:Product
   productId:any
-  constructor(private _activatedRoute:ActivatedRoute ,  private _apiService:ApiService , private _location: Location) { }
+  constructor(private _activatedRoute:ActivatedRoute ,  private _apiService:ApiService , private _location: Location,private _cartService:CartService ,private _favouriteService:FavouriteService ) { }
 
   ngOnInit(): void {
 
@@ -44,4 +46,19 @@ export class ProductDetailsComponent implements OnInit {
     console.log( 'goBack()...' );
   }
 
+  addToCart(product:any) {
+    this._cartService.addToCart(product);
+    console.log("Add to Cart Function "+product.name)
+    console.log("Prodact "+product.price)
+
+    // window.alert('Your product has been added to the cart!');
+  }
+
+  addToFavourite(product:any) {
+    this._favouriteService.addToFavourite(product);
+    console.log("Add to Favourite Function "+product.name)
+    console.log("Prodact "+product.price)
+
+    // window.alert('Your product has been added to the cart!');
+  }
 }
