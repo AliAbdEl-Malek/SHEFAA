@@ -18,8 +18,9 @@ var user = new mongoose.Schema({
     'password': String,
     "refreshToken": String,
     "photoURL": String,
-    "accessToken":String
-
+    "accessToken":String,
+    "address":String,
+    "phone":String
 
 
 

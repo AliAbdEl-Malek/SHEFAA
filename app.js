@@ -55,6 +55,8 @@ app.options('*', cors());
 // use middleware
 app.use('/user', userRouter);
 
+// use middle ware for the uploads folder 
+app.use('/uploads',express.static("uploads"))
 
 // use cookie session
 app.use(cookieSession({

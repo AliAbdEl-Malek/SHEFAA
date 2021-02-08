@@ -13,6 +13,19 @@ const jwt = require('jsonwebtoken');
 const { verifyToken } = require('../config/accessAuth');
 const { generateCode } = require('../config/codeGenerator');
 
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, './uploads/')
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now()+'_'+file.originalname )
+    }
+  })
+   
+  const upload = multer({ storage: storage })
+  
 
 
 // router for sign up new user
@@ -84,7 +97,7 @@ router.post('/login', (req, res) => {
 
                             //action (login)
                             const accesstoken = jwt.sign({ email: data.email },
-                                'secretKey', { expiresIn: '10h' });
+                                'secretKey');
                             console.log("Token : ", accesstoken);
 
                             //update use's access token
@@ -175,15 +188,54 @@ router.post('/resetCode', verifyToken ,(req,res)=>{
 
 
 //Update User Profile
-router.put('/update/:id', (req, res) => {
-    User.updateOne({ _id: req.params.id }, req.body, (err, data) => {
+router.put('/update/:id' , verifyToken ,  (req, res) => {
+    jwt.verify(req.headers.authorization, "secretKey", (err, authData) => {
+        console.log("req.params.accessToken:" ,req.headers.authorization)
         if (err) {
-            res.status(500).send({ "Data": err, "message": "Data in updating data...!", "status": false })
+
+            res.send({ "Data": err, "message": "Session expired!", "status": false });
+
         } else {
-            res.status(200).send({ "Data": data, "message": "Data Updated Successfully", "status": true })
+            console.log("req.body", req.body)
+
+            User.updateOne({ _id: req.params.id }, req.body, (err, data) => {
+                if (err) {
+                    res.status(500).send({ "Data": err, "message": "Error in updating data...!", "status": false })
+                } else {
+                    res.status(200).send({ "Data": data, "message": "Data Updated Successfully", "status": true })
+                }
+            })
         }
-    })
+    });
+   
 });
+
+
+
+// upload profile image 
+router.post('/photo/:id', upload.single('photoURL') ,  (req,res)=>{
+
+            let id =req.params.id
+            console.log(id)
+            console.log("req.File: " , req.file)
+            
+            let photo_URL = req.file.path
+            console.log("req.files.path:", req.file.path)
+        
+            User.findOneAndUpdate({_id:req.params.id},{photoURL:photo_URL},(err,userData)=>{
+                     if(err){
+                    console.log("Error in update user", err)
+                    res.status(500).send({"Data":err, "message":"Failed in uploading image", "status":false})
+        
+                }else{
+                    console.log("image uploaded", userData)
+                    res.status(200).send({"Data":userData, "message":"Image uploaded successfully ", "status":true})
+        
+                }
+            })  
+
+}) 
+
 
 
 router.delete('/logout', (req, res) => {
