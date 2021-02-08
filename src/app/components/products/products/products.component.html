@@ -19,19 +19,19 @@
             </div>
             <div class=" " >
 
-                <div class="row d-flex justify-content-center">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5  justify-content-center align-self-center">
 
-                    <div class="col-sm-3 m-2 " *ngFor="let product of products;">
+                    <div class="col-sm-3 m-2 "  *ngFor="let product of products;">
                         <div>
-                            <div class="card shadow ">
+                            <div class="card shadow h-100" >
                                 <img src={{product.photoURL}} alt="" class="card-img-top"
-                                    style="width:100%;height: 20vw;">
+                                    style="width:100%;height: 15rem;">
                                 <div class="card-body">
                                     <span class="card-title">{{product.name}}</span>
                                     <h5 class="card-text">{{product.price}} L.E</h5>
                                     <a [routerLink]="['/products/details/{{product.ID}}']" routerLinkActive="router-link-active" style="color:#404040;text-decoration: underline;">Details</a>
                                     <br>
-                                    <button (click)="addToCart(product)" class="btn btn-outline-light btn-sm"
+                                    <button (click)="addToCart(product); " [disabled]="clicked" class="btn btn-outline-light btn-sm"
                                         id="add-btn">Add to
                                         Cart</button>
                                     <a href="" class="btn btn-outline-danger btn-sm" id="heart"><i class="fa fa-heart"

@@ -1,5 +1,5 @@
 <app-header></app-header>
- 
+
 <div class="container-fliud " style="margin-top: 80px;">
     <div class="row">
         <div class="col-sm-2"></div>
@@ -7,23 +7,41 @@
             <div class="d-flex justify-content-center">
                 <h1>Your Cart</h1>
             </div>
-            <div class="row" *ngIf="items">
-                <div class="col-sm-4 " *ngFor="let item of items;">
-                    <div  class="card shadow m-2">
-                        <img src={{item.photoURL}} class="card-img-top" style="height: 20vw;">
-                        <div class="card-body">
-                            <h5 class="card-title">{{item.name}}</h5>
-                            <h5 class="card-text">{{item.price}}</h5>
-                            <h5>Quantity <input type="number" placeholder="1" [(ngModel)]="quantity" min="1"
-                                    style="margin-left:2%;width: 20%;height: 10%;"></h5>
-                            <a class="details" href="" style="text-decoration: underline;">Details</a>
-                            <br>
-                            <br>
-                            <a href="" class="btn btn-outline-danger btn-sm" id="add-btn">Remove from Cart</a>
+            
+                <div class="row d-flex justify-content-center" *ngFor="let cartProduct of cartProducts;">
+                    <div class="col-sm-4 " *ngFor="let i of cartProduct.cartProducts; let currentIndex = index;">
+                        <div class="card shadow m-2" *ngIf="cartProduct.cartProducts[0] ">
+
+                            <img src="{{i.photoURL}}" class="card-img-top" style="height: 20vw;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{i.name}}</h5>
+                                <h5 class="card-text">{{i.price}}</h5>
+                                <h5 class="card-text">{{i.itemQuantity}}</h5>
+                                <div class="input-group number-spinner">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" data-dir="dwn">
+                                            <span class="glyphicon glyphicon-minus">-</span>
+                                        </button>
+                                    </span>
+                                    <input type="text" class="form-control text-center">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" data-dir="up" (click)="increaseQuantity(i)">
+                                            <span class="glyphicon glyphicon-plus">+</span>
+                                        </button>
+                                    </span>
+
+                                </div>
+
+                                <a class="details" href="" style="text-decoration: underline;">Details</a>
+                                <br>
+                                <br>
+                                <button (click)="delete(i._id,currentIndex)" class="btn btn-outline-danger btn-sm"
+                                    id="add-btn">Remove from Cart</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            
         </div>
         <div class=" col-sm-2">
             <div class="d-flex justify-content-center p-3">
@@ -31,17 +49,18 @@
                     <div class="text-center w-100 ">
                         <h4>Number of Items:{{quantity}}</h4>
                         <h4>Subtotal: 460 </h4>
-                        <a [routerLink]="['/cart/checkout']" routerLinkActive="router-link-active" class="btn proceed-btn m-2">Proceed to Checkout</a>
+                        <a [routerLink]="['/cart/checkout']" routerLinkActive="router-link-active"
+                            class="btn proceed-btn m-2">Proceed to Checkout</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-<app-footer></app-footer>
+    <app-footer></app-footer>
 
 
-<!-- <app-header></app-header>
+    <!-- <app-header></app-header>
 
 <body>
     <div class="container-fliud "  style="margin-top: 80px;">
