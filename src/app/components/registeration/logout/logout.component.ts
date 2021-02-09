@@ -13,8 +13,8 @@ export class LogoutComponent implements OnInit {
 
   ngOnInit(): void {
     this._userService.logout();
-    this._userService.setLoggedStatus(false)
-    this._router.navigateByUrl("/registeration/login");
+    // this._userService.setLoggedStatus(false)
+    this._router.navigateByUrl("");
   }
 
 }

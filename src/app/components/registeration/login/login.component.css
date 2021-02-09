@@ -24,14 +24,27 @@
 }
 .card {
     
-    width: 70%;
+    width: 450px;
     height: auto;
     display: flex;
-  flex-direction: column; 
-    margin: auto;
+    flex-direction: column; 
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50%;
 }
 
-.card .greeting {
+.card-small {
+    
+    width: 300px;
+    height: auto;
+    display: flex;
+    flex-direction: column; 
+    margin-top: 60px;
+    border: 1px solid rgb(224, 221, 221);
+}
+
+.greeting {
     margin-top: 5%;
 }
 

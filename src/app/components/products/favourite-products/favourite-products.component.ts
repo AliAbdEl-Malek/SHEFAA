@@ -1,9 +1,12 @@
+import { APIResponse } from './../../../models/Api-response';
+import { UserService } from './../../../services/user.service';
+import { ApiService } from './../../../services/api.service';
 import { Component, OnInit } from '@angular/core';
 import { FavouriteService } from 'src/app/services/favourite.service';
 import { CartService } from 'src/app/services/cart.service';
-import { UserService } from './../../../services/user.service';
-import { ApiService } from './../../../services/api.service';
-import { APIResponse } from './../../../models/Api-response';
+
+
+
 
 @Component({
   selector: 'app-favourite-products',
@@ -13,7 +16,7 @@ import { APIResponse } from './../../../models/Api-response';
 export class FavouriteProductsComponent implements OnInit {
   userId: any;
 
-  constructor(private _favouriteService:FavouriteService ,private _cartService:CartService, private _userService: UserService,  private _apiService:ApiService ) { }
+  constructor(private _favouriteService:FavouriteService ,private _cartService:CartService ,  private _apiService:ApiService, private _userService: UserService) { }
   favourites = this._favouriteService.getFavourite();
   length = this._favouriteService.getItemsLength();
   ngOnInit(): void {
@@ -38,7 +41,7 @@ export class FavouriteProductsComponent implements OnInit {
   }
 
   addToCart(product:any) {
-    this._cartService.addToCart(product, this.userId);
+    this._cartService.addToCart(product,this.userId);
     console.log("Add to Cart Function "+product.name)
     console.log("Prodact "+product.price)
 

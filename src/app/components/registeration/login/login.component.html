@@ -87,11 +87,16 @@
                                 routerLinkActive="router-link-active">Forget Password?</a> </span>
                     </div> <br> <br>
 
+<<<<<<< HEAD
                     <button [disabled]="formGroup.invalid" type="submit" (click)=login()
                         class="btn btn-outline-primary btn-block">Login</button><br>
                     <p class="d-block d-md-none" style="font-size: 13px;">New here? <a class="link"
                             [routerLink]="['/registeration/signup']" routerLinkActive="router-link-active">Create new
                             account</a></p>
+=======
+            <div class="text-center"><button [disabled]="formGroup.invalid" type="submit" (click)=login() class="btn btn-outline-primary">Login</button></div><br>
+            <p class="d-block d-md-none" style="font-size: 13px;" >New here? <a class="link" [routerLink]="['/registeration/signup']" routerLinkActive="router-link-active">Create new account</a></p>
+>>>>>>> 483cb204e003652a7f3a6c746aae0c0a2f89a1cd
 
                 </form>
             </div>
