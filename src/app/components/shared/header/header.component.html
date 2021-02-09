@@ -129,27 +129,27 @@
     <!-- search bar in large screens -->
 
     <!-- Login -->
-    <div *ngIf="!user" class="d-none d-md-flex mx-2">
+    <div *ngIf="!isLogged" class="d-none d-md-flex mx-2">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link nav-hover" [routerLink]="['/registeration/login']" routerLinkActive="router-link-active"><i class="fa fa-times-circle"></i> Login</a>
+                <a class="nav-link nav-hover" [routerLink]="['/registeration/login']" routerLinkActive="router-link-active"><i class="fa fa-sign-in"></i> Login</a>
             </li>
         </ul>
     </div>
     <!-- Login -->
 
     <!-- Sign Up -->
-    <div *ngIf="!user" class="d-none d-md-flex mr-2">
+    <div *ngIf="!isLogged" class="d-none d-md-flex mr-2">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link nav-hover" [routerLink]="['/registeration/signup']" routerLinkActive="router-link-active"><i class="fa fa-times-circle"></i> Sign Up</a>
+                <a class="nav-link nav-hover" [routerLink]="['/registeration/signup']" routerLinkActive="router-link-active"><i class="fa fa-user-plus"></i> Sign Up</a>
             </li>
         </ul>
     </div>
     <!-- Sign Up -->
 
     <!-- Cart icon in md & lg screens -->
-    <div *ngIf="user" class="d-none d-md-flex ml-auto">
+    <div *ngIf="isLogged" class="d-none d-md-flex ml-auto">
         <a class="nav-link text-white fa fa-shopping-cart" style="font-size: 30px;" [routerLink]="['/cart']" routerLinkActive="router-link-active">
             <span class="badge rounded-pill badge-notification bg-danger">{{items}}</span>
         </a>
@@ -157,8 +157,10 @@
     <!-- Cart icon in md & lg screens -->
 
     <!-- User icon in md & lg screens -->
-    <div *ngIf="user" class="d-none d-md-flex">
-        <a class="nav-link fa fa-user-circle py-2 px-3" style="font-size: 30px; color: #f4f8fb;" role="button" data-toggle="dropdown">
+    <div *ngIf="isLogged" class="d-none d-md-flex">
+        <a class="nav-link  py-2 px-3" style="font-size: 30px; color: #f4f8fb;" role="button" data-toggle="dropdown">
+            <img *ngIf="user.photoURL" src="http://localhost:3000/{{user.photoURL}}" class="rounded-circle" alt="user Image" style="width: 40px;">
+            <img *ngIf="!user.photoURL" src="assets/images/pp-man.png" class="rounded-circle" alt="user Image" style="width: 40px;">
             <span *ngIf="user" style="font-size: 15px; position: relative; top: -5px;"> {{user.name}}</span>
         </a>
         <div class="dropdown-menu p-2 dropdown-menu-right">
@@ -166,7 +168,7 @@
             <div class="dropdown-divider"></div>
             <a class="dropdown-item px-2 toggle-hover" [routerLink]="['/products/favourite']" routerLinkActive="router-link-active"><i class="fa fa-star pr-2" style="color: #32c69a;"></i>Favourite Products</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item px-2 toggle-hover" [routerLink]="['/registeration/logout']" routerLinkActive="router-link-active"><i class="fa fa-times-circle pr-2" style="color: #32c69a;"></i>Log Out</a>
+            <a class="dropdown-item px-2 toggle-hover" [routerLink]="['/registeration/logout']" routerLinkActive="router-link-active"><i class="fa fa-sign-out" style="color: #32c69a;"></i>Log Out</a>
         </div>
     </div>
     <!-- User icon in md & lg screens -->

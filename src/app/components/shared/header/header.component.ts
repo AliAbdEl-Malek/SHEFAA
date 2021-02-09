@@ -14,12 +14,13 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private _apiService: ApiService, private _router: Router, private _userService: UserService, private _cartService: CartService) { }
+  constructor(private _apiService: ApiService, private _router: Router, private _userService: UserService, private _cartService: CartService, private userService: UserService) { }
   user: User;
-  searchText:string = '';
+  searchText: string = '';
   products: Product[] = []
   productNames: string[] = []
   items = this._cartService.getItemsLength();
+  isLogged: boolean
 
   ngOnInit(): void {
 
@@ -31,12 +32,12 @@ export class HeaderComponent implements OnInit {
       if (obj.status) {
         this.user = obj.Data
       }
-      else {
-        alert(obj.message)
-      }
+      // else {
+      //   alert(obj.message)
+      // }
     })
 
-    
+
     this._apiService.get('product/').subscribe((response) => {
       let obj = response as APIResponse
       console.log("Data from server", obj)
@@ -55,20 +56,20 @@ export class HeaderComponent implements OnInit {
       }
     })
 
-
+    this.isLogged = this.userService.isLogged()
 
 
   }
 
 
 
-  updateSearchText(value: string) {    
+  updateSearchText(value: string) {
     this.searchText = value
     console.log(this.searchText)
   }
 
 
- 
+
 
 
 
