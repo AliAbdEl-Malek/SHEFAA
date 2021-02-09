@@ -37,23 +37,23 @@ export class HeaderComponent implements OnInit {
     })
 
     
-    this._apiService.get('product/').subscribe((response) => {
-      let obj = response as APIResponse
-      console.log("Data from server", obj)
-      if (obj.status) {
-        this.products = obj.Data
-        console.log("products retreived are: ", this.products)
+    // this._apiService.get('product/').subscribe((response) => {
+    //   let obj = response as APIResponse
+    //   console.log("Data from server", obj)
+    //   if (obj.status) {
+    //     this.products = obj.Data
+    //     console.log("products retreived are: ", this.products)
 
-        //iterate for produc names
-        for (let i = 0; i < this.products.length; i++) {
-          this.productNames.push(this.products[i].name)
-        }
-        console.log("this.productNames", this.productNames)
-      }
-      else {
-        alert(obj.message)
-      }
-    })
+    //     //iterate for produc names
+    //     for (let i = 0; i < this.products.length; i++) {
+    //       this.productNames.push(this.products[i].name)
+    //     }
+    //     console.log("this.productNames", this.productNames)
+    //   }
+    //   else {
+    //     alert(obj.message)
+    //   }
+    // })
 
 
 

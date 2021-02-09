@@ -1,5 +1,6 @@
 body{
     font-family: 'David Libre', serif;
+    background-color:#f4f8fb;
 }
 
 .details{
@@ -12,7 +13,7 @@ body{
 }
 
 .subtotal-div{
-    background-color:#d9dfe4 ;
+    background-color:white ;
    
 }
 
