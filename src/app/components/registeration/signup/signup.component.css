@@ -1,26 +1,27 @@
-/* body {
-    clear: both;
-    box-sizing: border-box;
-    line-height: 0%;
-}
-
-.container {
-    position: relative;
-} */
-
 .card {
-    
-    width: 50%;
+    width: 500px;
     height: auto;
     display: flex;
-  flex-direction: column; 
-    margin: auto;
+    flex-direction: column; 
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50%;
+}
+
+.card-small {
+    
+    width: 300px;
+    height: auto;
+    display: flex;
+    flex-direction: column; 
+    margin-top: 60px;
+    border: 1px solid rgb(224, 221, 221);
 }
 
 h2 {
     text-align: center;
-    margin-top: 4%;
-    /* color: rgb(154, 243, 21); */
+    margin-top: 8px;
 }
 
 form {
@@ -30,26 +31,17 @@ form {
 }
 
 button[type=button] {
-    /* width: fit-content; */
     text-align: center;
-    /* background-color: rgb(36, 127, 202); */
 }
 
 button[type=button]:hover {
-    /* color: white; */
     background-color: #32c69a;
-    /* background-color: rgb(36, 127, 202); */
 }
 
 .link {
     text-decoration: none;
     color: #32c69a;
 }
-
-
-/* button[type=submit] {
-    float: right;
-} */
 
 button[type=submit]:hover {
     background-color: #32c69a;
@@ -119,22 +111,3 @@ button[type=submit]:hover {
     pointer-events: none;
     color: #aaa;
 }
-
-
-/* responsive Media */
-
-
-/* Extra small devices (phones, 600px and down) */
-
-/* @media only screen and (max-width: 600px) {
-    .row {
-        width: 100%;
-    }
-    .container {
-        width: 100%;
-        float: left;
-    }
-    .card {
-        margin: auto;
-    }
-} */

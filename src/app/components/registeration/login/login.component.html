@@ -29,12 +29,12 @@
                 <span> <a  class="link d-none d-md-block" [routerLink]="['/registeration/forgetPassword']" routerLinkActive="router-link-active">Forget Password?</a> </span>
             </div> <br> <br>
 
-            <button [disabled]="formGroup.invalid" type="submit" (click)=login() class="btn btn-outline-primary btn-block">Login</button><br>
+            <div class="text-center"><button [disabled]="formGroup.invalid" type="submit" (click)=login() class="btn btn-outline-primary">Login</button></div><br>
             <p class="d-none d-md-block">New here? <a class="link" [routerLink]="['/registeration/signup']" routerLinkActive="router-link-active">Create new account</a></p>
 
         </form>
     </div>
-    <div class=" card  justify-content-center align-self-center shadow mt-5 d-flex d-md-none" >
+    <div class=" card-small  justify-content-center align-self-center shadow mx-auto d-flex d-md-none" >
         <h6 class="text-center greeting justify-content-center">Great to have you back!</h6>
         <form [formGroup]="formGroup" class="m-3">
             <div class="form-group">
@@ -64,7 +64,7 @@
                 <span> <a  class="link d-block d-md-none" style="font-size: 13px;" [routerLink]="['/registeration/forgetPassword']" routerLinkActive="router-link-active">Forget Password?</a> </span>
             </div> <br> <br>
 
-            <button [disabled]="formGroup.invalid" type="submit" (click)=login() class="btn btn-outline-primary btn-block">Login</button><br>
+            <div class="text-center"><button [disabled]="formGroup.invalid" type="submit" (click)=login() class="btn btn-outline-primary">Login</button></div><br>
             <p class="d-block d-md-none" style="font-size: 13px;" >New here? <a class="link" [routerLink]="['/registeration/signup']" routerLinkActive="router-link-active">Create new account</a></p>
 
         </form>
