@@ -63,10 +63,10 @@ export class HeaderComponent implements OnInit {
 
 
 
-  updateSearchText(value: string) {
-    this.searchText = value
-    console.log(this.searchText)
-  }
+  // updateSearchText(value: string) {
+  //   this.searchText = value
+  //   console.log(this.searchText)
+  // }
 
 
 

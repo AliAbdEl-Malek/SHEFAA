@@ -1,3 +1,5 @@
+import { PrescriptionComponent } from '../shared/prescription/prescription.component';
+import { FormsModule } from '@angular/forms';
 import { FilterPipe } from './../../pipes/filter.pipe';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -11,14 +13,16 @@ const routes: Routes =[
   {path:"header",component:HeaderComponent},
   {path:"footer",component:FooterComponent},
   {path:"registerationheader",component:RegisterationHeaderComponent},
-  {path:"registerationfooter",component:RegisterationFooterComponent}
+  {path:"registerationfooter",component:RegisterationFooterComponent},
+  {path:"prescription",component:PrescriptionComponent}
 
 ]
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, RegisterationHeaderComponent, RegisterationFooterComponent,FilterPipe, ],
+  declarations: [HeaderComponent, FooterComponent, RegisterationHeaderComponent, RegisterationFooterComponent,FilterPipe,PrescriptionComponent,
+  ],
   imports: [
-    CommonModule,RouterModule.forChild(routes)
+    CommonModule,RouterModule.forChild(routes),FormsModule
   ],
   exports: [HeaderComponent, FooterComponent, RegisterationHeaderComponent, RegisterationFooterComponent]
 })
