@@ -36,6 +36,9 @@ const previousorderRouter = require('./routes/previousOrder')
 
 const cartRouter = require('./routes/cart')
 
+const websiteMessagesRouter = require('./routes/website-messages')
+
+const prescriptionRouter = require('./routes/prescription')
 // ----------------------------------------------------
 
 // an instance from express object
@@ -57,6 +60,10 @@ app.use('/user', userRouter);
 
 // use middle ware for the uploads folder 
 app.use('/uploads',express.static("uploads"))
+
+// use middle ware for the uploads folder 
+app.use('/prescriptions',express.static("prescriptions"))
+
 
 // use cookie session
 app.use(cookieSession({
@@ -89,6 +96,11 @@ app.use('/porder', previousorderRouter);
 // cart router
 app.use('/cart', cartRouter);
 
+// website messages router
+app.use('/message', websiteMessagesRouter);
+
+// prescription router
+app.use('/prescription', prescriptionRouter);
 
 // ----------------------------------------------------
 
