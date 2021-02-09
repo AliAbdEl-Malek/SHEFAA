@@ -58,7 +58,8 @@ export class PrescriptionComponent implements OnInit {
       let obj = response as APIResponse
       console.log("Data after upload prescription:", obj)
       this.prescription = obj.Data
-      alert(obj.message)
+      alert(obj.message + "please wait until we review your prescription and reply to you ^^ ")
+      this._router.navigateByUrl('')
     })
 
   }
