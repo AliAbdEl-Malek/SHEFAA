@@ -19,8 +19,10 @@ export class HeaderComponent implements OnInit {
   searchText: string = '';
   products: Product[] = []
   productNames: string[] = []
-  items = this._cartService.getItemsLength();
+  // items = this._cartService.getItemsLength();
   isLogged: boolean
+  length: any=0;
+  cartfake: any;
 
   ngOnInit(): void {
 
@@ -57,7 +59,23 @@ export class HeaderComponent implements OnInit {
     })
 
     this.isLogged = this.userService.isLogged()
+    
+    this._apiService.get("cart").subscribe((response) => {
+      let obj = response as APIResponse;
 
+      console.log("Data from server cart", obj.Data);
+      if (obj.status) {
+        let cartData = obj.Data
+        this.cartfake = cartData
+        this.length = this.cartfake[0].cartProducts.length
+        console.log("Product retreived is faaaaaake: ", this.cartfake[0].cartProducts)
+
+
+      }
+      else {
+        alert(obj.message)
+      }
+    })
 
   }
 

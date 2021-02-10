@@ -43,11 +43,11 @@
     <!-- search bar in small screens -->
 
     <!-- Cart icon in small screens -->
-    <ul *ngIf="user" class="navbar-nav d-block d-md-none ml-auto ">
+    <ul *ngIf="isLogged" class="navbar-nav d-block d-md-none ml-auto ">
         <li class="nav-item">
             <a class="nav-link text-white" style="font-size: 30px;" [routerLink]="['/cart']" routerLinkActive="router-link-active">
                 <i class=" fa fa-shopping-cart"></i>
-                <span class="badge rounded-pill badge-notification-small bg-danger text-white ">{{items}}</span>
+                <span class="badge rounded-pill badge-notification-small bg-danger text-white ">{{length}}</span>
             </a>
         </li>
     </ul>
@@ -57,10 +57,10 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <li *ngIf="!user" class="nav-item d-block d-md-none mt-2">
-                <a class="nav-link nav-hover" [routerLink]="['/registeration/signup']" routerLinkActive="router-link-active"><i class="fa fa-times-circle px-2"></i> Sign Up</a>
+                <a class="nav-link nav-hover" [routerLink]="['/registeration/signup']" routerLinkActive="router-link-active"><i class="fa fa-user-plus px-2"></i> Sign Up</a>
             </li>
             <li *ngIf="!user" class="nav-item d-block d-md-none">
-                <a class="nav-link nav-hover" [routerLink]="['/registeration/login']" routerLinkActive="router-link-active"><i class="fa fa-times-circle px-2"></i> Login</a>
+                <a class="nav-link nav-hover" [routerLink]="['/registeration/login']" routerLinkActive="router-link-active"><i class="fa fa-sign-in px-2"></i> Login</a>
             </li>
             <div *ngIf="!user" class="dropdown-divider"></div>
             <li *ngIf="user" class="nav-item d-block d-md-none mt-2">
@@ -80,6 +80,9 @@
             </li>
             <li *ngIf="user" class="nav-item d-block d-md-none">
                 <a class="nav-link nav-hover" [routerLink]="['/products/favourite']" routerLinkActive="router-link-active"><i class="fa fa-star px-2"></i> Favourite Products</a>
+            </li>
+            <li *ngIf="user" class="nav-item d-block d-md-none">
+                <a class="nav-link nav-hover" [routerLink]="['/prescription']" routerLinkActive="router-link-active"><i class="fa fa-file px-2"></i>Prescription</a>
             </li>
             <li class="nav-item d-none d-md-block">
                 <a class="nav-link nav-hover" [routerLink]="['/about']" routerLinkActive="router-link-active">About</a>
@@ -151,16 +154,16 @@
     <!-- Cart icon in md & lg screens -->
     <div *ngIf="isLogged" class="d-none d-md-flex ml-auto">
         <a class="nav-link text-white fa fa-shopping-cart" style="font-size: 30px;" [routerLink]="['/cart']" routerLinkActive="router-link-active">
-            <span class="badge rounded-pill badge-notification bg-danger">{{items}}</span>
+            <span class="badge rounded-pill badge-notification bg-danger">{{length}}</span>
         </a>
     </div>
     <!-- Cart icon in md & lg screens -->
 
     <!-- User icon in md & lg screens -->
     <div *ngIf="isLogged" class="d-none d-md-flex">
-        <a class="nav-link  py-2 px-3" style="font-size: 30px; color: #f4f8fb;" role="button" data-toggle="dropdown">
-            <img *ngIf="user.photoURL" src="http://localhost:3000/{{user.photoURL}}" class="rounded-circle" alt="user Image" style="width: 40px;">
-            <img *ngIf="!user.photoURL" src="assets/images/pp-man.png" class="rounded-circle" alt="user Image" style="width: 40px;">
+        <a class="nav-link  py-2 px-1" style="font-size: 30px; color: #f4f8fb;" role="button" data-toggle="dropdown">
+            <img *ngIf="user.photoURL" src="http://localhost:3000/{{user.photoURL}}" class="rounded-circle" alt="user Image" style="width: 35px;">
+            <img *ngIf="!user.photoURL" src="assets/images/pp-man.png" class="rounded-circle" alt="user Image" style="width: 35px;">
             <span *ngIf="user" style="font-size: 15px; position: relative; top: -5px;"> {{user.name}}</span>
         </a>
         <div class="dropdown-menu p-2 dropdown-menu-right">
