@@ -16,6 +16,5 @@ export class Product {
     category: string;
     language: string;
     isAddToCart: boolean = false;
-    itemQuantity: number;
 
 }

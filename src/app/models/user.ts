@@ -8,6 +8,13 @@ export class User{
        name: string,
        itemQuantity: number,
    }];
+   favouriteProducts:
+   [{
+        _id: string,
+        photoURL: string,
+        price: number,
+        name: string,
+   }]
     id:string;
     name:string;
     email:string;

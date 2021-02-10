@@ -18,6 +18,9 @@ export class ProductDetailsComponent implements OnInit {
   product:Product
   productId:any
   userId: any;
+  cartfake: any;
+  favouritefake: any;
+
   constructor(private _activatedRoute:ActivatedRoute ,  private _apiService:ApiService , private _location: Location,private _cartService:CartService ,private _favouriteService:FavouriteService, private _userService: UserService ) { }
 
   ngOnInit(): void {
@@ -49,26 +52,48 @@ export class ProductDetailsComponent implements OnInit {
       
       }​​​​​);
      }​​​​​);
+     this._apiService.get("cart").subscribe((response) => {
+      let obj = response as APIResponse;
+
+      console.log("Data from server cart", obj.Data);
+      if (obj.status) {
+        let cartData = obj.Data
+        this.cartfake = cartData
+
+        console.log("Product retreived is faaaaaake: ", this.cartfake[0].cartProducts)
+
+
+      }
+      else {
+        alert(obj.message)
+      }
+    })
+    this._apiService.get("favourite").subscribe((response)=>{
+      let obj = response as APIResponse;
+     
+      console.log("Data from server favourite",obj.Data);
+      if(obj.status){
+        let favouriteData = obj.Data
+         this.favouritefake = favouriteData
+         console.log("Favourite product retreived is: ",this.favouritefake[0].favouriteProducts)
+       }
+       else{
+         alert(obj.message)
+       }
+    })
   }
 
-  backClicked() {
-    this._location.back();
-    console.log( 'goBack()...' );
+  // backClicked() {
+  //   this._location.back();
+  //   console.log( 'goBack()...' );
+  // }
+
+  addToCart(product: Product) {    
+    this._cartService.addToCart(product, this.userId);
   }
 
-  addToCart(product:any) {
-    this._cartService.addToCart(product,this.userId);
-    console.log("Add to Cart Function "+product.name)
-    console.log("Prodact "+product.price)
-
-    // window.alert('Your product has been added to the cart!');
-  }
-
-  addToFavourite(product:any) {
-    this._favouriteService.addToFavourite(product);
-    console.log("Add to Favourite Function "+product.name)
-    console.log("Prodact "+product.price)
-
-    // window.alert('Your product has been added to the cart!');
+  addToFavourite(product: Product) {
+    this._favouriteService.addToFavourite(product, this.userId);
+    
   }
 }

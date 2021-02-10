@@ -18,7 +18,7 @@
 
     <!-- search bar in X small screens -->
     <div class="d-flex d-sm-none mr-auto">
-        <input type="text" [(ngModel)]="searchText" #input class=" form-control pr-5 searchsmall" style="border-radius: 50px;" placeholder="Search">
+        <input type="search" (keyup)="updateSearchText(input.value)" #input class=" form-control pr-5 searchsmall" style="border-radius: 50px;" placeholder="Search">
         <button class=" btn p-0" style="color: #838383; margin-left: -26px;" type="submit"><i class="fa fa-search"></i></button>
         <!-- results of ngFor is passed to appFilter with argument searchText -->
         <ul class="list-group list-group-flush mt-5" *ngIf="searchText" style="position: absolute; border-radius: 20px; width: auto;  overflow-y:auto;">
@@ -31,7 +31,7 @@
 
     <!-- search bar in small screens -->
     <div class="d-none d-sm-flex d-md-none mr-auto">
-        <input type="text" [(ngModel)]="searchText" #input class=" form-control pr-5 searchmedium" style="border-radius: 50px;" placeholder="Search product">
+        <input type="search" (keyup)="updateSearchText(input.value)" #input class=" form-control pr-5 searchmedium" style="border-radius: 50px;" placeholder="Search product">
         <button class=" btn" style="color: #838383; margin-left: -40px;" type="submit"><i class="fa fa-search"></i></button>
         <!-- results of ngFor is passed to appFilter with argument searchText -->
         <ul class="list-group list-group-flush mt-5" *ngIf="searchText" style="position: absolute; border-radius: 20px; width: auto;  overflow-y:auto;">
@@ -103,7 +103,7 @@
 
     <!-- search bar in Medium screens -->
     <div class="d-none d-md-flex d-lg-none" style="margin-left: -40px;">
-        <input type="text" [(ngModel)]="searchText" #input class=" form-control pr-5 searchlarge" style="border-radius: 50px;" placeholder="Search">
+        <input type="search" (keyup)="updateSearchText(input.value)" #input class=" form-control pr-5 searchlarge" style="border-radius: 50px;" placeholder="Search">
         <button class=" btn" style="color: #838383; margin-left: -40px;" type="submit"><i class="fa fa-search"></i></button>
         <!-- results of ngFor is passed to appFilter with argument searchText -->
         <ul class="list-group list-group-flush mt-5" *ngIf="searchText" style="position: absolute; border-radius: 20px; width: auto;  overflow-y:auto;">
@@ -116,7 +116,7 @@
 
     <!-- search bar in large screens -->
     <div class="d-none d-lg-flex mr-auto">
-        <input type="text" [(ngModel)]="searchText" #input class=" form-control pr-5 searchxlarge" style="border-radius: 50px;" placeholder="Search for product">
+        <input type="search" (keyup)="updateSearchText(input.value)" #input class=" form-control pr-5 searchxlarge" style="border-radius: 50px;" placeholder="Search for product">
         <button class=" btn" style="color: #838383; margin-left: -40px;" type="submit"><i class="fa fa-search"></i></button><br>
         <!-- results of ngFor is passed to appFilter with argument searchText -->
         <ul class="list-group list-group-flush mt-5" *ngIf="searchText" style="position: absolute; border-radius: 20px; width: auto;  overflow-y:auto;">
@@ -168,9 +168,7 @@
             <div class="dropdown-divider"></div>
             <a class="dropdown-item px-2 toggle-hover" [routerLink]="['/products/favourite']" routerLinkActive="router-link-active"><i class="fa fa-star pr-2" style="color: #32c69a;"></i>Favourite Products</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item px-2 toggle-hover" [routerLink]="['/prescription']" routerLinkActive="router-link-active"><i class="fa fa-file pr-2" style="color: #32c69a;"></i>Prescription</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item px-2 toggle-hover" [routerLink]="['/registeration/logout']" routerLinkActive="router-link-active"><i class="fa fa-sign-out pr-2" style="color: #32c69a;"></i>Log Out</a>
+            <a class="dropdown-item px-2 toggle-hover" [routerLink]="['/registeration/logout']" routerLinkActive="router-link-active"><i class="fa fa-sign-out" style="color: #32c69a;"></i>Log Out</a>
         </div>
     </div>
     <!-- User icon in md & lg screens -->
