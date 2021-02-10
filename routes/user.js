@@ -17,15 +17,15 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, './uploads/')
+        cb(null, './uploads/')
     },
     filename: function (req, file, cb) {
-      cb(null, Date.now()+'_'+file.originalname )
+        cb(null, Date.now() + '_' + file.originalname)
     }
-  })
-   
-  const upload = multer({ storage: storage })
-  
+})
+
+const upload = multer({ storage: storage })
+
 
 
 // router for sign up new user
@@ -37,36 +37,36 @@ router.post('/signup', (req, res) => {
         } else {
 
             // hash the password and save it in database
-            bcrypt.hash(req.body.password, 10).then(function(hash) {
+            bcrypt.hash(req.body.password, 10).then(function (hash) {
                 console.log(hash)
 
                 User.create({
-                        id: "",
-                        name: req.body.name,
-                        email: req.body.email,
-                        password: hash,
+                    id: "",
+                    name: req.body.name,
+                    email: req.body.email,
+                    password: hash,
 
-                    },
+                },
                     (err, user) => {
                         if (err) {
                             res.send({ "Data": err, "message": "Failed in requesting...!", "status": false })
                         } else {
 
-                             //create an access token for new user
-                             const accesstoken = jwt.sign({ email: req.body.email },
+                            //create an access token for new user
+                            const accesstoken = jwt.sign({ email: req.body.email },
                                 'secretKey', { expiresIn: '10h' });
                             console.log("Token : ", accesstoken);
 
                             //update the user's id and access token
-                            User.findOneAndUpdate({ email: req.body.email }, { id: user._id.toString() , accessToken:accesstoken }, { new: true }, (err, newUser) => {
-                                    if (err)
-                                        console.log(err)
-                                    else
-                                        console.log(newUser)
+                            User.findOneAndUpdate({ email: req.body.email }, { id: user._id.toString(), accessToken: accesstoken }, { new: true }, (err, newUser) => {
+                                if (err)
+                                    console.log(err)
+                                else
+                                    console.log(newUser)
 
-                                    res.status(200).send({ "Data": newUser, "message": "New user signed up Successfully", "status": true , "token": accesstoken})
-                                })
-                                // mailService.sendEmail(user.email).catch(console.error);
+                                res.status(200).send({ "Data": newUser, "message": "New user signed up Successfully", "status": true, "token": accesstoken })
+                            })
+                            // mailService.sendEmail(user.email).catch(console.error);
                         }
                     })
             })
@@ -81,14 +81,14 @@ router.post('/login', (req, res) => {
     // console.log(req.headers)
     User.findOne({ email: req.body.email }, (err, data) => {
         if (err) {
-            res.status(500).send("Failed to find email: "+err)
+            res.status(500).send("Failed to find email: " + err)
         } else {
             // console.log("data:", data)
             if (!data) {
                 res.send({ "message": "Error in logging in ...!", "Status": false })
             } else {
 
-                bcrypt.compare(req.body.password, data.password, function(err, result) {
+                bcrypt.compare(req.body.password, data.password, function (err, result) {
                     if (err)
                         console.log("Error", err)
                     else {
@@ -101,7 +101,7 @@ router.post('/login', (req, res) => {
                             console.log("Token : ", accesstoken);
 
                             //update use's access token
-                            User.findOneAndUpdate({ email: req.body.email }, { accessToken:accesstoken }, { new: true }, (err, newUser) => {
+                            User.findOneAndUpdate({ email: req.body.email }, { accessToken: accesstoken }, { new: true }, (err, newUser) => {
                                 if (err)
                                     console.log(err)
                                 else
@@ -112,13 +112,13 @@ router.post('/login', (req, res) => {
                             // data.refreshToken = refreshToken;
                             //res.cookie("jwt", accesstoken, {secure: true, httpOnly: true})
 
-                            res.status(200).send({ "Data": data, "message": "Logged in successfully", "status": true , "token": accesstoken })
+                            res.status(200).send({ "Data": data, "message": "Logged in successfully", "status": true, "token": accesstoken })
 
                         } else {
                             console.log("Entered password is " + req.body.password + " and the hashed paswword is " + data.password)
                             res.send({ "message": "Something went wrong, please try again !", "Status": false })
-                                // action redirect to login page 
-                                // password is incorrect
+                            // action redirect to login page 
+                            // password is incorrect
                         }
 
                     }
@@ -157,7 +157,7 @@ router.get('/get/:accessToken', verifyToken, (req, res) => {
 })
 
 
-router.post('/resetCode', verifyToken ,(req,res)=>{
+router.post('/resetCode', verifyToken, (req, res) => {
     // console.log(req.headers)
     // console.log("Token: ", req.headers.authorization)
     // console.log(req.body)
@@ -170,27 +170,27 @@ router.post('/resetCode', verifyToken ,(req,res)=>{
 
         } else {
 
-            User.findOne({email:req.body.email},(err,data)=>{
+            User.findOne({ email: req.body.email }, (err, data) => {
                 if (err) {
-                    res.status(500).send("Error in find: "+err)
+                    res.status(500).send("Error in find: " + err)
                 }
-                else if(data == null){
-                    res.status(500).send("Something is wrong !: ")                   
-                }else{
-                     let code = generateCode()
-                    mailService.sendEmail(req.body.email,code).catch(console.error);
-                    res.send({"Data": code,"message": "Email sent successfully", "status": true})
+                else if (data == null) {
+                    res.status(500).send("Something is wrong !: ")
+                } else {
+                    let code = generateCode()
+                    mailService.sendEmail(req.body.email, code).catch(console.error);
+                    res.send({ "Data": code, "message": "Email sent successfully", "status": true })
                 }
-            }) 
+            })
         }
     });
 })
 
 
 //Update User Profile
-router.put('/update/:id' , verifyToken ,  (req, res) => {
+router.put('/update/:id', verifyToken, (req, res) => {
     jwt.verify(req.headers.authorization, "secretKey", (err, authData) => {
-        console.log("req.params.accessToken:" ,req.headers.authorization)
+        console.log("req.params.accessToken:", req.headers.authorization)
         if (err) {
 
             res.send({ "Data": err, "message": "Session expired!", "status": false });
@@ -207,34 +207,34 @@ router.put('/update/:id' , verifyToken ,  (req, res) => {
             })
         }
     });
-   
+
 });
 
 
 
 // upload profile image 
-router.post('/photo/:id', upload.single('photoURL') ,  (req,res)=>{
+router.post('/photo/:id', upload.single('photoURL'), (req, res) => {
 
-            let id =req.params.id
-            console.log(id)
-            console.log("req.File: " , req.file)
-            
-            let photo_URL = req.file.path
-            console.log("req.files.path:", req.file.path)
-        
-            User.findOneAndUpdate({_id:req.params.id},{photoURL:photo_URL},(err,userData)=>{
-                     if(err){
-                    console.log("Error in update user", err)
-                    res.status(500).send({"Data":err, "message":"Failed in uploading image", "status":false})
-        
-                }else{
-                    console.log("image uploaded", userData)
-                    res.status(200).send({"Data":userData, "message":"Image uploaded successfully ", "status":true})
-        
-                }
-            })  
+    let id = req.params.id
+    console.log(id)
+    console.log("req.File: ", req.file)
 
-}) 
+    let photo_URL = req.file.path
+    console.log("req.files.path:", req.file.path)
+
+    User.findOneAndUpdate({ _id: req.params.id }, { photoURL: photo_URL }, (err, userData) => {
+        if (err) {
+            console.log("Error in update user", err)
+            res.status(500).send({ "Data": err, "message": "Failed in uploading image", "status": false })
+
+        } else {
+            console.log("image uploaded", userData)
+            res.status(200).send({ "Data": userData, "message": "Image uploaded successfully ", "status": true })
+
+        }
+    })
+
+})
 
 
 
@@ -256,9 +256,9 @@ router.put('/update', (req, res) => {
         } else {
             console.log("req.body.pass: ", req.body.password)
             // hash the password and save it in database
-            bcrypt.hash(req.body.password, 10).then(function(hash){
+            bcrypt.hash(req.body.password, 10).then(function (hash) {
                 console.log("hash: ", hash)
-                User.updateOne({ accessToken: req.headers.authorization }, {password:hash}, (err, data) => {
+                User.updateOne({ accessToken: req.headers.authorization }, { password: hash }, (err, data) => {
                     if (err) {
                         res.status(500).send({ "Data": err, "message": "Error in resetting password...!", "status": false })
                     } else {
@@ -267,7 +267,7 @@ router.put('/update', (req, res) => {
                 })
 
             })
-           
+
         }
     });
 
