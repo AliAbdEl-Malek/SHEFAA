@@ -20,7 +20,7 @@ export class ProductsComponent implements OnInit {
   constructor(private _apiService: ApiService, private _cartService: CartService, private _userService: UserService,private _favouriteService:FavouriteService ) { }
   products: Product[] = [];
   userId: any;
-  clicked = false;
+  
 
   ngOnInit(): void {
 

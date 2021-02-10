@@ -7,6 +7,9 @@ import { CartService } from 'src/app/services/cart.service';
 import { User } from '../../../models/user';
 import { Product } from "./../../../models/Product";
 
+
+
+
 @Component({
   selector: 'app-favourite-products',
   templateUrl: './favourite-products.component.html',

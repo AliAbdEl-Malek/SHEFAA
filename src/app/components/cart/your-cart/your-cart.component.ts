@@ -14,8 +14,10 @@ export class YourCartComponent implements OnInit {
 
   quantity:string="";
   price:string="";
-  cartProducts:User [] = [];
+  User:User [] = [];
   userId: any;
+  cartLength:number;
+  totalPrice:number=0;
   
 
   constructor(private _cartService:CartService, private _apiService:ApiService, private _userService:UserService ) { }
@@ -34,9 +36,21 @@ export class YourCartComponent implements OnInit {
       console.log("Data from server cart",obj.Data);
       if(obj.status){
         let cartData = obj.Data
-         this.cartProducts = cartData
+         this.User = cartData
  
-         console.log("Product retreived is: ",this.cartProducts)
+         console.log("Product retreived is: ",this.User)
+         this.cartLength=this.User[0].cartProducts.length;
+         console.log("this.User[0].cartProducts.length",this.User[0].cartProducts.length);
+
+          for(let index = 0; index < this.User[0].cartProducts.length ; index++ )
+          {
+            this.totalPrice += this.User[0].cartProducts[index].price
+            
+            
+          }
+          console.log("Total Price",this.totalPrice);
+        //  console.log("this.User[0].cartProducts.Price",this.User[0].cartProducts);
+
          
         
        }
@@ -49,15 +63,17 @@ export class YourCartComponent implements OnInit {
     console.log(productId);
     console.log(this.userId);
     console.log("ahmaaaaaaaaaaaa"+index);
-    console.log("mamamamamamam",this.cartProducts[0]);
-    this.cartProducts[0].cartProducts.splice(index,1);
+    console.log("mamamamamamam",this.User[0]);
+    this.User[0].cartProducts.splice(index,1);
     
     this._cartService.deleteFromCart(this.userId , productId ,index);
-    
+    this.totalPrice -= this.User[0].cartProducts[index].price;
+    this.cartLength=this.User[0].cartProducts.length;
   }
   
   increaseQuantity (i:any){
     
-    i.itemQuantity += 1;
+    // i.itemQuantity += 1;
+    // this.User[0].cartProducts[i].itemQuantity +=1;
   }
 }

@@ -12,6 +12,12 @@ import { Router } from '@angular/router';
 })
 export class CheckoutComponent implements OnInit {
 
+  User:User [] = [];
+  cartLength:number;
+  totalPrice:number=0;
+  delevery:number=15;
+  total:number=0;
+
   constructor(private _apiService:ApiService , private _router: Router,private _userService:UserService) { }
   user:User;
   ngOnInit(): void {
@@ -29,6 +35,36 @@ export class CheckoutComponent implements OnInit {
       else{
         alert(obj.message)
       }
+    })
+
+    this._apiService.get("cart").subscribe((response)=>{
+      let obj = response as APIResponse;
+     
+      console.log("Data from server cart",obj.Data);
+      if(obj.status){
+        let cartData = obj.Data
+         this.User = cartData
+ 
+         console.log("Product retreived is: ",this.User)
+         this.cartLength=this.User[0].cartProducts.length;
+         console.log("this.User[0].cartProducts.length",this.User[0].cartProducts.length);
+
+          for(let index = 0; index < this.User[0].cartProducts.length ; index++ )
+          {
+            this.totalPrice += this.User[0].cartProducts[index].price
+            
+            
+          }
+          this.total=this.delevery + this.totalPrice;
+          console.log("Total Price",this.totalPrice);
+        //  console.log("this.User[0].cartProducts.Price",this.User[0].cartProducts);
+
+         
+        
+       }
+       else{
+         alert(obj.message)
+       }
     })
   }
 

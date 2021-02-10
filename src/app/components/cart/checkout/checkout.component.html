@@ -23,9 +23,9 @@
     </div>
     <div class="card shadow m-4 p-2" style="border-radius: 30px; background-color: #f4f8fb; color: #404040;">
         <div class="card-body text-center">
-            <div class="card-title" style="color:#32c69a;">Subtotal : <span style="color: #404040;">195 EGP</span></div>
-            <div class="card-title" style="color:#32c69a;">Delivery : <span style="color: #404040;">15 EGP</span></div>
-            <div class="card-title" style="color:#32c69a;">Total : <span style="color: #404040;">210 EGP</span></div>
+            <div class="card-title" style="color:#32c69a;">Subtotal : <span style="color: #404040;">{{totalPrice}} EGP</span></div>
+            <div class="card-title" style="color:#32c69a;">Delivery : <span style="color: #404040;">{{delevery}} EGP</span></div>
+            <div class="card-title" style="color:#32c69a;">Total : <span style="color: #404040;">{{total}} EGP</span></div>
             <a class="card-text" [routerLink]="['/cart/shipment']" routerLinkActive="router-link-active" class="btn btn-outline-light m-1" id="add-btn">Confirm Order</a>
         </div>
         
