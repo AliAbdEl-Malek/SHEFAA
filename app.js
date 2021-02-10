@@ -36,6 +36,8 @@ const previousorderRouter = require('./routes/previousOrder')
 
 const cartRouter = require('./routes/cart')
 
+const favouriteRouter = require('./routes/favourite')
+
 // ----------------------------------------------------
 
 // an instance from express object
@@ -88,6 +90,9 @@ app.use('/porder', previousorderRouter);
 
 // cart router
 app.use('/cart', cartRouter);
+
+// favourite router
+app.use('/favourite', favouriteRouter);
 
 
 // ----------------------------------------------------

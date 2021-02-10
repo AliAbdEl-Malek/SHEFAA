@@ -8,6 +8,11 @@ var user = new mongoose.Schema({
        type:mongoose.Schema.Types.ObjectId,
        ref:"product"
     }],
+    favouriteProducts:
+   [{
+       type:mongoose.Schema.Types.ObjectId,
+       ref:"product"
+    }],
 
     'id': String,
     'name': String,
