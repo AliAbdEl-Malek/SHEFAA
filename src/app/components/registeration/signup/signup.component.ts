@@ -1,3 +1,4 @@
+import { UserService } from './../../../services/user.service';
 import { APIResponse } from './../../../models/Api-response';
 import { User } from './../../../models/user';
 import { ApiService } from './../../../services/api.service';
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private _formBuilder:FormBuilder, private _apiService:ApiService , private _router: Router) { }
+  constructor(private _formBuilder:FormBuilder, private _apiService:ApiService , private _router: Router,private _userService:UserService) { }
 
   formGroup:FormGroup;
 
@@ -39,9 +40,14 @@ export class SignupComponent implements OnInit {
       if(obj.status){
         user = obj.Data
         this.newUser.push(user)
-       
+
+       //add token to local storage
+        console.log(obj.token)
+        this._userService.addToken(obj.token)
+
         // alert(obj.message)
-        this._router.navigateByUrl('/home')
+        this._userService.isLogged()
+        this._router.navigateByUrl('')
         console.log("User stored in array",this.newUser)
       }
       else{

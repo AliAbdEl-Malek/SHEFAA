@@ -1,3 +1,4 @@
+import { User } from './../models/user';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
@@ -8,17 +9,9 @@ export class UserService {
 
   logged=new Subject<boolean>();
 
-  constructor() { 
-    //alert(this.isLogged());
-    // this.logged.next(this.isLogged());
-  }
-  // login(email:string){
 
-    
-  //   localStorage.setItem("Email",email);
-  //   //this.logged.next(true);
-  //   this.setLoggedStatus(true);
-  // }
+  constructor( ) {}
+ 
   addToken(token:string)
   {
     localStorage.setItem("token",token);
@@ -29,30 +22,33 @@ export class UserService {
   }
 
 
-  // logout(){
-  //   localStorage.removeItem("Email");
-  //   //this.logged.next(false);
-  //   this.setLoggedStatus(false);
-  // }
+  logout(){
+    localStorage.removeItem("token");
+    //this.logged.next(false);
+    this.setLoggedStatus(false);
+  }
 
  
 
-  // setLoggedStatus(status:boolean)
-  // {
-  //   this.logged.next(status);
-  // }
+  setLoggedStatus(status:boolean)
+  {
+    this.logged.next(status);
+  }
 
-  // getLoggedStatus() : Observable<any>{
-  //   return this.logged.asObservable();
-  // }
+  getLoggedStatus() : Observable<any>{
+    return this.logged.asObservable();
+  }
 
-  // isLogged():boolean
-  // {
-  //   let email=localStorage.getItem("Email");
-  //   if(email==null)
-  //     return false;
+  isLogged():boolean
+  {
+    let token=localStorage.getItem("token");
+    if(token==null)
+      return false;
 
-  //     return true;
-  // }
+      return true;
+  }
+
+  
+
 
 }
