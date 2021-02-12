@@ -1,60 +1,28 @@
-/* footer div.grid-fluid-logo {
-    display: flex;
-    justify-content: left;
-    text-align: left;
-    padding: 25px 0;
-    margin-left: 300px;
-}
-
-footer .footer-block-logo {
-    margin: 0 0 0 40px;
-    vertical-align: top;
-} */
-
-footer div.grid-fluid {
-    display: flex;
-    justify-content: center;
-    text-align: left;
-    padding: 25px 0;
-    /* margin-left: -1300px; */
-}
-
-footer .footer-block {
-    margin: 0 80px;
-    vertical-align: top;
-}
-
 h3 {
-    color: white;
-    font-family: PT Sans,sans-serif;
+    color: #838383;
+    /* font-family: Niveau Grotesk; */
 }
 
-footer div.grid-fluid ul {
-    list-style-position: inside;
+ul {
     padding: 0;
-    margin: 0;
+    margin: auto;
 }
 
-footer div.grid-fluid ul li {
+li {
     list-style-type: none;
-    padding: 0;
-    text-align: left;
 }
 
-footer a {
-    color: #fafafa;
-    font-weight: 300;
+a {
+    color: white;
     text-decoration: none;
-    z-index: 20;
-    position: relative;
 }
 
-footer a:hover {
+a:hover {
     color: #838383;
 }
 
 .gmail:hover {
-    color: red;
+    color: rgb(180, 0, 0);
 }
 
 .twitter:hover {

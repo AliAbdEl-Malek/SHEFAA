@@ -1,3 +1,4 @@
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -26,6 +27,15 @@ const routes: Routes = [
     path: 'shared', 
     loadChildren: () => import('../app/components/shared/shared.module').then(m => m.SharedModule)
   },
+  {
+    path: 'products', 
+    loadChildren: () => import('../app/components/products/products.module').then(m => m.ProductsModule)
+  },
+  {
+    path: 'cart', 
+    loadChildren: () => import('../app/components/cart/cart.module').then(m => m.CartModule)
+  },
+  { path: '**', component: PageNotFoundComponent },
   
 ];
 

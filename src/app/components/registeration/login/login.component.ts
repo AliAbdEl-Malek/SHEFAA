@@ -17,12 +17,17 @@ export class LoginComponent implements OnInit {
   constructor(private _formBuilder:FormBuilder, private _apiService:ApiService , private _router: Router, private _userService:UserService) { }
 
   formGroup:FormGroup;
-  isRemembered:boolean=false;
+  // isRemembered:boolean=false;
   loggedUser:User[]=[]
   emailValue:string ="";
   // passwordValue:string;
 
   ngOnInit(): void {
+    if(this._userService.isLogged()){
+      alert("You are already logged in ")
+      // console.log("Logged is: ",this._userService.getLoggedStatus())
+      this._router.navigateByUrl('')
+    }
     // console.log("Email value: ",this.emailValue)
     // console.log("Logged user:", this.loggedUser)
     // console.log("is remembered", this.isRemembered)
@@ -53,11 +58,11 @@ export class LoginComponent implements OnInit {
         //   this.emailValue =""
         // }
 
-        // set yoken in lacal storage
+        // set token in lacal storage
         console.log(obj.token)
         this._userService.addToken(obj.token)
-
-        this._router.navigateByUrl('/home/index')
+        
+        this._router.navigateByUrl('')
         console.log("User stored in array",this.loggedUser)
 
       }else{
@@ -70,10 +75,10 @@ export class LoginComponent implements OnInit {
 
 
 
-  isChecked(status:boolean){
-   this.isRemembered = status;
-    // console.log(this.isRemembered)
-  }
+  // isChecked(status:boolean){
+  //  this.isRemembered = status;
+  //   // console.log(this.isRemembered)
+  // }
 
 
 

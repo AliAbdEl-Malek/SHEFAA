@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './../shared/shared.module';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -11,7 +12,7 @@ const routes: Routes =[
 @NgModule({
   declarations: [ContactsComponent],
   imports: [
-    CommonModule,RouterModule.forChild(routes),SharedModule
+    CommonModule,RouterModule.forChild(routes),SharedModule,FormsModule,ReactiveFormsModule
   ]
 })
 export class ContactUsModule { }
