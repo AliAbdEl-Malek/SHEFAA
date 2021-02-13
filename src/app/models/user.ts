@@ -1,12 +1,27 @@
 export class User{
-    constructor(){}
-
+    
+    cartProducts:
+    [{
+        _id: string,
+       photoURL: string,
+       price: number,
+       name: string,
+       itemQuantity: number,
+   }];
+   favouriteProducts:
+   [{
+        _id: string,
+        photoURL: string,
+        price: number,
+        name: string,
+   }]
     id:string;
     name:string;
     email:string;
     password:string;
-    phone:number;
+    phone:string;
     address:string;
     gender:string;
+    photoURL:string
 
 }

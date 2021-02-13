@@ -19,7 +19,7 @@ export class ApiService {
   }
 
   post(url:string,user:any){
-    return this.httpClient.post(`${environment.APIURL}/${url}`,user,{headers:{'authorization':this.token}})
+    return this.httpClient.post(`${environment.APIURL}/${url}`,user)
   }
 
   put(url:string,user:any){
@@ -28,3 +28,5 @@ export class ApiService {
 
   
 }
+
+// ,{headers:{'authorization':this.token}}
