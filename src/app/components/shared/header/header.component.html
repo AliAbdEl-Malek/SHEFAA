@@ -154,7 +154,7 @@
     <!-- Cart icon in md & lg screens -->
     <div *ngIf="isLogged" class="d-none d-md-flex ml-auto">
         <a class="nav-link text-white fa fa-shopping-cart" style="font-size: 30px;" [routerLink]="['/cart']" routerLinkActive="router-link-active">
-            <span class="badge rounded-pill badge-notification bg-danger">{{length}}</span>
+            <span class="badge rounded-pill badge-notification bg-danger">{{length+newLength}}</span>
         </a>
     </div>
     <!-- Cart icon in md & lg screens -->

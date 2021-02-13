@@ -88,12 +88,17 @@ export class ProductDetailsComponent implements OnInit {
   //   console.log( 'goBack()...' );
   // }
 
-  addToCart(product: Product) {    
-    this._cartService.addToCart(product, this.userId);
+  addToCart(id: any) {    
+    this._cartService.addToCart(id);
   }
 
-  addToFavourite(product: Product) {
-    this._favouriteService.addToFavourite(product, this.userId);
-    
+  addToFavourite(id:any) {
+    this._favouriteService.addToFavourite(id);
+   
   }
+
+
+
+
+  
 }

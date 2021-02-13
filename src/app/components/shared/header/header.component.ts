@@ -1,5 +1,5 @@
 import { Product } from './../../../models/Product';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { APIResponse } from './../../../models/Api-response';
 import { UserService } from './../../../services/user.service';
 import { ApiService } from './../../../services/api.service';
@@ -19,9 +19,9 @@ export class HeaderComponent implements OnInit {
   searchText: string = '';
   products: Product[] = []
   productNames: string[] = []
-  // items = this._cartService.getItemsLength();
   isLogged: boolean
-  length: any=0;
+  @Input() length: any = 0;
+  @Input() newLength:number =0
   cartfake: any;
 
   ngOnInit(): void {
@@ -33,6 +33,8 @@ export class HeaderComponent implements OnInit {
       console.log("User Retrieved: ", obj)
       if (obj.status) {
         this.user = obj.Data
+        this.length = this.user.cartProducts.length
+
       }
       // else {
       //   alert(obj.message)
@@ -59,23 +61,9 @@ export class HeaderComponent implements OnInit {
     })
 
     this.isLogged = this.userService.isLogged()
-    
-    this._apiService.get("cart").subscribe((response) => {
-      let obj = response as APIResponse;
-
-      console.log("Data from server cart", obj.Data);
-      if (obj.status) {
-        let cartData = obj.Data
-        this.cartfake = cartData
-        this.length = this.cartfake[0].cartProducts.length
-        console.log("Product retreived is faaaaaake: ", this.cartfake[0].cartProducts)
 
 
-      }
-      else {
-        alert(obj.message)
-      }
-    })
+
 
   }
 
@@ -86,26 +74,29 @@ export class HeaderComponent implements OnInit {
     console.log(this.searchText)
   }
 
-
-
+  clearSearchBox(){
+    this.searchText = ""
+  }
 
 
 
 
   routeToProductDetails(productName: string) {
-    console.log("productName", productName)
-    console.log("productName type", typeof (productName))
+    // console.log("productName", productName)
+    // console.log("productName type", typeof (productName))
 
     this._apiService.get(`product/get/` + productName).subscribe((response) => {
       let obj = response as APIResponse
       if (obj.status) {
-        console.log("product retreived is: ", obj)
-        this._router.navigate(['products/details'], { queryParams: { ID: obj.Data.ID } })
+        console.log("product retreived to be passed to details is: ", obj)
+        this._router.navigate(['products/details'], { queryParams: { ID: obj.Data._id } })
       }
       else {
         alert(obj.message)
       }
     })
+
+    this.clearSearchBox()
   }
 
 

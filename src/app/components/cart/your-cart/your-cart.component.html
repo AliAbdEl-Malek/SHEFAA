@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <div class="container-fluid" style="background-color: #f4f8fb">
-    <div >
+    <div>
         <div class="row">
             <div class="col-sm-1"></div>
             <div class="col-sm-8 mb-2">
@@ -9,14 +9,14 @@
                     <h1>Your Cart</h1>
                 </div>
 
-                <div class="row d-flex justify-content-center" *ngFor="let user of User;">
-                    <div class="col-sm-4 " *ngFor="let i of user.cartProducts; let currentIndex = index;">
-                        <div class="card shadow m-2" *ngIf="user.cartProducts[0] ">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-sm-4 " *ngFor="let product of products; let currentIndex = index;">
+                        <div class="card shadow m-2">
 
-                            <img src="{{i.photoURL}}" class="card-img-top" style="height: 20vw;">
+                            <img src="{{product.photoURL}}" class="card-img-top" style="height: 20vw;">
                             <div class="card-body">
-                                <h5 class="card-text"><b><i>{{i.price}} L.E</i></b></h5>
-                                <h5 class="card-title">{{i.name}}</h5>
+                                <h5 class="card-text"><b><i>{{product.price}} L.E</i></b></h5>
+                                <h5 class="card-title">{{product.name}}</h5>
                                 <!-- <h5 class="card-text" >product Model Qnt: {{i.quantity}}</h5> -->
                                 <!-- <div class="input-group number-spinner">
                                     <span class="input-group-btn">
@@ -33,11 +33,10 @@
 
                                 </div> -->
 
-                                <a class="details" href="" style="text-decoration: underline;">Details</a>
+                                <a class="details" [routerLink]="['/products/details']" [queryParams]="{ID: product._id}" routerLinkActive="router-link-active" style="text-decoration: underline;">Details</a>
                                 <br>
                                 <br>
-                                <button (click)="delete(i._id,currentIndex)" class="btn btn-outline-danger btn-sm"
-                                    id="add-btn">Remove from Cart</button>
+                                <button (click)="delete(product._id,product.price,currentIndex)" class="btn btn-outline-danger btn-sm" id="add-btn">Remove from Cart</button>
                             </div>
                         </div>
                     </div>
@@ -49,13 +48,14 @@
                     <div class=" subtotal-div p-3 shadow">
                         <div class="text-center w-100 ">
                             <div class="row justify-content-center">
-                            <h4>Total Items:&nbsp;</h4><h4 style="color: darkcyan;">{{cartLength}}</h4>
+                                <h4>Total Items:&nbsp;</h4>
+                                <h4 style="color: darkcyan;">{{cartLength}}</h4>
                             </div>
                             <div class="row justify-content-center">
-                            <h4>Subtotal:&nbsp;</h4><h4 style="color: darkcyan;">{{totalPrice}}</h4>
+                                <h4>Subtotal:&nbsp;</h4>
+                                <h4 style="color: darkcyan;">{{totalPrice}}</h4>
                             </div>
-                            <a [routerLink]="['/cart/checkout']" routerLinkActive="router-link-active"
-                                class="btn proceed-btn m-2">Proceed to Checkout</a>
+                            <a [routerLink]="['/cart/checkout']" routerLinkActive="router-link-active" class="btn proceed-btn m-2">Proceed to Checkout</a>
                         </div>
                     </div>
                 </div>
