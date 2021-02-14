@@ -1,4 +1,4 @@
-<app-header></app-header>
+<app-header [newLength]="badgeNumber"></app-header>
 
 <div class="container-fluid" style="background-color: #f4f8fb">
     <div>
@@ -55,7 +55,7 @@
                                 <h4>Subtotal:&nbsp;</h4>
                                 <h4 style="color: darkcyan;">{{totalPrice}}</h4>
                             </div>
-                            <a [routerLink]="['/cart/checkout']" routerLinkActive="router-link-active" class="btn proceed-btn m-2">Proceed to Checkout</a>
+                            <button [disabled]="isDisabled" [routerLink]="['/cart/checkout']" [queryParams]="{subTotal: totalPrice}" routerLinkActive="router-link-active" class="btn proceed-btn m-2">Proceed to Checkout</button>
                         </div>
                     </div>
                 </div>

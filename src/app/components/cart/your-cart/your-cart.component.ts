@@ -19,8 +19,9 @@ export class YourCartComponent implements OnInit {
   userId: any;
   totalPrice: number = 0;
   products: Product[]
-  cartLength: number;
-
+  cartLength: number=0;
+  badgeNumber:number=0
+  isDisabled:boolean=true
   constructor(private _cartService: CartService, private _apiService: ApiService, private _userService: UserService) { }
 
   ngOnInit(): void {
@@ -32,6 +33,9 @@ export class YourCartComponent implements OnInit {
         console.log("cart products for user:", obj.Data);
         this.products = obj.Data
         this.cartLength = this.products.length
+        if(this.cartLength != 0){
+          this.isDisabled = false
+        }
 
         for (let index = 0; index < this.products.length; index++) {
           this.totalPrice += this.products[index].price
@@ -54,6 +58,10 @@ export class YourCartComponent implements OnInit {
     this.totalPrice = this.totalPrice - price
     this.products.splice(index, 1);
     this.cartLength = this.products.length
+    this.badgeNumber--
+    if(this.cartLength == 0){
+      this.isDisabled = true
+    }
   }
 
 

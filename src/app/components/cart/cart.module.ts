@@ -1,4 +1,4 @@
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './../shared/shared.module';
 import { AuthGuard } from './../../auth.guard';
 import { Routes, RouterModule } from '@angular/router';
@@ -18,7 +18,7 @@ const routes: Routes =[
 @NgModule({
   declarations: [YourCartComponent, CheckoutComponent, ShipmentTrackingComponent],
   imports: [
-    CommonModule,SharedModule,RouterModule.forChild(routes),FormsModule
+    CommonModule,SharedModule,RouterModule.forChild(routes),FormsModule,ReactiveFormsModule
   ]
 })
 export class CartModule { }

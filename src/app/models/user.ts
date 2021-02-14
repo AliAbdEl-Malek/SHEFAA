@@ -14,7 +14,8 @@ export class User{
         photoURL: string,
         price: number,
         name: string,
-   }]
+   }];
+   orders:[];
     id:string;
     name:string;
     email:string;
