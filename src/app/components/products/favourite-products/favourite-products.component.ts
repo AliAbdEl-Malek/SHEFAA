@@ -15,7 +15,7 @@ import { CartService } from 'src/app/services/cart.service';
 export class FavouriteProductsComponent implements OnInit {
   userId: any;
   favouriteProducts:Product[]
-
+  badgeNumber:number=0
 
   constructor(private _favouriteService:FavouriteService ,private _cartService:CartService ,  private _apiService:ApiService, private _userService: UserService) { }
 
@@ -50,6 +50,7 @@ export class FavouriteProductsComponent implements OnInit {
 
   addToCart(id: any) {    
     this._cartService.addToCart(id);
+    this.badgeNumber++
   }
 
 

@@ -20,6 +20,7 @@ export class ProductDetailsComponent implements OnInit {
   userId: any;
   cartfake: any;
   favouritefake: any;
+  badgeNumber:number=0
 
   constructor(private _activatedRoute:ActivatedRoute ,  private _apiService:ApiService , private _location: Location,private _cartService:CartService ,private _favouriteService:FavouriteService, private _userService: UserService ) { }
 
@@ -90,6 +91,7 @@ export class ProductDetailsComponent implements OnInit {
 
   addToCart(id: any) {    
     this._cartService.addToCart(id);
+    this.badgeNumber++
   }
 
   addToFavourite(id:any) {
