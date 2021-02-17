@@ -18,3 +18,20 @@
     transform: scale(1.05);
     box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
   }
+
+.pagi {
+  color: #32c69a;
+}
+
+.pagi:hover {
+  background-color: #32c69a;
+  color: white;
+}
+
+.filt {
+  color: #32c69a;
+}
+
+.filt:hover {
+  color: black;
+}

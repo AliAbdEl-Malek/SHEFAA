@@ -21,8 +21,11 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [];
   userId: any;
   filterArray: any[] = [];
+  filter: any[] = [];
   medicineArray: any[] = [];
-  hairProductsArray: any[] = [];
+  cosmiticsProductsArray: any[] = [];
+  HairProductsArray: any[] = [];
+  BabyProductsArray: any[] = [];
   priceArray: any[] = [];
   temporary: any[] = []
   paginate: any[] = [];
@@ -31,12 +34,12 @@ export class ProductsComponent implements OnInit {
   badgeNumber:number=0
   user: User
   cart: any[] = []
-
   allstatus: boolean = false;
   medicinestatus: boolean = false;
   cosmitcsstatus: boolean = false;
+  hairstatus: boolean = false;
+  babystatus: boolean = false;
 
-  // pages: number = 10;
 
   ngOnInit(): void {
     //---- Get User
@@ -47,7 +50,6 @@ export class ProductsComponent implements OnInit {
       console.log("User retreived in product component", obj)
       this.user = obj.Data
       this.userId = obj.Data["id"]
-
     })
 
     // ---- Get Products
@@ -58,24 +60,23 @@ export class ProductsComponent implements OnInit {
         let productData = obj.Data
         this.products = productData
 
+        // this.filterArray = this.products;
+        // this.filter = this.products;
 
-        this.filterArray = this.products;
-
-        let length = this.filterArray.length
+        let length = this.products.length
         let pagesNumber = length / 9
         let pageIterator = 0
         let pageCodition = 9
         // pagination of 10 pages each
         for (let i = 0; i < pagesNumber; i++) {
-          this.paginate[i] = new Array()
+          this.filterArray[i] = new Array()
           for (let j = pageIterator; j < pageCodition && j < length; j++) {
-            this.paginate[i].push(this.filterArray[j])
+            this.filterArray[i].push(this.products[j])
           }
           pageIterator += 9
           pageCodition += 9
-          // console.log("this.paginate[i]",this.paginate[i]);
         }
-        this.currentPage = this.paginate[0]
+        this.currentPage = this.filterArray[0]
 
       }
       else {
@@ -83,33 +84,17 @@ export class ProductsComponent implements OnInit {
       }
     })
 
-
-    //get badge number from cart service 
-    // this.badgeNumber = this._cartService.length
-
-
-
-
-
-
   }
 
-  pagination(index: any) {
-    this.currentPage = this.paginate[index]
-
-  }
+  
 
   addToCart(id: any) {
     this._cartService.addToCart(id);
-    // this.cart.push(id)
     this.badgeNumber++
   }
 
-
-
   addToFavourite(id: any) {
     this._favouriteService.addToFavourite(id);
-
   }
 
 
@@ -121,6 +106,7 @@ export class ProductsComponent implements OnInit {
     let j = 0;
     if (this.allstatus == false) {
       if (checked) {
+        this.filterArray= [];
         this.medicinestatus = true;
         for (let i = 0; i < this.products.length; i++) {
           if (this.products[i].category === "medicine" || this.products[i].category === "Medicine") {
@@ -130,125 +116,453 @@ export class ProductsComponent implements OnInit {
             j++
           }
         }
-        // this.filterArray=this.medicineArray
+        // this.filter=this.medicineArray
         j = 0;
-        if (this.filterArray.length == this.products.length) {
-          this.filterArray = [];
+        if (this.filter.length == this.products.length) {
+          this.filter = [];
         }
 
-        let filterLength = this.filterArray.length;
+        let filterLength = this.filter.length;
         for (let k = 0; k < this.medicineArray.length; k++) {
-          this.filterArray[filterLength] = this.medicineArray[k];
+          this.filter[filterLength] = this.medicineArray[k];
           filterLength++
         }
 
         this.medicineArray = [];
-        console.log("this.medicineArray[i]", this.filterArray);
+        console.log("this.medicineArray[i]", this.filter);
+
+        let length = this.filter.length
+        let pagesNumber = length / 9
+        let pageIterator = 0
+        let pageCodition = 9
+        // pagination of 10 pages each
+        for (let i = 0; i < pagesNumber; i++) {
+          this.filterArray[i] = new Array()
+          for (let j = pageIterator; j < pageCodition && j < length; j++) {
+            this.filterArray[i].push(this.filter[j])
+          }
+          pageIterator += 9
+          pageCodition += 9
+        }
+        this.currentPage = this.filterArray[0]
       }
 
       else {
+        this.filterArray= [];
         this.medicinestatus = false;
         let x = 0
-        //   if(this.temporary.length>0){
-        //     x=this.temporary.length
-        //   }
-        for (let i = 0; i < this.filterArray.length; i++) {
-          if (this.filterArray[i].category !== "medicine" && this.products[i].category !== "Medicine") {
-            this.temporary[x] = this.filterArray[i]
+        for (let i = 0; i < this.filter.length; i++) {
+          if (this.filter[i].category !== "medicine" && this.filter[i].category !== "Medicine") {
+            this.temporary[x] = this.filter[i]
             x++
           }
         }
-        this.filterArray = this.temporary
-        // this.filterArray=this.products
+        this.filter = this.temporary
+        
+        let length = this.filter.length
+        let pagesNumber = length / 9
+        let pageIterator = 0
+        let pageCodition = 9
+        // pagination of 10 pages each
+        for (let i = 0; i < pagesNumber; i++) {
+          this.filterArray[i] = new Array()
+          for (let j = pageIterator; j < pageCodition && j < length; j++) {
+            this.filterArray[i].push(this.filter[j])
+          }
+          pageIterator += 9
+          pageCodition += 9
+        }
+        this.currentPage = this.filterArray[0]
       }
     }
 
 
-    if (this.filterArray.length == 0) {
-      this.filterArray = this.products
+    if (this.filter.length == 0) {
+      this.filterArray= [];
+      this.filter = this.products
+
+      let length = this.filter.length
+      let pagesNumber = length / 9
+      let pageIterator = 0
+      let pageCodition = 9
+      // pagination of 10 pages each
+      for (let i = 0; i < pagesNumber; i++) {
+        this.filterArray[i] = new Array()
+        for (let j = pageIterator; j < pageCodition && j < length; j++) {
+          this.filterArray[i].push(this.filter[j])
+        }
+        pageIterator += 9
+        pageCodition += 9
+      }
+      this.currentPage = this.filterArray[0]
     }
 
   }
 
-  //---- Hair Product
-  filterHairProduct(checked: boolean) {
+  
+  //---- cosmitics Product
+  filtercosmiticsProduct(checked: boolean) {
     this.temporary = [];
     let x = 0;
     if (this.allstatus == false) {
       if (checked) {
+        this.filterArray= [];
         this.cosmitcsstatus = true;
         for (let i = 0; i < this.products.length; i++) {
-          if (this.products[i].category === "Hair Products") {
+          if (this.products[i].category === "Cosmatics") {
 
-            this.hairProductsArray[x] = this.products[i];
+            this.cosmiticsProductsArray[x] = this.products[i];
             console.log("product[i]", this.products[i]);
             x++
           }
         }
-        // this.filterArray=this.hairProductsArray
+        // this.filterArray=this.cosmiticsProductsArray
         x = 0;
-        if (this.filterArray.length == this.products.length) {
-          this.filterArray = [];
+        if (this.filter.length == this.products.length) {
+          this.filter = [];
         }
 
-        let filterLength = this.filterArray.length;
-        for (let k = 0; k < this.hairProductsArray.length; k++) {
-          this.filterArray[filterLength] = this.hairProductsArray[k];
+        let filterLength = this.filter.length;
+        for (let k = 0; k < this.cosmiticsProductsArray.length; k++) {
+          this.filter[filterLength] = this.cosmiticsProductsArray[k];
           filterLength++
         }
 
-        this.hairProductsArray = []
-        console.log("this.hairProductsArray[i]", this.filterArray);
+        this.cosmiticsProductsArray = []
+        console.log("this.cosmiticsProductsArray[i]", this.filter);
+
+        let length = this.filter.length
+        let pagesNumber = length / 9
+        let pageIterator = 0
+        let pageCodition = 9
+        // pagination of 10 pages each
+        for (let i = 0; i < pagesNumber; i++) {
+          this.filterArray[i] = new Array()
+          for (let j = pageIterator; j < pageCodition && j < length; j++) {
+            this.filterArray[i].push(this.filter[j])
+          }
+          pageIterator += 9
+          pageCodition += 9
+        }
+        this.currentPage = this.filterArray[0]
       }
 
       else {
+        this.filterArray= [];
         this.cosmitcsstatus = false;
         let x = 0
-        for (let i = 0; i < this.filterArray.length; i++) {
-          if (this.filterArray[i].category !== "Hair Products") {
-            this.temporary[x] = this.filterArray[i]
+        for (let i = 0; i < this.filter.length; i++) {
+          if (this.filter[i].category !== "Cosmatics") {
+            this.temporary[x] = this.filter[i]
             x++
           }
         }
-        this.filterArray = this.temporary
+        this.filter = this.temporary
+
+        let length = this.filter.length
+        let pagesNumber = length / 9
+        let pageIterator = 0
+        let pageCodition = 9
+        // pagination of 10 pages each
+        for (let i = 0; i < pagesNumber; i++) {
+          this.filterArray[i] = new Array()
+          for (let j = pageIterator; j < pageCodition && j < length; j++) {
+            this.filterArray[i].push(this.filter[j])
+          }
+          pageIterator += 9
+          pageCodition += 9
+        }
+        this.currentPage = this.filterArray[0]
       }
     }
 
 
-    if (this.filterArray.length == 0) {
-      this.filterArray = this.products
+    if (this.filter.length == 0) {
+      this.filterArray= [];
+      this.filter = this.products
+
+      let length = this.filter.length
+      let pagesNumber = length / 9
+      let pageIterator = 0
+      let pageCodition = 9
+      // pagination of 10 pages each
+      for (let i = 0; i < pagesNumber; i++) {
+        this.filterArray[i] = new Array()
+        for (let j = pageIterator; j < pageCodition && j < length; j++) {
+          this.filterArray[i].push(this.filter[j])
+        }
+        pageIterator += 9
+        pageCodition += 9
+      }
+      this.currentPage = this.filterArray[0]
     }
 
   }
 
+
+  //---- Hair Product
+  filterhairProduct(checked: boolean) {
+    this.temporary = [];
+    let x = 0;
+    if (this.allstatus == false) {
+      if (checked) {
+        this.filterArray= [];
+        this.hairstatus = true;
+        for (let i = 0; i < this.products.length; i++) {
+          if (this.products[i].category === "Hair Product") {
+
+            this.HairProductsArray[x] = this.products[i];
+            console.log("product[i]", this.products[i]);
+            x++
+          }
+        }
+        // this.filterArray=this.HairProductsArray
+        x = 0;
+        if (this.filter.length == this.products.length) {
+          this.filter = [];
+        }
+
+        let filterLength = this.filter.length;
+        for (let k = 0; k < this.HairProductsArray.length; k++) {
+          this.filter[filterLength] = this.HairProductsArray[k];
+          filterLength++
+        }
+
+        this.HairProductsArray = []
+        console.log("this.HairProductsArray[i]", this.filter);
+
+        let length = this.filter.length
+        let pagesNumber = length / 9
+        let pageIterator = 0
+        let pageCodition = 9
+        // pagination of 10 pages each
+        for (let i = 0; i < pagesNumber; i++) {
+          this.filterArray[i] = new Array()
+          for (let j = pageIterator; j < pageCodition && j < length; j++) {
+            this.filterArray[i].push(this.filter[j])
+          }
+          pageIterator += 9
+          pageCodition += 9
+        }
+        this.currentPage = this.filterArray[0]
+      }
+
+      else {
+        this.filterArray= [];
+        this.hairstatus = false;
+        let x = 0
+        for (let i = 0; i < this.filter.length; i++) {
+          if (this.filter[i].category !== "Hair Product") {
+            this.temporary[x] = this.filter[i]
+            x++
+          }
+        }
+        this.filter = this.temporary
+
+        let length = this.filter.length
+        let pagesNumber = length / 9
+        let pageIterator = 0
+        let pageCodition = 9
+        // pagination of 10 pages each
+        for (let i = 0; i < pagesNumber; i++) {
+          this.filterArray[i] = new Array()
+          for (let j = pageIterator; j < pageCodition && j < length; j++) {
+            this.filterArray[i].push(this.filter[j])
+          }
+          pageIterator += 9
+          pageCodition += 9
+        }
+        this.currentPage = this.filterArray[0]
+      }
+    }
+
+
+    if (this.filter.length == 0) {
+      this.filterArray= [];
+      this.filter = this.products
+
+      let length = this.filter.length
+      let pagesNumber = length / 9
+      let pageIterator = 0
+      let pageCodition = 9
+      // pagination of 10 pages each
+      for (let i = 0; i < pagesNumber; i++) {
+        this.filterArray[i] = new Array()
+        for (let j = pageIterator; j < pageCodition && j < length; j++) {
+          this.filterArray[i].push(this.filter[j])
+        }
+        pageIterator += 9
+        pageCodition += 9
+      }
+      this.currentPage = this.filterArray[0]
+    }
+
+  }
+
+
+  //---- Baby Product
+  filterbabyProduct(checked: boolean) {
+    this.temporary = [];
+    let x = 0;
+    if (this.allstatus == false) {
+      if (checked) {
+        this.filterArray= [];
+        this.babystatus = true;
+        for (let i = 0; i < this.products.length; i++) {
+          if (this.products[i].category === "Baby Product") {
+
+            this.BabyProductsArray[x] = this.products[i];
+            console.log("product[i]", this.products[i]);
+            x++
+          }
+        }
+        // this.filterArray=this.BabyProductsArray
+        x = 0;
+        if (this.filter.length == this.products.length) {
+          this.filter = [];
+        }
+
+        let filterLength = this.filter.length;
+        for (let k = 0; k < this.BabyProductsArray.length; k++) {
+          this.filter[filterLength] = this.BabyProductsArray[k];
+          filterLength++
+        }
+
+        this.BabyProductsArray = []
+        console.log("this.BabyProductsArray[i]", this.filter);
+
+        let length = this.filter.length
+        let pagesNumber = length / 9
+        let pageIterator = 0
+        let pageCodition = 9
+        // pagination of 10 pages each
+        for (let i = 0; i < pagesNumber; i++) {
+          this.filterArray[i] = new Array()
+          for (let j = pageIterator; j < pageCodition && j < length; j++) {
+            this.filterArray[i].push(this.filter[j])
+          }
+          pageIterator += 9
+          pageCodition += 9
+        }
+        this.currentPage = this.filterArray[0]
+      }
+
+      else {
+        this.filterArray= [];
+        this.babystatus = false;
+        let x = 0
+        for (let i = 0; i < this.filter.length; i++) {
+          if (this.filter[i].category !== "Baby Product") {
+            this.temporary[x] = this.filter[i]
+            x++
+          }
+        }
+        this.filter = this.temporary
+
+        let length = this.filter.length
+        let pagesNumber = length / 9
+        let pageIterator = 0
+        let pageCodition = 9
+        // pagination of 10 pages each
+        for (let i = 0; i < pagesNumber; i++) {
+          this.filterArray[i] = new Array()
+          for (let j = pageIterator; j < pageCodition && j < length; j++) {
+            this.filterArray[i].push(this.filter[j])
+          }
+          pageIterator += 9
+          pageCodition += 9
+        }
+        this.currentPage = this.filterArray[0]
+      }
+    }
+
+
+    if (this.filter.length == 0) {
+      this.filterArray= [];
+      this.filter = this.products
+
+      let length = this.filter.length
+      let pagesNumber = length / 9
+      let pageIterator = 0
+      let pageCodition = 9
+      // pagination of 10 pages each
+      for (let i = 0; i < pagesNumber; i++) {
+        this.filterArray[i] = new Array()
+        for (let j = pageIterator; j < pageCodition && j < length; j++) {
+          this.filterArray[i].push(this.filter[j])
+        }
+        pageIterator += 9
+        pageCodition += 9
+      }
+      this.currentPage = this.filterArray[0]
+    }
+
+  }
+
+
   allProducts(checked: boolean) {
     if (checked) {
+      this.filterArray= [];
       this.allstatus = true;
-      this.filterArray = this.products;
+      this.filter = this.products;
+      
+      let length = this.filter.length
+      let pagesNumber = length / 9
+      let pageIterator = 0
+      let pageCodition = 9
+      // pagination of 10 pages each
+      for (let i = 0; i < pagesNumber; i++) {
+        this.filterArray[i] = new Array()
+        for (let j = pageIterator; j < pageCodition && j < length; j++) {
+          this.filterArray[i].push(this.filter[j])
+        }
+        pageIterator += 9
+        pageCodition += 9
+      }
+      this.currentPage = this.filterArray[0]
     }
 
     else {
+      this.filterArray= [];
       this.allstatus = false;
-      this.filterArray = [];
+      this.filter = [];
       if (this.medicinestatus === true) {
         this.filterMedicine(checked);
       }
       if (this.cosmitcsstatus === true) {
-        this.filterHairProduct(checked);
+        this.filtercosmiticsProduct(checked);
+      }
+      if (this.hairstatus === true) {
+        this.filterhairProduct(checked);
+      }
+      if (this.babystatus === true) {
+        this.filterbabyProduct(checked);
       }
 
-      if (this.filterArray.length == 0) {
-        this.filterArray = this.products;
+      if (this.filter.length == 0) {
+        this.filter = this.products;
       }
+
+      let length = this.filter.length
+      let pagesNumber = length / 9
+      let pageIterator = 0
+      let pageCodition = 9
+      // pagination of 10 pages each
+      for (let i = 0; i < pagesNumber; i++) {
+        this.filterArray[i] = new Array()
+        for (let j = pageIterator; j < pageCodition && j < length; j++) {
+          this.filterArray[i].push(this.filter[j])
+        }
+        pageIterator += 9
+        pageCodition += 9
+      }
+      this.currentPage = this.filterArray[0]
     }
 
   }
 
-
-
-
-
-
-
+  pagination(index: any) {
+    this.currentPage = this.filterArray[index]
+  }
 
 }
