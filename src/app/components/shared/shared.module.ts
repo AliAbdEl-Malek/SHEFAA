@@ -8,13 +8,14 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { RegisterationHeaderComponent } from './registeration-header/registeration-header.component';
 import { RegisterationFooterComponent } from './registeration-footer/registeration-footer.component';
+import { AuthGuard } from 'src/app/auth.guard';
 
 const routes: Routes =[
-  {path:"header",component:HeaderComponent},
-  {path:"footer",component:FooterComponent},
-  {path:"registerationheader",component:RegisterationHeaderComponent},
-  {path:"registerationfooter",component:RegisterationFooterComponent},
-  {path:"prescription",component:PrescriptionComponent}
+  // {path:"header",component:HeaderComponent},
+  // {path:"footer",component:FooterComponent},
+  // {path:"registerationheader",component:RegisterationHeaderComponent},
+  // {path:"registerationfooter",component:RegisterationFooterComponent},
+  {path:"prescription",component:PrescriptionComponent,canActivate:[AuthGuard]}
 
 ]
 

@@ -6,10 +6,11 @@
                 <div class="text-center">
                     <h2 class="large-text">Great to see you! </h2>
                     <p class="small-text">Let’s set up your account in just a couple of steps.</p>
-                    <a type="button" href="http://localhost:3000/auth/google" class="btn text-white" style="background-color: #32c69a;"> <i class="fa fa-google"></i> &nbsp; Sign up with Google </a>
+                    <button type="button" (click)="googleSignup()" class="btn text-white" style="background-color: #32c69a;"> <i class="fa fa-google"></i> &nbsp; Sign up with Google </button>
                 </div> <br>
                 <!-- <div class="text-center color col-sm">
                 ___________________ or _____________________
+                href="http://localhost:3000/auth/google"
                 </div> <br> -->
                 <form [formGroup]="formGroup" action="/" class="col-sm">
 
@@ -48,7 +49,7 @@
             </div>
             <div class=" card-small  justify-content-center align-self-center shadow mx-auto d-flex d-md-none">
                 <div class="text-center">
-                    <h5 class="large-text mt-2" >Great to see you! </h5>
+                    <h5 class="large-text mt-2">Great to see you! </h5>
                     <p class="small-text" style="font-size: 10px;">Let’s set up your account in just a couple of steps.</p>
                     <a type="button" href="http://localhost:3000/auth/google" class="btn text-white mb-3" style="font-size: 12px; background-color: #32c69a;"> <i class="fa fa-google"></i> &nbsp; Sign up with Google </a>
                 </div>

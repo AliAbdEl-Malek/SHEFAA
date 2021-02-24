@@ -12,5 +12,7 @@ export class Order {
         "promoCode": string,
         "phone": string
     }
+    totalPrice:string
+
     
 }

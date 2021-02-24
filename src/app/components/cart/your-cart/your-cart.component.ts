@@ -14,7 +14,6 @@ import { UserService } from 'src/app/services/user.service';
 export class YourCartComponent implements OnInit {
 
   quantity: string = "";
-  price: string = "";
   User: User[] = [];
   userId: any;
   totalPrice: number = 0;

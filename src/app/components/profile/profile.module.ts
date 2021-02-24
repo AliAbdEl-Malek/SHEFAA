@@ -1,3 +1,4 @@
+import { MaxLengthPipe } from './../../pipes/max-length.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './../shared/shared.module';
 import { AuthGuard } from './../../auth.guard';
@@ -15,7 +16,7 @@ const routes: Routes =[
 ]
 
 @NgModule({
-  declarations: [UpdateProfileComponent, IndexComponent, UserProfileAndPreviousOrdersComponent],
+  declarations: [UpdateProfileComponent, IndexComponent, UserProfileAndPreviousOrdersComponent,MaxLengthPipe],
   imports: [
     CommonModule,RouterModule.forChild(routes),SharedModule,FormsModule,ReactiveFormsModule
   ]

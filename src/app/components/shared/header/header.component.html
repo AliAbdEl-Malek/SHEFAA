@@ -161,10 +161,10 @@
 
     <!-- User icon in md & lg screens -->
     <div *ngIf="isLogged" class="d-none d-md-flex">
-        <a class="nav-link  py-2 px-1" style="font-size: 30px; color: #f4f8fb;" role="button" data-toggle="dropdown">
+        <a *ngIf="user" class="nav-link  py-2 px-1" style="font-size: 30px; color: #f4f8fb;" role="button" data-toggle="dropdown">
             <img *ngIf="user.photoURL" src="http://localhost:3000/{{user.photoURL}}" class="rounded-circle" alt="user Image" style="width: 35px;">
             <img *ngIf="!user.photoURL" src="assets/images/pp-man.png" class="rounded-circle" alt="user Image" style="width: 35px;">
-            <span *ngIf="user" style="font-size: 15px; position: relative; top: -5px;"> {{user.name}}</span>
+            <span style="font-size: 15px; position: relative; top: -5px;"> {{user.name}}</span>
         </a>
         <div class="dropdown-menu p-2 dropdown-menu-right">
             <a class="dropdown-item px-2 toggle-hover" [routerLink]="['/profile']" routerLinkActive="router-link-active"><i class="fa fa-user pr-2" style="color: #32c69a;"></i>Profile</a>

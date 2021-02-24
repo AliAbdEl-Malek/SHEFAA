@@ -1,50 +1,70 @@
 import { Order } from './../../../models/order';
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { APIResponse } from './../../../models/Api-response';
 import { UserService } from './../../../services/user.service';
 import { ApiService } from './../../../services/api.service';
 import { User } from './../../../models/user';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { interval } from 'rxjs';
+import { startWith, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-profile-and-previous-orders',
   templateUrl: './user-profile-and-previous-orders.component.html',
-  styleUrls: ['./user-profile-and-previous-orders.component.css']
+  styleUrls: ['./user-profile-and-previous-orders.component.css'],
+  changeDetection: ChangeDetectionStrategy.Default,
+
 })
 export class UserProfileAndPreviousOrdersComponent implements OnInit {
   user: User;
-  previousOrdersIDs: any[] = []
-  previousOrdersData: Order[] = []
+  // previousOrdersIDs: any[] = []
+  // previousOrdersData: any[] = []
   previousOrders: any[] = [] //array of product ids for each order
-  productsData: any[] = []
+  // productsData: any[] = []
+  token: any
 
-  constructor(private _apiService: ApiService, private _router: Router, private _userService: UserService) { }
+  constructor(private _apiService: ApiService, private _changeDetector: ChangeDetectorRef, private httpClient: HttpClient, private _router: Router, private _userService: UserService) { }
 
   ngOnInit(): void {
 
-    let token = this._userService.getToken()
-    // console.log("Token is:", token)
-    this._apiService.get('user/get/' + token).subscribe((response) => {
+     this.token = this._userService.getToken()
+    console.log("Token is:", this.token)
+    this._apiService.get('user/get/' + this.token).subscribe((response) => {
       let obj = response as APIResponse
-      // console.log("Data from server",obj)
+      // console.log("User Retrieved: ", obj)
       if (obj.status) {
         this.user = obj.Data
-        this.previousOrdersIDs = this.user.orders
-        // console.log("previous Orders IDs are: ",this.previousOrdersIDs);
+      }
+      else {
+        console.log(obj.message)
+      }
+    })
 
-        //get orders data
-        // this.getOrderData()
 
+
+
+
+
+
+    interval(20000).pipe(
+      startWith(0),
+      switchMap(() => this._userService.getPreviousOrders())
+    ).subscribe((response) => {
+      let obj = response as APIResponse
+      if (obj.status) {
+        this.previousOrders = obj.Data
+        console.log("previous Orders are: ", this.previousOrders);
 
       }
       else {
         if (obj.message == "Session expired!") {
           alert(obj.message + "Login again!")
-          this._router.navigateByUrl('registeration/logout')
+          // this._router.navigateByUrl('registeration/logout')
         }
       }
     })
-
 
 
 
@@ -56,71 +76,94 @@ export class UserProfileAndPreviousOrdersComponent implements OnInit {
 
 
 
- 
 
 
-  // async getOrderData() {
-  //   // let temp = [... this.previousOrders]
 
-  //   for (let orderID of this.previousOrdersIDs) {
-  //     await this._apiService.get('order/' + orderID).subscribe((response) => {
-  //       let obj = response as APIResponse
-  //       if (obj.status) {
-  //         this.previousOrdersData.push(obj.Data)
-  //         this.previousOrders.push(...obj.Data.order)
-          
-  //         //get products data
-  //         // this.getProductsData()
-  //       }
-  //       else {
-  //         console.log(obj.message);
-  //       }
-  //     })
-  //   }
-
-  //   // console.log("previous Orders Data are:", this.previousOrdersData);
-  //   console.log("previous Orders are:", this.previousOrders);
-  //   // console.log("temp",temp);
+  deleteOrder(id: any) {
+    // console.log("id...",id);
     
+    if (confirm("Are you sure you want to delete this order?!")) {
+      this._apiService.put('order/delete/' + id, {}).subscribe((response) => {
+        let obj = response as APIResponse
+        if (obj.status) {
+          alert(obj.message)
 
-  // }
+          // refresh page
+          this._router.navigateByUrl('', { skipLocationChange: true }).then(() => {
+            this._router.navigateByUrl('profile');
+          });
 
+        } else {
+          console.log(obj.message);
+        }
+      })
+    } else {
+      console.log("do nothing")
+    }
 
-  // async getProductsData() {
-
-  //   let tempArray = new Array()
-
-  //   for (let order of this.previousOrders) {
-  //     for (let id of order) {
-  //       await this._apiService.get('product/' + id).subscribe((response) => {
-  //         let obj = response as APIResponse
-  //         if (obj.status) {
-  //           tempArray.push(obj.Data)
-  //         } else {
-  //           console.log(obj.message)
-  //         }
-  //       })
-  //     }
-
-  //   }
-  //   this.productsData.push(tempArray)
-
-  //   console.log("product data:", this.productsData)
-  // }
+  }
 
 
+  orderAgain(order: any) {
+    let products = order.products
+    let user = order.user
+    let customer = order.customer
+    let orderTime = order.orderTime
+    // console.log("order...",order);
+    
+    if (confirm("Are you sure you want to order again")) {
+      this.httpClient.post(`${environment.APIURL}/order`, {products,user,customer,orderTime}, { headers: { 'authorization': this.token } }).subscribe((response) => {
+        let obj = response as APIResponse
+        console.log("order information", obj)
+        if (obj.status) {
+          alert(obj.message)
+        } else {
+          console.log(obj.message)
+        }
+      })
+
+      // rerender the component
+      // this.ngOnInit()
+
+      // refresh page
+      this._router.navigateByUrl('', { skipLocationChange: true }).then(() => {
+        this._router.navigateByUrl('profile');
+      });
+
+    } else {
+      console.log("do nothing")
+    }
+
+
+  }
 
 
 
 
 
+  clearOrders() {
+    if (confirm("Are you sure you want to delete all orders ?!")) {
+      this._apiService.put('order/delete', {}).subscribe((response) => {
+        let obj = response as APIResponse
+        if (obj.status) {
+          alert(obj.message)
+
+          // refresh page
+          this._router.navigateByUrl('', { skipLocationChange: true }).then(() => {
+            this._router.navigateByUrl('profile');
+          });
 
 
+        } else {
+          alert(obj.message);
 
+        }
+      })
+    } else {
+      console.log("do nothing")
+    }
 
-
-
-
+  }
 
 
 

@@ -45,6 +45,7 @@ export class CheckoutComponent implements OnInit {
 
     // get subtotal and total values
     this._activatedRoute.queryParams.subscribe(params => {
+      console.log("params...: ",params)
       this.subTotal = params['subTotal']
       this.total = (+this.subTotal) + (+this.delivery)
     })
@@ -66,28 +67,28 @@ export class CheckoutComponent implements OnInit {
 
 
   confirmOrder() {
-    let order = this.orderProducts
+    let products = this.orderProducts
     let user = this.user
     let customer = this.formGroup.value
-
-    console.log("order", order);
+    let totalPrice = this.total
+    console.log("products", products);
     console.log("user", user);
     console.log("customer", customer);
 
 
-    this.httpClient.post(`${environment.APIURL}/order`, { order, user, customer }, { headers: { 'authorization': this.token } }).subscribe((response) => {
+    this.httpClient.post(`${environment.APIURL}/order`, { products, user, customer,totalPrice }, { headers: { 'authorization': this.token } }).subscribe((response) => {
       let obj = response as APIResponse
       console.log("order information", obj)
       if (obj.status) {
         alert(obj.message)
+        this.clearCart()
+        this._router.navigateByUrl('products')
       } else {
         alert(obj.message)
       }
     })
 
-    this.clearCart()
 
-    this._router.navigateByUrl('')
 
 
   }

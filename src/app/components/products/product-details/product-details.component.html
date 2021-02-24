@@ -15,7 +15,7 @@
                     <h5 class="card-title d-none d-sm-block d-md-none" style="color: #404040;">{{product.name}}</h5>
                     <h2 class="card-title d-none d-md-block" style="color: #404040;">{{product.name}}</h2>
                     <img class="card-img my-3" src="{{product.photoURL}}" alt="">
-                    <h5 class="card-title">Price : {{product.price}}</h5>
+                    <h5 class="card-title">Price : <strong style="color: red;">{{product.price}}</strong> EGP</h5>
                     <a (click)="addToCart(product._id)" class="btn btn-outline-light m-1" id="add-btn">Add to Cart</a>
                     <a (click)="addToFavourite(product._id)" class="btn btn-outline-danger m-1">
                         <i class="fa fa-heart" aria-hidden="true"></i>

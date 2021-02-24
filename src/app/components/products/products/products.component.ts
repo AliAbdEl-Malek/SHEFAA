@@ -89,6 +89,9 @@ export class ProductsComponent implements OnInit {
   
 
   addToCart(id: any) {
+    // console.log("quantitiy",quantitiy)
+    // console.log(typeof(quantitiy))
+
     this._cartService.addToCart(id);
     this.badgeNumber++
   }
