@@ -14,7 +14,7 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class FavouriteProductsComponent implements OnInit {
   userId: any;
-  favouriteProducts:Product[]
+  favouriteProducts:Product[]=[]
   badgeNumber:number=0
 
   constructor(private _favouriteService:FavouriteService ,private _cartService:CartService ,  private _apiService:ApiService, private _userService: UserService) { }
@@ -24,7 +24,7 @@ export class FavouriteProductsComponent implements OnInit {
     this._apiService.get("favourite").subscribe((response) => {
       let obj = response as APIResponse;
       if (obj.status) {
-        console.log("favourite products retrieved:", obj.Data);
+        // console.log("favourite products retrieved:", obj.Data);
         this.favouriteProducts = obj.Data
       }
       else {

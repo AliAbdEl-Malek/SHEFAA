@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { APIResponse } from 'src/app/models/Api-response';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
@@ -14,7 +15,7 @@ export class CartService {
   items: Product[] = [];
   user: User;
   isAddedToCart: boolean = false;
-  length:number =0
+  length: number = 0
   constructor(private _apiService: ApiService) { }
 
   addToCart(id: any) {
@@ -22,12 +23,12 @@ export class CartService {
     this._apiService.put(`cart/add/${id}`, this.items).subscribe((response) => {
       let obj = response as APIResponse
       if (obj.status) {
-        console.log(obj.message)
+        alert(obj.message)
       } else {
         console.log(obj.message)
       }
     });
-    this.length+=1
+    this.length += 1
 
   }
 
@@ -44,7 +45,7 @@ export class CartService {
     this.items.splice(index, 1)
   }
 
-  deleteFromCart(id:any) {
+  deleteFromCart(id: any) {
     this._apiService.put(`cart/delete/${id}`, this.user).subscribe((response) => {
       let obj = response as APIResponse
       if (obj.status) {
@@ -56,6 +57,14 @@ export class CartService {
 
   }
 
- 
+
+  getAddToCartProducts(): Observable<any> {
+    return this._apiService.get("cart")
+  }
+
+
+
+
+
 }
 

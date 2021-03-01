@@ -20,7 +20,7 @@ export class IndexComponent implements OnInit {
 
   constructor(private _apiService:ApiService, private _userService:UserService, private _store:Store<userState>) {
     this.users = this._store.pipe(select(selectUsers))
-    console.log("Users Store:",this.users)
+    // console.log("Users Store:",this.users)
 
    }
 
@@ -29,27 +29,7 @@ export class IndexComponent implements OnInit {
 
   }
 
-// getUsers(){
-//   let token = this._userService.getToken()
-//   console.log("Token is:", token)
-//   this._apiService.get('user/get/'+token).subscribe((response)=>{
-//     let obj = response as APIResponse
-//     console.log("Data from server",obj)
-//     if(obj.status){
-//      let userData = obj.Data
-//       // this.user = userData
-//       return userData
 
-//       console.log("User retreived is: ",userData)
-//     }
-//     else{
-//       if(obj.message == "Session expired!"){
-//         alert(obj.message + "Login again!")
-//         // this._router.navigateByUrl('registeration/logout')
-//       }
-//     }
-//   })
-// }
 
 
 

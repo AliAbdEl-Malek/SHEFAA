@@ -19,12 +19,12 @@ export class FeedbackComponent implements OnInit {
     // ---- Get Mesaages
     this._apiService.get("message/message").subscribe((response) => {
       let obj = response as APIResponse;
-      console.log("Data from server", obj);
+      // console.log("Data from server", obj);
       if (obj.status) {
         let messageData = obj.Data
         this.websiteMessage = messageData
 
-        console.log("message retreived is: ", this.websiteMessage)
+        // console.log("message retreived is: ", this.websiteMessage)
       }
       else {
         alert(obj.message)

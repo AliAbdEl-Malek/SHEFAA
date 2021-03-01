@@ -6,6 +6,8 @@ import { ApiService } from './../../../services/api.service';
 import { FavouriteService } from 'src/app/services/favourite.service';
 import { CartService } from 'src/app/services/cart.service';
 import { User } from 'src/app/models/user';
+import { interval } from 'rxjs';
+import { startWith, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-products',
@@ -31,7 +33,7 @@ export class ProductsComponent implements OnInit {
   paginate: any[] = [];
   currentPage: any[] = [];
 
-  badgeNumber:number=0
+  badgeNumber: number = 0
   user: User
   cart: any[] = []
   allstatus: boolean = false;
@@ -39,15 +41,15 @@ export class ProductsComponent implements OnInit {
   cosmitcsstatus: boolean = false;
   hairstatus: boolean = false;
   babystatus: boolean = false;
-
+  addedToCart: any[] = []
 
   ngOnInit(): void {
     //---- Get User
     let token = this._userService.getToken()
-    console.log("Token is:", token)
+    // console.log("Token is:", token)
     this._apiService.get('user/get/' + token).subscribe((response) => {
       let obj = response as APIResponse
-      console.log("User retreived in product component", obj)
+      // console.log("User retreived in product component", obj)
       this.user = obj.Data
       this.userId = obj.Data["id"]
     })
@@ -55,7 +57,7 @@ export class ProductsComponent implements OnInit {
     // ---- Get Products
     this._apiService.get("product").subscribe((response) => {
       let obj = response as APIResponse;
-      console.log("Product retreived is:", obj);
+      // console.log("Product retreived is:", obj);
       if (obj.status) {
         let productData = obj.Data
         this.products = productData
@@ -84,16 +86,40 @@ export class ProductsComponent implements OnInit {
       }
     })
 
+
+    //get added to cart products 
+    interval(2000).pipe(
+      startWith(0),
+      switchMap(() => this._cartService.getAddToCartProducts())
+    ).subscribe((response) => {
+      let obj = response as APIResponse;
+      if (obj.status) {
+        this.addedToCart = obj.Data
+        // console.log("this.addedToCart",this.addedToCart);
+      }
+      else {
+        console.log(obj.message)
+      }
+    })
+
+
   }
 
-  
+
 
   addToCart(id: any) {
-    // console.log("quantitiy",quantitiy)
-    // console.log(typeof(quantitiy))
-
     this._cartService.addToCart(id);
     this.badgeNumber++
+  }
+
+  disabled(id: any): any {
+    let status: boolean = true
+    for(let item of this.addedToCart){
+      if(item._id == id){
+        status = item.status
+      } 
+    }
+    return status
   }
 
   addToFavourite(id: any) {
@@ -109,7 +135,7 @@ export class ProductsComponent implements OnInit {
     let j = 0;
     if (this.allstatus == false) {
       if (checked) {
-        this.filterArray= [];
+        this.filterArray = [];
         this.medicinestatus = true;
         for (let i = 0; i < this.products.length; i++) {
           if (this.products[i].category === "medicine" || this.products[i].category === "Medicine") {
@@ -151,7 +177,7 @@ export class ProductsComponent implements OnInit {
       }
 
       else {
-        this.filterArray= [];
+        this.filterArray = [];
         this.medicinestatus = false;
         let x = 0
         for (let i = 0; i < this.filter.length; i++) {
@@ -161,7 +187,7 @@ export class ProductsComponent implements OnInit {
           }
         }
         this.filter = this.temporary
-        
+
         let length = this.filter.length
         let pagesNumber = length / 9
         let pageIterator = 0
@@ -181,7 +207,7 @@ export class ProductsComponent implements OnInit {
 
 
     if (this.filter.length == 0) {
-      this.filterArray= [];
+      this.filterArray = [];
       this.filter = this.products
 
       let length = this.filter.length
@@ -202,14 +228,14 @@ export class ProductsComponent implements OnInit {
 
   }
 
-  
+
   //---- cosmitics Product
   filtercosmiticsProduct(checked: boolean) {
     this.temporary = [];
     let x = 0;
     if (this.allstatus == false) {
       if (checked) {
-        this.filterArray= [];
+        this.filterArray = [];
         this.cosmitcsstatus = true;
         for (let i = 0; i < this.products.length; i++) {
           if (this.products[i].category === "Cosmatics") {
@@ -251,7 +277,7 @@ export class ProductsComponent implements OnInit {
       }
 
       else {
-        this.filterArray= [];
+        this.filterArray = [];
         this.cosmitcsstatus = false;
         let x = 0
         for (let i = 0; i < this.filter.length; i++) {
@@ -281,7 +307,7 @@ export class ProductsComponent implements OnInit {
 
 
     if (this.filter.length == 0) {
-      this.filterArray= [];
+      this.filterArray = [];
       this.filter = this.products
 
       let length = this.filter.length
@@ -309,7 +335,7 @@ export class ProductsComponent implements OnInit {
     let x = 0;
     if (this.allstatus == false) {
       if (checked) {
-        this.filterArray= [];
+        this.filterArray = [];
         this.hairstatus = true;
         for (let i = 0; i < this.products.length; i++) {
           if (this.products[i].category === "Hair Product") {
@@ -351,7 +377,7 @@ export class ProductsComponent implements OnInit {
       }
 
       else {
-        this.filterArray= [];
+        this.filterArray = [];
         this.hairstatus = false;
         let x = 0
         for (let i = 0; i < this.filter.length; i++) {
@@ -381,7 +407,7 @@ export class ProductsComponent implements OnInit {
 
 
     if (this.filter.length == 0) {
-      this.filterArray= [];
+      this.filterArray = [];
       this.filter = this.products
 
       let length = this.filter.length
@@ -409,7 +435,7 @@ export class ProductsComponent implements OnInit {
     let x = 0;
     if (this.allstatus == false) {
       if (checked) {
-        this.filterArray= [];
+        this.filterArray = [];
         this.babystatus = true;
         for (let i = 0; i < this.products.length; i++) {
           if (this.products[i].category === "Baby Product") {
@@ -451,7 +477,7 @@ export class ProductsComponent implements OnInit {
       }
 
       else {
-        this.filterArray= [];
+        this.filterArray = [];
         this.babystatus = false;
         let x = 0
         for (let i = 0; i < this.filter.length; i++) {
@@ -481,7 +507,7 @@ export class ProductsComponent implements OnInit {
 
 
     if (this.filter.length == 0) {
-      this.filterArray= [];
+      this.filterArray = [];
       this.filter = this.products
 
       let length = this.filter.length
@@ -505,10 +531,10 @@ export class ProductsComponent implements OnInit {
 
   allProducts(checked: boolean) {
     if (checked) {
-      this.filterArray= [];
+      this.filterArray = [];
       this.allstatus = true;
       this.filter = this.products;
-      
+
       let length = this.filter.length
       let pagesNumber = length / 9
       let pageIterator = 0
@@ -526,7 +552,7 @@ export class ProductsComponent implements OnInit {
     }
 
     else {
-      this.filterArray= [];
+      this.filterArray = [];
       this.allstatus = false;
       this.filter = [];
       if (this.medicinestatus === true) {

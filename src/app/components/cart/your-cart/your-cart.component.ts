@@ -29,7 +29,7 @@ export class YourCartComponent implements OnInit {
     this._apiService.get("cart").subscribe((response) => {
       let obj = response as APIResponse;
       if (obj.status) {
-        console.log("cart products for user:", obj.Data);
+        // console.log("cart products for user:", obj.Data);
         this.products = obj.Data
         this.cartLength = this.products.length
         if(this.cartLength != 0){
@@ -62,6 +62,9 @@ export class YourCartComponent implements OnInit {
       this.isDisabled = true
     }
   }
+
+
+  
 
 
 

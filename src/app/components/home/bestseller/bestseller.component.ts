@@ -27,17 +27,17 @@ export class BestsellerComponent implements OnInit {
   ngOnInit(): void {
     //---- Get User
     let token = this._userService.getToken()
-    console.log("Token is:", token)
+    // console.log("Token is:", token)
     this._apiService.get('user/get/' + token).subscribe((response) => {
       let obj = response as APIResponse
-      console.log("Data from server", obj)
+      // console.log("Data from server", obj)
       this.userId = obj.Data["id"]
     })
 
     // ---- Get Products
     this._apiService.get("product").subscribe((response) => {
       let obj = response as APIResponse;
-      console.log("Data from server", obj);
+      // console.log("Data from server", obj);
       if (obj.status) {
         let productData = obj.Data
         this.products = productData
@@ -46,7 +46,7 @@ export class BestsellerComponent implements OnInit {
           this.best[i]=this.products[i];
         }
 
-        console.log("Product retreived is: ", this.products)
+        // console.log("Product retreived is: ", this.products)
       }
       else {
         alert(obj.message)
@@ -55,10 +55,10 @@ export class BestsellerComponent implements OnInit {
 
     //---- Get Cart Products
     let token1 = this._userService.getToken()
-    console.log("Token is:", token1)
+    // console.log("Token is:", token1)
     this._apiService.get('user/get/' + token1).subscribe((response) => {
       let obj = response as APIResponse
-      console.log("User retreived in product component", obj)
+      // console.log("User retreived in product component", obj)
       this.user = obj.Data
       this.userId = obj.Data["id"]
     })

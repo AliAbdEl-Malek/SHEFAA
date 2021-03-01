@@ -27,10 +27,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
 
     let token = this._userService.getToken()
-    console.log("Token is:", token)
+    // console.log("Token is:", token)
     this._apiService.get('user/get/' + token).subscribe((response) => {
       let obj = response as APIResponse
-      console.log("User Retrieved: ", obj)
+      // console.log("User Retrieved: ", obj)
       if (obj.status) {
         this.user = obj.Data
         this.length = this.user.cartProducts.length
@@ -44,16 +44,16 @@ export class HeaderComponent implements OnInit {
 
     this._apiService.get('product/').subscribe((response) => {
       let obj = response as APIResponse
-      console.log("Data from server", obj)
+      // console.log("Data from server", obj)
       if (obj.status) {
         this.products = obj.Data
-        console.log("products retreived are: ", this.products)
+        // console.log("products retreived are: ", this.products)
 
         //iterate for produc names
         for (let i = 0; i < this.products.length; i++) {
           this.productNames.push(this.products[i].name)
         }
-        console.log("this.productNames", this.productNames)
+        // console.log("this.productNames", this.productNames)
       }
       else {
         alert(obj.message)
@@ -88,7 +88,7 @@ export class HeaderComponent implements OnInit {
     this._apiService.get(`product/get/` + productName).subscribe((response) => {
       let obj = response as APIResponse
       if (obj.status) {
-        console.log("product retreived to be passed to details is: ", obj)
+        // console.log("product retreived to be passed to details is: ", obj)
         this._router.navigate(['products/details'], { queryParams: { ID: obj.Data._id } })
       }
       else {

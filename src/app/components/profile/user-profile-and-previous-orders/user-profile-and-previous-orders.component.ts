@@ -30,7 +30,7 @@ export class UserProfileAndPreviousOrdersComponent implements OnInit {
   ngOnInit(): void {
 
      this.token = this._userService.getToken()
-    console.log("Token is:", this.token)
+    // console.log("Token is:", this.token)
     this._apiService.get('user/get/' + this.token).subscribe((response) => {
       let obj = response as APIResponse
       // console.log("User Retrieved: ", obj)
@@ -55,7 +55,7 @@ export class UserProfileAndPreviousOrdersComponent implements OnInit {
       let obj = response as APIResponse
       if (obj.status) {
         this.previousOrders = obj.Data
-        console.log("previous Orders are: ", this.previousOrders);
+        // console.log("previous Orders are: ", this.previousOrders);
 
       }
       else {
@@ -108,13 +108,13 @@ export class UserProfileAndPreviousOrdersComponent implements OnInit {
     let products = order.products
     let user = order.user
     let customer = order.customer
-    let orderTime = order.orderTime
+    let totalPrice = order.totalPrice
     // console.log("order...",order);
     
     if (confirm("Are you sure you want to order again")) {
-      this.httpClient.post(`${environment.APIURL}/order`, {products,user,customer,orderTime}, { headers: { 'authorization': this.token } }).subscribe((response) => {
+      this.httpClient.post(`${environment.APIURL}/order`, {products,user,customer,totalPrice}, { headers: { 'authorization': this.token } }).subscribe((response) => {
         let obj = response as APIResponse
-        console.log("order information", obj)
+        // console.log("order information", obj)
         if (obj.status) {
           alert(obj.message)
         } else {

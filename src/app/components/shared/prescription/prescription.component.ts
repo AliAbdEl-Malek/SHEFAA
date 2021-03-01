@@ -24,10 +24,10 @@ export class PrescriptionComponent implements OnInit {
   ngOnInit(): void {
 
     let token = this._userService.getToken()
-    console.log("Token is:", token)
+    // console.log("Token is:", token)
     this._apiService.get('user/get/' + token).subscribe((response) => {
       let obj = response as APIResponse
-      console.log("Data from server in prescription:", obj)
+      // console.log("Data from server in prescription:", obj)
       if (obj.status) {
         let userData = obj.Data
         this.user = userData
@@ -53,10 +53,10 @@ export class PrescriptionComponent implements OnInit {
 
     const uploadData = new FormData();
     uploadData.append('prescriptionURL', this.selectedFile, this.selectedFile.name);
-    console.log("uploadData", uploadData)
+    // console.log("uploadData", uploadData)
     this._apiService.post('prescription/' + this.user.id, uploadData).subscribe((response) => {
       let obj = response as APIResponse
-      console.log("Data after upload prescription:", obj)
+      // console.log("Data after upload prescription:", obj)
       this.prescription = obj.Data
       alert(obj.message + "please wait until we review your prescription and reply to you ^^ ")
       this._router.navigateByUrl('')
@@ -68,7 +68,7 @@ export class PrescriptionComponent implements OnInit {
 
   onFileChanged(event: any) {
     this.selectedFile = event.target.files[0]
-    console.log("selectedFile", this.selectedFile)
+    // console.log("selectedFile", this.selectedFile)
 
     this.processFile(this.selectedFile)
     this.isUploadedPrescription = true
