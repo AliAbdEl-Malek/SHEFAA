@@ -26,10 +26,10 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     let token = this._userService.getToken()
-    console.log("Token is:", token)
+    // console.log("Token is:", token)
     this._apiService.get('user/get/' + token).subscribe((response) => {
       let obj = response as APIResponse
-      console.log("Data from server", obj)
+      // console.log("Data from server", obj)
       this.userId = obj.Data["id"]
     })
 
@@ -37,15 +37,15 @@ export class ProductDetailsComponent implements OnInit {
     this._activatedRoute.queryParams.subscribe(params=>{​​​​​
 
       this.productId = params['ID']
-      console.log("product ID: ",  this.productId )
+      // console.log("product ID: ",  this.productId )
 
       this._apiService.get('product/' + this.productId).subscribe((response)=>{​​​​​
         let obj = response as APIResponse;
-        console.log("Data from server",obj);
+        // console.log("Data from server",obj);
 
         if(obj.status){
           this.product = obj.Data
-           console.log("Product retreived is: ",this.product)
+          //  console.log("Product retreived is: ",this.product)
          }
          else{
            alert(obj.message)
@@ -56,12 +56,12 @@ export class ProductDetailsComponent implements OnInit {
      this._apiService.get("cart").subscribe((response) => {
       let obj = response as APIResponse;
 
-      console.log("Data from server cart", obj.Data);
+      // console.log("Data from server cart", obj.Data);
       if (obj.status) {
         let cartData = obj.Data
         this.cartfake = cartData
 
-        console.log("Product retreived is faaaaaake: ", this.cartfake[0].cartProducts)
+        // console.log("Product retreived is faaaaaake: ", this.cartfake[0].cartProducts)
 
 
       }
@@ -72,11 +72,11 @@ export class ProductDetailsComponent implements OnInit {
     this._apiService.get("favourite").subscribe((response)=>{
       let obj = response as APIResponse;
      
-      console.log("Data from server favourite",obj.Data);
+      // console.log("Data from server favourite",obj.Data);
       if(obj.status){
         let favouriteData = obj.Data
          this.favouritefake = favouriteData
-         console.log("Favourite product retreived is: ",this.favouritefake[0].favouriteProducts)
+        //  console.log("Favourite product retreived is: ",this.favouritefake[0].favouriteProducts)
        }
        else{
          alert(obj.message)

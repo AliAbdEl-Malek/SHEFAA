@@ -9,16 +9,24 @@
                         <a [routerLink]="['/profile/edit']"><i class="fa fa-pencil " id="edit-pen"
                   style="float: right; margin: 15px;"></i></a>
                         <div class="text-center" *ngIf="user">
-                            <img class="card-img-top" src="http://localhost:3000/{{user.photoURL}}" alt="Card image" style="width: 50%; border-radius: 50%" />
+                            <img *ngIf="user.photoURL" class="card-img-top" src="http://localhost:3000/{{user.photoURL}}" alt="Card image" style="width: 50%; border-radius: 50%" />
+                            <img *ngIf="!user.photoURL" src="assets/images/pp-man.png" class="rounded-circle" alt="user Image" style="width: 50%; border-radius: 50%">
+
                         </div>
                         <div class="card-body d-sm-block" *ngIf="user">
                             <h4 class="card-title text-center">{{user.name}}</h4>
-                            <p class="card-text col-12-sm">
-                                <i class="fa fa-map-marker fa-1x" style="color: #32c69a"></i> {{user.address}}
+                            <p *ngIf="user.address" class="card-text col-12-sm">
+                                <i class="fa fa-map-marker fa-1x" style="color: #32c69a"></i> &nbsp; {{user.address}}
+                            </p>
+                            <p *ngIf="!user.address" class="card-text col-12-sm">
+                                <i class="fa fa-map-marker fa-1x" style="color: #32c69a"></i> &nbsp; address
                             </p>
 
-                            <p class="card-text">
+                            <p *ngIf="user.phone" class="card-text">
                                 <i class="fa fa-mobile fa-2x" aria-hidden="true" style="color: #32c69a"></i> &nbsp; {{user.phone}}
+                            </p>
+                            <p *ngIf="!user.phone" class="card-text">
+                                <i class="fa fa-mobile fa-2x" aria-hidden="true" style="color: #32c69a"></i> &nbsp; phone
                             </p>
 
                             <p class="card-text col-12-sm">

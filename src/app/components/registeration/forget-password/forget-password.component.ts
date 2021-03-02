@@ -39,13 +39,13 @@ export class ForgetPasswordComponent implements OnInit {
 
   sendCode(){
     this.email = this.formGroup.value
-    // console.log("This.email:", this.email)
+    console.log("This.email:", this.email)
 
-    this.httpClient.post('http://localhost:3000/user/resetCode',this.email,{headers:{'authorization':this.token}}).subscribe((response)=>{
+    this.httpClient.post('http://localhost:3000/user/resetCode',this.email).subscribe((response)=>{
       let obj = response as APIResponse
       console.log("Data from server",obj)
       if(obj.status){
-        // console.log(obj.Data)
+        console.log(obj.Data)
         this.serverData = obj
       }
     })
